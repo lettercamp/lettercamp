@@ -1,0 +1,98 @@
+---
+import '../styles/site.css';
+import '../styles/post-share.css';
+import { basePath, sitePath } from '../lib/urls.js';
+import { codeBlockStyles } from '../lib/code-block';
+import { imageRoundingScript, readImageRadius } from '../lib/image-rounding';
+import { fontResources } from '../lib/fonts.js';
+import { pageMetadata } from '../lib/metadata.js';
+import { defaultSiteBranding } from '../lib/branding.js';
+import { postTocScript } from '../lib/post-toc';
+import { authorDialogScript } from '../lib/author-dialog';
+import { postShareScript } from '../lib/post-share';
+import { mobileNavigationScript } from '../lib/mobile-navigation';
+import { blockWidthStyles } from '../lib/block-widths';
+import { tableStyles } from '../lib/table-styles';
+import { keyTakeawaysStyles } from '../lib/key-takeaways';
+import { faqStyles } from '../lib/faq';
+import { siteColors, typographyColorStyles } from '../lib/site-colors';
+import { imageWidthStyles } from '../lib/image-widths';
+import { googleAnalyticsScript } from '../lib/analytics';
+import Header from '../components/HeaderSlot.astro';
+import Footer from '../components/FooterSlot.astro';
+
+const { site, page, article = false, posts = [], priorityImage, listing } = Astro.props;
+const meta = pageMetadata(site, page, Astro.url, article, basePath, posts, listing);
+const typography = site.design?.typography ?? {};
+const fonts = fontResources(typography, article ? 700 : 500, basePath);
+const fontSize = (value, fallback) => typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : fallback;
+const headingBaseSize = fontSize(typography.headingBaseSizePx, 18);
+const bodyBaseSize = fontSize(typography.bodyBaseSizePx, 16);
+const bodyLineHeight = fontSize(typography.bodyLineHeight, 1.8);
+const colors = siteColors(site.design);
+const analytics = googleAnalyticsScript(site.analytics?.googleAnalyticsId);
+---
+
+<!doctype html>
+<html data-base-path={basePath} data-site-accent={colors['--site-accent'] !== 'inherit' ? '' : undefined} lang={meta.language} style={{ ...colors, '--image-radius': readImageRadius(site.design?.imageRadiusPercent) / 100, '--font-family': fonts.bodyFamily, '--heading-font': fonts.headingFamily, '--heading-type-scale': headingBaseSize / 18, '--body-type-scale': bodyBaseSize / 16, '--body-line-height': bodyLineHeight }}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {priorityImage && <link rel="preload" as="image" href={priorityImage} fetchpriority="high" />}
+    {fonts.preloads.map(href => <link data-lettercamp-font-preload rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    {fonts.googleUrl && <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link data-lettercamp-fonts href={fonts.googleUrl} rel="stylesheet" />
+    </>}
+    <style is:inline data-lettercamp-font-faces set:html={fonts.css} />
+    <style is:inline set:html={typographyColorStyles} />
+    <style is:inline set:html={imageWidthStyles} />
+    <style is:inline set:html={blockWidthStyles} />
+    <style is:inline set:html={codeBlockStyles} />
+    <style is:inline set:html={tableStyles} />
+    <style is:inline set:html={keyTakeawaysStyles} />
+    <style is:inline set:html={faqStyles} />
+    <title>{meta.documentTitle}</title>
+    <meta name="description" content={meta.description} />
+    {meta.keywords && <meta name="keywords" content={meta.keywords} />}
+    <meta name="robots" content={meta.robots} />
+    <link rel="canonical" href={meta.canonical} />
+    <meta property="og:title" content={meta.socialTitle} />
+    <meta property="og:description" content={meta.socialDescription} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={meta.canonical} />
+    {meta.locale && <meta property="og:locale" content={meta.locale} />}
+    {meta.imageUrl && <meta property="og:image" content={meta.imageUrl} />}
+    {meta.imageUrl && meta.imageAlt && <meta property="og:image:alt" content={meta.imageAlt} />}
+    {meta.videoUrl && <meta property="og:video" content={meta.videoUrl} />}
+    {meta.videoUrl?.startsWith('https:') && <meta property="og:video:secure_url" content={meta.videoUrl} />}
+    {meta.videoUrl && meta.videoType && <meta property="og:video:type" content={meta.videoType} />}
+    <meta name="twitter:card" content={meta.twitterCard} />
+    <meta name="twitter:title" content={meta.twitterTitle} />
+    <meta name="twitter:description" content={meta.twitterDescription} />
+    {meta.twitterImageUrl && <meta name="twitter:image" content={meta.twitterImageUrl} />}
+    {meta.twitterImageUrl && meta.twitterImageAlt && <meta name="twitter:image:alt" content={meta.twitterImageAlt} />}
+    {meta.twitterSite && <meta name="twitter:site" content={meta.twitterSite} />}
+    {meta.twitterCreator && <meta name="twitter:creator" content={meta.twitterCreator} />}
+    <link rel="icon" href={sitePath(site.favicon)} />
+    {site.favicon === defaultSiteBranding.favicon && <>
+      <link rel="icon" href="https://lettercamp.com/favicon.svg?v=7" type="image/svg+xml" />
+      <link rel="shortcut icon" href="https://lettercamp.com/favicon.ico?v=7" />
+      <link rel="apple-touch-icon" href="https://lettercamp.com/apple-touch-icon.png?v=7" sizes="180x180" />
+    </>}
+    {analytics && <script is:inline data-lettercamp-analytics set:html={analytics} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <Header site={site} pathname={Astro.url.pathname} />
+    <main id="content"><slot /></main>
+    <Footer site={site} pathname={Astro.url.pathname} />
+    <script is:inline data-lettercamp-images set:html={imageRoundingScript} />
+    <script is:inline data-lettercamp-toc set:html={postTocScript} />
+    <script is:inline data-lettercamp-authors set:html={authorDialogScript} />
+    <script is:inline data-lettercamp-share set:html={postShareScript} />
+    <script is:inline data-lettercamp-navigation set:html={mobileNavigationScript} />
+  </body>
+</html>

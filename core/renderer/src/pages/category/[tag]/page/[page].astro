@@ -1,0 +1,15 @@
+---
+import ListingPage from '../../../../components/ListingPage.astro';
+import { getCategories, getPosts } from '../../../../lib/posts.js';
+import { pageCount } from '../../../../lib/pagination';
+export function getStaticPaths() {
+  const posts = getPosts();
+  return getCategories().flatMap(category => Array.from({ length: pageCount(posts.filter(post => post.category === category.name).length) }, (_, index) => ({
+    params: { tag: category.tag, page: String(index + 1) }, props: { category: category.name, base: category.href },
+  })));
+}
+const { category, base } = Astro.props;
+const current = Number(Astro.params.page);
+if (current === 1) return Astro.redirect(base, 308);
+---
+<ListingPage category={category} current={current} />

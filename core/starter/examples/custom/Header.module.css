@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px;
+  background: #18251d;
+  color: #fff;
+}
+
+.name {
+  font-weight: 600;
+  text-decoration: none;
+}

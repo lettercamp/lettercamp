@@ -1,0 +1,25 @@
+---
+import AuthorByline from './AuthorByline.astro';
+import { sitePath } from '../lib/urls.js';
+const { post, site, priority = false } = Astro.props;
+const image = sitePath(post.ogImage ?? post.image ?? site.seo?.ogImage);
+---
+
+<article class="post-card" data-post-category={post.category}>
+  <div class="post-card-layout">
+    {image && <div class="post-card-cover">
+      <img src={image} alt="" width="1200" height="630" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} />
+    </div>}
+    <div class="post-card-content">
+      {(post.category || post.date?.label) && <div class="post-card-details">
+        {post.date?.label && <time class="post-card-date" datetime={post.date.iso}>{post.date.label}</time>}
+        {post.category && <span class="post-card-category">{post.category}</span>}
+      </div>}
+      <h3><a class="post-card-link" href={post.href}>{post.title}</a></h3>
+      {post.description && <p class="post-card-description">{post.description}</p>}
+      <div class="post-card-meta">
+        <AuthorByline post={post} site={site} variant="listing" date={null} />
+      </div>
+    </div>
+  </div>
+</article>

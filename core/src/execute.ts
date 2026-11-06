@@ -1,0 +1,14 @@
+import semver from 'semver';
+
+export async function execute(name: 'lettercamp' | 'create-lettercamp') {
+  try {
+    if (!semver.satisfies(process.versions.node, '>=22.23.4')) {
+      throw new Error(`Node.js 22.23.4 or newer is required (you have ${process.versions.node}).`);
+    }
+    const { run } = await import('./cli.js');
+    await run(process.argv, name);
+  } catch (error) {
+    console.error(`\nLettercamp: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+  }
+}

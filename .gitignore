@@ -1,0 +1,13 @@
+node_modules/
+*.tgz
+.DS_Store
+.astro/
+dist/
+.env
+.env.*
+/AGENTS.md
+
+# Generated from the root README when preparing npm packages.
+/core/README.md
+/create/README.md
+/wrapper/README.md

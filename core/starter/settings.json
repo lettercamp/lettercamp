@@ -1,0 +1,154 @@
+{
+  "name": "Lorem Ipsum Blog",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae justo vel sapien malesuada aliquet.",
+  "language": "en",
+  "logo": "/images/branding/logo-7e6bff827cd2b3b4.webp",
+  "favicon": "/images/branding/icon-b0f9b95b579d3161.webp",
+  "timeZone": "UTC",
+  "design": {
+    "backgroundColor": "#ffffff",
+    "imageRadiusPercent": 2,
+    "typography": {
+      "localFonts": true,
+      "headingFont": {
+        "google": "Inter"
+      },
+      "bodyFont": {
+        "google": "Inter"
+      },
+      "headingColor": "",
+      "bodyColor": "",
+      "headingBaseSizePx": 18,
+      "bodyBaseSizePx": 16,
+      "bodyLineHeight": 1.8
+    }
+  },
+  "home": {
+    "title": "Lorem Ipsum Blog",
+    "feedLayout": "grid",
+    "contentWidthPx": 1280
+  },
+  "post": {
+    "heroLayout": "stacked",
+    "contentWidthEm": 40,
+    "showCover": true,
+    "showTableOfContents": true,
+    "showReadingTime": true,
+    "showRelatedPosts": true
+  },
+  "header": {
+    "position": "scroll",
+    "links": [
+      {
+        "label": "Initium",
+        "href": "/"
+      },
+      {
+        "label": "Fabula",
+        "href": "/praesent-commodo-cursus-magna/"
+      },
+      {
+        "label": "Notae",
+        "href": "/curabitur-blandit/"
+      }
+    ],
+    "button": {
+      "label": "Explora",
+      "href": "/lorem-ipsum-dolor-sit-amet/"
+    }
+  },
+  "footer": {
+    "columns": [
+      {
+        "header": "Lorem ipsum",
+        "items": [
+          {
+            "label": "Aurora",
+            "href": "/category/aurora/"
+          },
+          {
+            "label": "Serenitas",
+            "href": "/category/serenitas/"
+          },
+          {
+            "label": "Lumina",
+            "href": "/category/lumina/"
+          }
+        ]
+      },
+      {
+        "header": "Dolor sit amet",
+        "items": [
+          {
+            "label": "Lorem ipsum dolor",
+            "href": "/lorem-ipsum-dolor-sit-amet/"
+          },
+          {
+            "label": "Curabitur blandit",
+            "href": "/curabitur-blandit/"
+          },
+          {
+            "label": "Maecenas sed diam",
+            "href": "/maecenas-sed-diam-eget-risus/"
+          }
+        ]
+      },
+      {
+        "header": "Consectetur",
+        "items": [
+          {
+            "label": "Praesent commodo",
+            "href": "/praesent-commodo-cursus-magna/"
+          },
+          {
+            "label": "Nunc finibus",
+            "href": "/nunc-finibus/"
+          }
+        ]
+      },
+      {
+        "header": "Adipiscing elit",
+        "items": [
+          {
+            "label": "Phasellus faucibus",
+            "href": "/phasellus-faucibus-scelerisque-eleifend/"
+          },
+          {
+            "label": "Donec ullamcorper",
+            "href": "/donec-ullamcorper-nulla-non-metus/"
+          },
+          {
+            "label": "Vestibulum ante ipsum",
+            "href": "/vestibulum-ante-ipsum-primis-in-faucibus/"
+          },
+          {
+            "label": "Sed ut perspiciatis",
+            "href": "/sed-ut-perspiciatis-unde-omnis-iste-natus/"
+          },
+          {
+            "label": "Aliquam erat volutpat",
+            "href": "/aliquam-erat-volutpat/"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "platform": "x",
+        "href": "https://www.x.com/lettercampsite"
+      },
+      {
+        "platform": "github",
+        "href": "https://github.com/lettercamp"
+      }
+    ]
+  },
+  "seo": {
+    "ogImage": "",
+    "ogImageAlt": "",
+    "keywords": []
+  },
+  "analytics": {
+    "googleAnalyticsId": ""
+  }
+}

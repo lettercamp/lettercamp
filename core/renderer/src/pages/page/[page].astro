@@ -1,0 +1,12 @@
+---
+import ListingPage from '../../components/ListingPage.astro';
+import { getPosts } from '../../lib/posts.js';
+import { pageCount } from '../../lib/pagination';
+import { sitePath } from '../../lib/urls.js';
+export function getStaticPaths() {
+  return Array.from({ length: pageCount(getPosts().length) }, (_, index) => ({ params: { page: String(index + 1) } }));
+}
+const current = Number(Astro.params.page);
+if (current === 1) return Astro.redirect(sitePath('/'), 308);
+---
+<ListingPage current={current} />

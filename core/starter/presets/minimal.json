@@ -1,0 +1,14 @@
+{
+  "name": "Minimal",
+  "settings": {
+    "home": {
+      "feedLayout": "column"
+    }
+  },
+  "setup": {
+    "removeImages": {
+      "covers": true,
+      "authors": true
+    }
+  }
+}

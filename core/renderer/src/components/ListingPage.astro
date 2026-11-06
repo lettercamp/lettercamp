@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import BlogHome from './BlogHome.astro';
+import site from '../site.js';
+import { getPosts, getCategories } from '../lib/posts.js';
+import { POSTS_PER_PAGE, pageCount } from '../lib/pagination';
+import { sitePath } from '../lib/urls.js';
+const { category = '', current = 1 } = Astro.props;
+const allPosts = getPosts(site.language, site.timeZone);
+const matching = category ? allPosts.filter(post => post.category === category) : allPosts;
+const posts = matching.slice((current - 1) * POSTS_PER_PAGE, current * POSTS_PER_PAGE);
+const categories = getCategories();
+const base = category ? categories.find(item => item.name === category).href : sitePath('/');
+const title = category || (site.home.title ?? `${site.name} Blog`);
+const firstPost = posts[0];
+const priorityImage = firstPost && sitePath(firstPost.ogImage ?? firstPost.image ?? site.seo?.ogImage);
+---
+<SiteLayout site={site} page={{ title }} posts={posts} priorityImage={priorityImage} listing={{ page: current, path: base }}>
+  <BlogHome site={site} category={category} posts={posts} categories={categories} current={current} total={pageCount(matching.length)} count={matching.length} base={base} />
+</SiteLayout>

@@ -1,0 +1,78 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import { pageSlug, postDate, getCategories, getPosts } from '../lib/posts.js';
+import { createRelatedPostSelector } from '../lib/related-posts';
+import { sitePath } from '../lib/urls.js';
+import site from '../site.js';
+import { readContentWidthEm } from '../lib/post-layout';
+import { pages } from '../content.js';
+import { postShareButton } from '../lib/post-share';
+
+export function getStaticPaths() {
+  const posts = getPosts(site.language, site.timeZone);
+  const selectRelated = createRelatedPostSelector(posts, site.language);
+  const byHref = new Map(posts.map(post => [post.href, post]));
+  return Object.entries(pages).map(([filename, page]) => {
+    const slug = pageSlug(filename);
+    const href = sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}/`);
+    return { params: { slug }, props: { page, relatedPosts: selectRelated(byHref.get(href)) } };
+  });
+}
+
+const { page, relatedPosts } = Astro.props;
+const { Content, frontmatter = {} } = page;
+const coverImage = sitePath(frontmatter.image ?? frontmatter.ogImage);
+const coverImageWidth = Number(frontmatter.coverImageWidth ?? (frontmatter.image ? frontmatter.imageWidth : undefined));
+const coverImageHeight = Number(frontmatter.coverImageHeight ?? (frontmatter.image ? frontmatter.imageHeight : undefined));
+const coverSizeKnown = Number.isFinite(coverImageWidth) && coverImageWidth > 0 && Number.isFinite(coverImageHeight) && coverImageHeight > 0;
+const headings = (page.getHeadings?.() ?? []).filter(({ depth }) => depth === 2 || depth === 3);
+const category = typeof frontmatter.category === 'string' ? frontmatter.category.trim() : '';
+const categoryHref = getCategories().find(item => item.name === category)?.href;
+const date = postDate(frontmatter.date, site.language, site.timeZone);
+const postLayout = site.post ?? {};
+const coverWidthMode = ['regular', 'wide', 'full'].includes(frontmatter.coverWidthMode) ? frontmatter.coverWidthMode : 'wide';
+const coverWidth = /^[0-9]+$/.test(String(frontmatter.coverWidth)) && Number(frontmatter.coverWidth) > 0 ? `${frontmatter.coverWidth}px` : undefined;
+---
+
+<SiteLayout site={site} page={frontmatter} article priorityImage={postLayout.showCover !== false ? coverImage : undefined}>
+  <article class="publication publication-post" style={{ '--post-content-width': `calc(var(--text-base) * ${readContentWidthEm(postLayout)})` }} data-post-hero={postLayout.heroLayout ?? 'stacked'}
+    data-image-content-width={readContentWidthEm(postLayout) * (Number(site.design?.typography?.bodyBaseSizePx) || 16)}
+    data-reading-minutes={frontmatter.readingMinutes}
+    data-post-cover={postLayout.showCover === false ? 'hidden' : 'visible'} data-post-toc={postLayout.showTableOfContents === false ? 'hidden' : 'visible'}>
+    <header class:list={['article-header', 'article-hero', { 'article-hero-with-image': coverImage }]}>
+      <div class="article-intro">
+        <div class="article-meta-row">
+        {category && <p class="article-category">
+          <a href={categoryHref}>{category}</a>
+        </p>}
+          <Fragment set:html={postShareButton} />
+        </div>
+        <h1>{frontmatter.title ?? site.name}</h1>
+        {frontmatter.description && <p class="description">{frontmatter.description}</p>}
+        <div class="byline">
+          <AuthorByline post={frontmatter} site={site} date={date} />
+          <Fragment set:html={postShareButton} />
+        </div>
+      </div>
+      {coverImage && <figure class="article-hero-image" data-image-width={coverWidthMode} style={{ '--cover-image-width': coverWidth }}>
+        <img src={coverImage} alt={frontmatter.imageAlt ?? ''} width={coverSizeKnown ? coverImageWidth : 1600} height={coverSizeKnown ? coverImageHeight : 900} fetchpriority="high" />
+      </figure>}
+    </header>
+    <div class:list={['article-body', { 'article-body-with-toc': headings.length > 0 }]}>
+      {headings.length > 0 && <aside class="article-sidebar">
+        <nav class="article-toc" aria-label="Table of contents">
+          <h2>On this page</h2>
+          <ol>
+            {headings.map(({ depth, slug, text }) => <li class:list={{ 'toc-subheading': depth === 3 }}>
+              <a href={`#${slug}`} title={text}><span class="toc-label">{text}</span></a>
+            </li>)}
+          </ol>
+        </nav>
+      </aside>}
+      <div class="prose"><Content /></div>
+    </div>
+    <RelatedPosts posts={relatedPosts} site={site} />
+  </article>
+</SiteLayout>

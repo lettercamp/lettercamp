@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0",
+  "description": "The Lettercamp blog engine and CLI",
+  "keywords": [
+    "lettercamp",
+    "blog",
+    "cli"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "homepage": "https://github.com/lettercamp/lettercamp#readme",
+  "bugs": {
+    "url": "https://github.com/lettercamp/lettercamp/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "name": "lettercamp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lettercamp/lettercamp.git",
+    "directory": "wrapper"
+  },
+  "bin": {
+    "lettercamp": "bin/lettercamp.js"
+  },
+  "files": [
+    "bin",
+    "build-image/package-lock.json"
+  ],
+  "scripts": {
+    "prepack": "tsx ../scripts/package-readme.ts"
+  },
+  "dependencies": {
+    "@lettercamp/cli": "0.1.0"
+  },
+  "license": "MIT"
+}

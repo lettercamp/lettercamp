@@ -1,0 +1,18 @@
+---
+import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
+import { pagePath, paginationItems } from '../lib/pagination';
+const { current, total, base } = Astro.props;
+---
+{total > 1 && <nav class="pagination" data-many-pages={total > 4 ? "" : undefined} aria-label="Article pages">
+  {current > 1
+    ? <a href={pagePath(base, current - 1)} rel="prev" class="pagination-direction" aria-label="Previous page"><LuChevronLeft aria-hidden="true" /></a>
+    : <span class="pagination-direction" aria-disabled="true" aria-label="Previous page"><LuChevronLeft aria-hidden="true" /></span>}
+  <div class="pagination-pages">
+  {paginationItems(current, total).map(page => page === null
+    ? <span class="pagination-gap" aria-hidden="true">…</span>
+    : <a href={pagePath(base, page)} aria-label={`Page ${page}`} aria-current={page === current ? 'page' : undefined}>{page}</a>)}
+  </div>
+  {current < total
+    ? <a href={pagePath(base, current + 1)} rel="next" class="pagination-direction" aria-label="Next page"><LuChevronRight aria-hidden="true" /></a>
+    : <span class="pagination-direction" aria-disabled="true" aria-label="Next page"><LuChevronRight aria-hidden="true" /></span>}
+</nav>}

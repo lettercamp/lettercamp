@@ -1,0 +1,79 @@
+{
+  "name": "Dark",
+  "settings": {
+    "design": {
+      "backgroundColor": "#000000",
+      "typography": {
+        "headingFont": {
+          "google": "Geist"
+        },
+        "bodyFont": {
+          "google": "Geist"
+        }
+      }
+    },
+    "logo": "/images/branding/logo-white.webp"
+  },
+  "pages": {
+    "lorem-ipsum-dolor-sit-amet.mdx": {
+      "image": "/images/covers/dark/dithered-waves.webp",
+      "imageAlt": "Flowing black-and-white waves formed from a fine dithered dot pattern.",
+      "ogImage": "/images/covers/dark/dithered-waves.webp"
+    },
+    "vestibulum-ante-ipsum-primis-in-faucibus.mdx": {
+      "image": "/images/covers/dark/dark-workspace.webp",
+      "imageAlt": "A dark workspace with a desk and chair beneath abstract waves of light.",
+      "ogImage": "/images/covers/dark/dark-workspace.webp"
+    },
+    "sed-ut-perspiciatis-unde-omnis-iste-natus.mdx": {
+      "image": "/images/covers/dark/sunset.webp",
+      "imageAlt": "Abstract bands of sunset light rendered in a black-and-white dithered pattern.",
+      "ogImage": "/images/covers/dark/sunset.webp"
+    },
+    "curabitur-blandit.mdx": {
+      "image": "/images/covers/dark/glowing-cursor.webp",
+      "imageAlt": "A lone figure facing a giant glowing cursor above a rocky landscape.",
+      "ogImage": "/images/covers/dark/glowing-cursor.webp"
+    },
+    "maecenas-sed-diam-eget-risus.mdx": {
+      "image": "/images/covers/dark/fingerprint.webp",
+      "imageAlt": "A white fingerprint spiraling across a black background.",
+      "ogImage": "/images/covers/dark/fingerprint.webp"
+    },
+    "nunc-finibus.mdx": {
+      "image": "/images/covers/dark/light-trails.webp",
+      "imageAlt": "Long white trails of light sweeping through a dark, grainy sky.",
+      "ogImage": "/images/covers/dark/light-trails.webp"
+    },
+    "phasellus-faucibus-scelerisque-eleifend.mdx": {
+      "image": "/images/covers/dark/satellite-dish.webp",
+      "imageAlt": "A bright satellite dish beneath a dark, star-speckled sky.",
+      "ogImage": "/images/covers/dark/satellite-dish.webp"
+    },
+    "aliquam-erat-volutpat.mdx": {
+      "image": "/images/covers/dark/window-silhouette.webp",
+      "imageAlt": "A silhouetted person in profile against bright horizontal window blinds.",
+      "ogImage": "/images/covers/dark/window-silhouette.webp"
+    },
+    "donec-ullamcorper-nulla-non-metus.mdx": {
+      "image": "/images/covers/dark/wind-turbine.webp",
+      "imageAlt": "A wind turbine with bright, blurred blades against a black sky.",
+      "ogImage": "/images/covers/dark/wind-turbine.webp"
+    },
+    "etiam-sollicitudin.mdx": {
+      "image": "/images/covers/dark/suspension-bridge.webp",
+      "imageAlt": "The cables and deck of a suspension bridge rendered in white stippled lines.",
+      "ogImage": "/images/covers/dark/suspension-bridge.webp"
+    },
+    "aenean-mollis-nunc-sed-augue.mdx": {
+      "image": "/images/covers/dark/wind-tunnel.webp",
+      "imageAlt": "White flowing lines tracing the aerodynamic shape of a vehicle.",
+      "ogImage": "/images/covers/dark/wind-tunnel.webp"
+    },
+    "praesent-commodo-cursus-magna.mdx": {
+      "image": "/images/covers/dark/digital-team.webp",
+      "imageAlt": "Two figures overlaid with abstract code and black-and-white digital texture.",
+      "ogImage": "/images/covers/dark/digital-team.webp"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "create-lettercamp",
+  "version": "0.1.0",
+  "description": "Create a new Lettercamp site",
+  "keywords": [
+    "lettercamp",
+    "blog",
+    "cli",
+    "create"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lettercamp/lettercamp.git",
+    "directory": "create"
+  },
+  "homepage": "https://github.com/lettercamp/lettercamp#readme",
+  "bugs": {
+    "url": "https://github.com/lettercamp/lettercamp/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bin": {
+    "create-lettercamp": "bin/create-lettercamp.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "scripts": {
+    "prepack": "tsx ../scripts/package-readme.ts"
+  },
+  "dependencies": {
+    "@lettercamp/cli": "0.1.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+---
+import ListingPage from '../../components/ListingPage.astro';
+import { getCategories } from '../../lib/posts.js';
+export function getStaticPaths() {
+  return getCategories().map(category => ({ params: { tag: category.tag }, props: { category: category.name } }));
+}
+const { category } = Astro.props;
+---
+<ListingPage category={category} />

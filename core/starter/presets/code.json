@@ -1,0 +1,87 @@
+{
+  "name": "Code",
+  "settings": {
+    "logo": "/images/branding/logo-white.webp",
+    "design": {
+      "backgroundColor": "#070707",
+      "typography": {
+        "headingFont": {
+          "google": "Geist Mono"
+        },
+        "bodyFont": {
+          "google": "Geist Mono"
+        },
+        "headingColor": "#2AF499"
+      },
+      "accentColor": "#2AF499"
+    },
+    "home": {
+      "feedLayout": "rows"
+    },
+    "post": {
+      "heroLayout": "split"
+    }
+  },
+  "pages": {
+    "lorem-ipsum-dolor-sit-amet.mdx": {
+      "image": "/images/covers/code/coding-laptop.webp",
+      "imageAlt": "Hands typing on a laptop with code and green neon light on its screen.",
+      "ogImage": "/images/covers/code/coding-laptop.webp"
+    },
+    "vestibulum-ante-ipsum-primis-in-faucibus.mdx": {
+      "image": "/images/covers/code/night-headlights.webp",
+      "imageAlt": "Bright green headlights casting beams across a dark road.",
+      "ogImage": "/images/covers/code/night-headlights.webp"
+    },
+    "sed-ut-perspiciatis-unde-omnis-iste-natus.mdx": {
+      "image": "/images/covers/code/spaceship.webp",
+      "imageAlt": "A dark spaceship silhouette with three bright green engine trails.",
+      "ogImage": "/images/covers/code/spaceship.webp"
+    },
+    "curabitur-blandit.mdx": {
+      "image": "/images/covers/code/glowing-library.webp",
+      "imageAlt": "Library shelves filled with books glowing green in the dark.",
+      "ogImage": "/images/covers/code/glowing-library.webp"
+    },
+    "maecenas-sed-diam-eget-risus.mdx": {
+      "image": "/images/covers/code/neon-cafe.webp",
+      "imageAlt": "A dark cafe lined with vivid green neon lighting.",
+      "ogImage": "/images/covers/code/neon-cafe.webp"
+    },
+    "nunc-finibus.mdx": {
+      "image": "/images/covers/code/neon-lightbulb.webp",
+      "imageAlt": "A lightbulb glowing neon green against a black background.",
+      "ogImage": "/images/covers/code/neon-lightbulb.webp"
+    },
+    "phasellus-faucibus-scelerisque-eleifend.mdx": {
+      "image": "/images/covers/code/green-skyscraper.webp",
+      "imageAlt": "A tall office building with glowing windows beneath a green night sky.",
+      "ogImage": "/images/covers/code/green-skyscraper.webp"
+    },
+    "aliquam-erat-volutpat.mdx": {
+      "image": "/images/covers/code/neon-office.webp",
+      "imageAlt": "Rows of office desks and monitors beneath green ceiling lights.",
+      "ogImage": "/images/covers/code/neon-office.webp"
+    },
+    "donec-ullamcorper-nulla-non-metus.mdx": {
+      "image": "/images/covers/code/neon-chessboard.webp",
+      "imageAlt": "Chess pieces on a board illuminated from below with green light.",
+      "ogImage": "/images/covers/code/neon-chessboard.webp"
+    },
+    "etiam-sollicitudin.mdx": {
+      "image": "/images/covers/code/projector-beam.webp",
+      "imageAlt": "A projector casting a bright green beam through darkness.",
+      "ogImage": "/images/covers/code/projector-beam.webp"
+    },
+    "aenean-mollis-nunc-sed-augue.mdx": {
+      "image": "/images/covers/code/bridge-at-night.webp",
+      "imageAlt": "A long bridge crossing dark water with green reflections beneath it.",
+      "ogImage": "/images/covers/code/bridge-at-night.webp"
+    },
+    "praesent-commodo-cursus-magna.mdx": {
+      "image": "/images/covers/code/glowing-phone.webp",
+      "imageAlt": "A hand touching a smartphone screen illuminated by green light.",
+      "ogImage": "/images/covers/code/glowing-phone.webp"
+    }
+  }
+}

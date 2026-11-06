@@ -1,0 +1,34 @@
+---
+import { sitePath } from '../lib/urls.js';
+import PostCard from './PostCard.astro';
+import PostSearch from './PostSearch.astro';
+import Pagination from './Pagination.astro';
+import { readHomeLayout, readHomeWidthPx } from '../lib/home-layout';
+import { readContentWidthEm } from '../lib/post-layout';
+const { site, category, posts, categories, current, total, count, base } = Astro.props;
+---
+
+<div class="blog-home" data-blog-home data-home-layout={readHomeLayout(site.home)}
+  data-image-content-width={readContentWidthEm(site.post) * (Number(site.design?.typography?.bodyBaseSizePx) || 16)}
+  style={{ '--home-content-width': `${readHomeWidthPx(site.home)}px`, '--post-content-width': `calc(var(--text-base) * ${readContentWidthEm(site.post)})` }}>
+  <header class="blog-heading">
+    <h1>{category || (site.home.title ?? `${site.name} Blog`)}</h1>
+    {site.description && <p class="description" style="margin-top: 12px">{site.description}</p>}
+  </header>
+  <div class="blog-toolbar">
+    {categories.length > 0 ? <nav class="category-selector" aria-label="Filter posts by category">
+      <a href={sitePath("/")} data-category="" aria-current={!category ? "page" : undefined}>All</a>
+      {categories.map(item => <a href={item.href} data-category={item.name} aria-current={category === item.name ? "page" : undefined}>{item.name}</a>)}
+    </nav> : <p class="post-count">{count} posts</p>}
+    <PostSearch />
+  </div>
+  <p class="sr-only">{count} articles — Page {current} of {total}</p>
+  <section aria-label="Recent articles">
+    <h2 class="sr-only">Recent articles</h2>
+    <div class="post-list">
+      {posts.map((post, index) => <PostCard post={post} site={site} priority={index === 0} />)}
+    </div>
+    <p class="empty-state" hidden={posts.length > 0}>No articles here yet.</p>
+  </section>
+  <Pagination current={current} total={total} base={base} />
+</div>

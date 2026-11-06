@@ -1,0 +1,38 @@
+---
+import { sitePath } from '../lib/urls.js';
+import { buttonColors } from '../lib/button.js';
+import MobileMenuIcons from './MobileMenuIcons.astro';
+const { site, pathname } = Astro.props;
+const navLinks = site.header?.links ?? [{ label: 'Home', href: '/' }];
+const primary = site.header?.button;
+const primaryColors = buttonColors(primary?.color, site.design?.accentColor);
+const primaryStyle = { '--button-color': primaryColors.background, '--button-text': primaryColors.text };
+const logo = sitePath(site.logo);
+---
+
+    <header class="site-header" data-header-position={site.header?.position === 'fixed' ? 'fixed' : 'scroll'}>
+      <template data-mobile-menu-icons><MobileMenuIcons /></template>
+      <div class="site-header-inner">
+      <a class="brand" href={sitePath("/")}>
+        {logo && <img src={logo} width="30" height="30" alt="" />}
+        <span>{site.name}</span>
+      </a>
+      {(navLinks.length > 0 || primary) && <div class="header-actions">
+        {navLinks.length > 0 &&
+          <nav class="desktop-navigation" aria-label="Main navigation">
+            {navLinks.map((item) =>
+              <a href={sitePath(item.href)} aria-current={sitePath(item.href) === pathname ? 'page' : undefined}>{item.label}</a>
+            )}
+          </nav>}
+        {primary && <a class="header-primary" style={primaryStyle} href={sitePath(primary.href)}>{primary.label}</a>}
+        {navLinks.length > 0 && <details class="mobile-navigation">
+            <summary class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-panel"><MobileMenuIcons /></summary>
+            <nav id="mobile-menu-panel" class="mobile-menu-panel" aria-label="Mobile navigation">
+              {navLinks.map((item) =>
+                <a href={sitePath(item.href)} aria-current={sitePath(item.href) === pathname ? 'page' : undefined}>{item.label}</a>
+              )}
+            </nav>
+          </details>}
+      </div>}
+      </div>
+    </header>
