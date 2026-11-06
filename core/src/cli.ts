@@ -62,6 +62,7 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('deploy')
     .description('Publish this folder; create or connect a site on first use')
+    .addHelpText('after', '\nReferenced local JPEG, PNG, WebP, and GIF images are uploaded automatically.\nHosted URLs are substituted in the deployment copy; your local files stay unchanged.\nUnchanged images are reused for the same destination site.')
     .action(async () => { const { deploy } = await import('./deploy.js'); await deploy(); });
 
   program.command('domain')

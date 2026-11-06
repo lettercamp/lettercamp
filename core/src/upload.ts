@@ -5,6 +5,13 @@ import { apiRequest, credentials, responseJson, selectUploadSite } from './accou
 type UploadedAsset = { url: string; width: number; height: number } | { url: string; name: string; weight?: string };
 type UploadResult = { file: string } & (UploadedAsset | { error: string });
 
+export async function uploadBytes(bytes: Uint8Array, filename: string, slug: string, token: string) {
+  const font = /\.(ttf|otf|woff2?)$/i.test(filename);
+  return responseJson<UploadedAsset>(await apiRequest(`/api/sites/${encodeURIComponent(slug)}/assets${font ? "?type=font" : ""}`, {
+    method: 'POST', headers: { 'Content-Type': 'application/octet-stream', 'X-File-Name': encodeURIComponent(path.basename(filename)) }, body: new Uint8Array(bytes),
+  }, token, 120_000));
+}
+
 async function uploadFile(file: string, slug: string, token: string) {
   const handle = await open(file, 'r');
   let bytes: Buffer;
@@ -15,10 +22,7 @@ async function uploadFile(file: string, slug: string, token: string) {
     bytes = await handle.readFile();
     if (bytes.byteLength > 100 * 1024 * 1024) throw new Error('Files must be 100 MB or smaller.');
   } finally { await handle.close(); }
-  const font = /\.(ttf|otf|woff2?)$/i.test(file);
-  return responseJson<UploadedAsset>(await apiRequest(`/api/sites/${encodeURIComponent(slug)}/assets${font ? "?type=font" : ""}`, {
-    method: 'POST', headers: { 'Content-Type': 'application/octet-stream', 'X-File-Name': encodeURIComponent(path.basename(file)) }, body: new Uint8Array(bytes),
-  }, token));
+  return uploadBytes(bytes, file, slug, token);
 }
 
 export async function upload(files: string[], options: { site?: string; json?: boolean }) {

@@ -1,86 +1,76 @@
-# Lettercamp
+<p align="center">
+  <a href="https://www.lettercamp.com">
+    <img src="https://static.lettercamp.com/assets/lettercamp/static/jE0Iuuw7Fxmx-lettercamp-cover.webp" alt="Lettercamp — modern, open-source publication platform" width="100%">
+  </a>
+</p>
 
-Lettercamp is an [MIT-licensed](LICENSE) blog engine, renderer, and CLI. Write in
-Markdown or MDX, preview locally, and build a static publication for your own host.
+<h1 align="center">Lettercamp</h1>
 
-[Documentation](https://www.lettercamp.com/docs) · [CLI reference](https://www.lettercamp.com/docs/cli) · [Lettercamp Cloud](https://www.lettercamp.com)
+<p align="center">
+  An open-source framework for beautiful, modern content publications.<br>
+  Designed and built for the AI era with full compatibility with agent workflows.<br>
+  Write content in Markdown or MDX, preview locally, and publish on your own terms.
+</p>
 
-## Get started
+<p align="center">
+  <a href="https://www.lettercamp.com/docs">Documentation</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="https://www.lettercamp.com/docs/cli">CLI reference</a> ·
+  <a href="https://www.lettercamp.com">Lettercamp Cloud</a>
+</p>
 
-Use Node.js 22.23.4 or newer:
+## The easiest way to create a beautiful content site
+
+Lettercamp is a free and open-source platform that makes it easy to create and manage a modern content publication. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more.
+
+![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/6IeBxgBIS5b1-lettercamp-blog-example.webp)
+
+- **Write in Markdown and MDX.** Keep your content in files and make it easier for your agent to draft and edit content without relying on a database.
+- **Spin up a modern content site quickly.** Lettercamp ships everything you need to publish and more, so you can focus on creating and publishing the best content possible.
+- **Customize to your brand** Easily replace brand logos, fonts, and colors so that your publication reflects your brand.
+- **Free and open-source** The core Lettercamp framework is [MIT-licensed](LICENSE), giving you complete control over your content, publication, and deploys. Our company operates [Lettercamp Cloud](https://www.lettercamp.com), which offers an hosted version.
+
+## Why Lettercamp?
+
+If you want to start publishing content on your domain, you'll have to build a content site that supports rendering articles, post pages, pagination, authors, SEO features, and much more. Lettercamp provides all of these features (and more) out of the box, letting you focus on building your own product instead of building a content site.
+
+Existing solutions require building your entire website on a third party provider, or managing a headless CMS which contains your content in a third party database. Lettercamp solves these issues by providing an entire site as a static site, which means published content pages are fast, performant, and easier to manage.
+
+Finally, Lettercamp is designed to be the easiest way to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences.
+
+## MIT license
+
+This Lettercamp repository contains the core framework for building and managing a content publication. It is [MIT-licensed](LICENSE).
+
+## Quick start
+
+Create your first publication:
 
 ```bash
-npm create lettercamp@latest my-blog
-cd my-blog
+npm create lettercamp@latest my-lettercamp-site
+cd my-lettercamp-site
 npm run dev
 ```
 
-Setup asks for a folder and starter preset, then installs a project-local CLI.
-No global installation or Lettercamp account is needed for local development
-and static builds.
+See the [documentation](https://www.lettercamp.com/docs) for customization and
+[publishing with the CLI](https://www.lettercamp.com/docs/cli), or use
+[Lettercamp Cloud](https://www.lettercamp.com) for a web editor and managed hosting.
 
-To choose a preset directly:
+## Lettercamp Cloud
 
-```bash
-npm create lettercamp@latest my-blog -- --preset dark --yes
-```
+Lettercamp Cloud is the hosted platform for deploying and managing Lettercamp sites. In addition to providing hosting for the built sites, Lettercamp Cloud also offers a web-based editor and dashboard, which allows your content team to edit and manage content without needing to commit code. This product also includes several enterprise ready features, including access control, user management, payments, and more. However, the core publication site remains the same as the open-source offering.
 
-Available presets are `default`, `dark`, `sand`, `code`, and `minimal`. Use
-`--no-install` to install dependencies later. Edit `settings.json` for site
-configuration and `pages/` for content. Optional `components/Header.jsx` and
-`components/Footer.jsx` files customize the site's header and footer.
+## Contributing
 
-## Build and publish
+Bug reports, fixes, documentation improvements, and feature ideas are welcome.
+[Open an issue](https://github.com/lettercamp/lettercamp/issues) to report a problem
+or discuss a larger change before starting work.
 
-Build a static site for your own host:
-
-```bash
-npm run build -- --site https://example.com
-```
-
-[Lettercamp Cloud](https://www.lettercamp.com) provides the web editor, hosting,
-asset uploads, domains, and deployment. To publish there:
-
-```bash
-npm run deploy
-npx lettercamp domain example.com/blog
-```
-
-Deployment opens browser login and lets you create or connect a Cloud site.
-Cloud publishing requires an account. DNS or proxy configuration happens with
-your website host; the CLI guides you through the required setup.
-
-For local development and self-hosted builds, put assets in `public/` and use
-paths such as `/images/cover.jpg`. Cloud publishing requires hosted asset URLs
-and does not upload `public/`; use `lettercamp upload` for supported images and
-fonts before deploying. See the [publishing documentation](https://www.lettercamp.com/docs/cli).
-
-Run `npx lettercamp update` from a publication folder to update its CLI. Restart
-your preview afterward and review changes to the package and lock files.
-
-## Development
-
-Use the Node.js version in `.nvmrc`, then:
-
-```bash
-npm ci
-npm run dev
-```
-
-The development command previews the bundled starter. CLI commands live in
-`core/src/`, the renderer in `core/renderer/`, and starter content and presets in
-`core/starter/`. The `wrapper/` and `create/` packages provide the `lettercamp`
-and `create-lettercamp` entry points.
-
-Before submitting changes, run `npm run check` and `npm run build`. Include a
-brief description of the change and how you verified it. Discuss larger changes
-in an issue first, and contribute only code and assets you have permission to
-share.
+For local development, use the Node.js version in [`.nvmrc`](.nvmrc), then run
+`npm ci` and `npm run dev`. Before opening a pull request, run `npm run check` and
+`npm run build`, and describe how you verified your changes.
 
 ## License and assets
 
-Code is licensed under the [MIT license](LICENSE). Starter images, branding, and
-fonts are bundled for local use. Bundled fonts and third-party dependencies
-retain their original licenses; keep the font license files when redistributing
-them. Contributions use the repository's MIT license. The Lettercamp name and
+Code is licensed under the [MIT license](LICENSE). The Lettercamp name and
 logo do not grant permission to imply official affiliation.

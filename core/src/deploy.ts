@@ -1,4 +1,4 @@
-import { lstat, readdir, readFile, mkdtemp, rm } from 'node:fs/promises';
+import { lstat, readdir, readFile, mkdtemp, rm, mkdir, writeFile, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { constants } from 'node:fs';
 import { open } from 'node:fs/promises';
@@ -7,8 +7,10 @@ import path from 'node:path';
 import { projectPath, getBinding, saveBinding, readConfig, saveConfig, removeConfig } from './account.js';
 import { ApiError, publishingToken, request, selectHostingSite, status, waitForDeployment } from './hosting.js';
 import { confirm } from './prompts.js';
+import { prepareDeploymentImages, uploadDeploymentImages, type SourceFile } from './deployment-images.js';
+import { imageFile } from './deployment-image-references.js';
 
-type Snapshot = { id: string; revision: string; files: { path: string; content: string }[] };
+type Snapshot = { id: string; revision: string; files: SourceFile[] };
 const roots = ['pages', 'components', 'lib', 'styles', 'assets'];
 export async function publicationFiles(root: string) {
   const files: Snapshot['files'] = [];
@@ -25,6 +27,8 @@ export async function publicationFiles(root: string) {
       return;
     }
     if (!info.isFile()) throw new Error(`Source uploads require regular files: ${relative}`);
+    // Referenced images use the asset API, never the source snapshot or its size budget.
+    if (imageFile.test(relative)) return;
     if (info.size > 5 * 1024 * 1024) throw new Error(`${relative} exceeds 5 MB. Use lettercamp upload for large assets.`);
     const handle = await open(filename, constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0));
     let bytes: Buffer;
@@ -44,18 +48,33 @@ export async function publicationFiles(root: string) {
   return files.sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
 }
 
+async function checkDeploymentFiles(root: string, files: SourceFile[]) {
+  const temporary = await mkdtemp(path.join(tmpdir(), 'lettercamp-deploy-check-'));
+  const source = path.join(temporary, 'publication');
+  try {
+    for (const file of files) {
+      const filename = path.join(source, file.path);
+      await mkdir(path.dirname(filename), { recursive: true });
+      await writeFile(filename, Buffer.from(file.content, 'base64'));
+    }
+    // Resolve custom components' dependencies as they would in the original project.
+    const modules = path.join(root, 'node_modules');
+    if (await lstat(modules).then(() => true, error => { if (error.code === 'ENOENT') return false; throw error; })) {
+      await symlink(modules, path.join(source, 'node_modules'), 'junction');
+    }
+    const { buildSite } = await import('./build.js');
+    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output'), remoteAssetsOnly: true });
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+}
+
 export async function deploy() {
   const root = await projectPath();
   // Catch the wrong directory before opening a browser or creating a hosted site.
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp deploy inside your publication folder containing settings.json.'); });
-  const files = (await getBinding())?.pending ? null : await publicationFiles(root);
-  if (files) {
+  const images = (await getBinding())?.pending ? null : await prepareDeploymentImages(root, await publicationFiles(root));
+  if (images) {
     console.error('Checking the publication for Lettercamp Cloud…');
-    const output = await mkdtemp(path.join(tmpdir(), 'lettercamp-deploy-check-'));
-    try {
-      const { buildSite } = await import('./build.js');
-      await buildSite(root, { site: 'https://preview.lettercamp.site', outDir: output, remoteAssetsOnly: true });
-    } finally { await rm(output, { recursive: true, force: true }); }
+    await checkDeploymentFiles(root, images.files);
   }
   const token = await publishingToken();
   let { site, binding } = await selectHostingSite(token, true);
@@ -86,7 +105,10 @@ export async function deploy() {
       console.error('Local settings, pages, components, lib, styles, and assets replace those remote files, including deletions.');
       if (!await confirm('Replace the hosted publication with this folder?')) return;
     }
-    snapshot = { id: randomUUID(), revision: current.revision, files: files ?? await publicationFiles(root) };
+    const prepared = images ?? await prepareDeploymentImages(root, await publicationFiles(root));
+    if (!images) await checkDeploymentFiles(root, prepared.files);
+    const files = await uploadDeploymentImages(prepared, site, token);
+    snapshot = { id: randomUUID(), revision: current.revision, files };
     await saveConfig(`deployment-${snapshot.id}.json`, snapshot);
     binding = { ...binding, pending: snapshot.id, fresh: undefined };
     await saveBinding(binding);
