@@ -83,3 +83,6 @@ For local development, use the Node.js version in [`.nvmrc`](.nvmrc), then run
 ## License and assets
 
 Code is licensed under the [MIT license](LICENSE).
+
+<br>
+![Lettercamp Landscape](https://static.lettercamp.com/assets/lettercamp/static/Ur8IRfI8TPtx-lettercamp-footer.webp)
