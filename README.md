@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.lettercamp.com">
-    <img src="https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp" alt="Lettercamp — modern, open-source publication platform" width="100%">
+    <img src="https://static.lettercamp.com/assets/lettercamp/static/jE0Iuuw7Fxmx-lettercamp-cover.webp" alt="Lettercamp — modern, open-source publication platform" width="100%">
   </a>
 </p>
 
@@ -25,7 +25,7 @@
 
 Lettercamp is a free and open-source platform that makes it easy to create and manage a modern content publication. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more.
 
-![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/6IeBxgBIS5b1-lettercamp-blog-example.webp)
+![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp)
 
 - **Write in Markdown and MDX.** Keep your content in files and make it easier for your agent to draft and edit content without relying on a database.
 - **Spin up a modern content site quickly.** Lettercamp ships everything you need to publish and more, so you can focus on creating and publishing the best content possible.
