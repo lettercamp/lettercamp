@@ -20,7 +20,6 @@
 </p>
 
 <br>
-<br>
 
 ## The easiest way to create a beautiful content site
 
