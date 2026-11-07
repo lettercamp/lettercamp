@@ -21,9 +21,9 @@
 
 <br>
 
-## The easiest way to create a beautiful content site
+## What is Lettercamp?
 
-Lettercamp is a free and open-source platform that makes it easy to create and manage a modern content publication. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more.
+Lettercamp is an open-source platform that makes it easy to create and manage a modern content publication site. It's basically a blog in a box. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more.
 
 ![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp)
 
@@ -40,10 +40,6 @@ Existing solutions require building your entire website on a third party provide
 
 Finally, Lettercamp is designed to be the easiest way to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences.
 
-## MIT license
-
-This Lettercamp repository contains the core framework for building and managing a content publication. It is [MIT-licensed](LICENSE).
-
 ## Quick start
 
 Create your first publication:
@@ -57,6 +53,18 @@ npm run dev
 See the [documentation](https://www.lettercamp.com/docs) for customization and
 [publishing with the CLI](https://www.lettercamp.com/docs/cli), or use
 [Lettercamp Cloud](https://www.lettercamp.com) for a web editor and managed hosting.
+
+## Installation with agents
+
+Just ask your favorite agent to create a new Lettercamp site for you. You can also point it to this repository, or our [official documentation](https://www.lettercamp.com/docs) for guidance.
+
+## Customization
+
+![Lettercamp Presets](https://static.lettercamp.com/assets/lettercamp/static/3gY1yJWkx40J-lettercamp-presets.webp)
+
+Lettercamp ships with a few default presets, but makes it easy to customize your publication site with your own branding, font, and colors.
+
+If the native options aren't enough, you can extend Lettercamp with custom implementations for components, headers, footers, and more.
 
 ## Lettercamp Cloud
 
@@ -74,5 +82,4 @@ For local development, use the Node.js version in [`.nvmrc`](.nvmrc), then run
 
 ## License and assets
 
-Code is licensed under the [MIT license](LICENSE). The Lettercamp name and
-logo do not grant permission to imply official affiliation.
+Code is licensed under the [MIT license](LICENSE).
