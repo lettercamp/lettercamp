@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.lettercamp.com">
-    <img src="https://static.lettercamp.com/assets/lettercamp/static/jE0Iuuw7Fxmx-lettercamp-cover.webp" alt="Lettercamp — modern, open-source publication platform" width="100%">
+    <img src="https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp" alt="Lettercamp — modern, open-source publication platform" width="100%">
   </a>
 </p>
 
@@ -18,6 +18,9 @@
   <a href="https://www.lettercamp.com/docs/cli">CLI reference</a> ·
   <a href="https://www.lettercamp.com">Lettercamp Cloud</a>
 </p>
+
+<br>
+<br>
 
 ## The easiest way to create a beautiful content site
 
