@@ -1,7 +1,17 @@
 import { IMAGE_ORIGIN, imageAsset, type ImageManifest } from "./image-variants";
+import bundled from '../image-manifests.json';
+import { sitePath } from './urls.js';
+
+const prepared = new Map((bundled as ImageManifest[]).map(manifest => {
+  const original = sitePath(manifest.original);
+  return [original, { ...manifest, original, variants: manifest.variants.map(variant => ({ ...variant, url: sitePath(variant.url) })) }];
+}));
+export const hasImageManifest = (url: string) => prepared.has(url) || imageAsset(url) !== null;
 
 const cache = new Map<string, { expires: number; value: Promise<ImageManifest | null> }>();
 export async function readImageManifest(url: string): Promise<ImageManifest | null> {
+  const bundled = prepared.get(url);
+  if (bundled) return bundled;
   const asset = imageAsset(url);
   if (!asset) return null;
   const key = `${IMAGE_ORIGIN}/${asset.prefix}/manifest.json`;

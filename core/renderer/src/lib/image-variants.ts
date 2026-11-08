@@ -17,7 +17,7 @@ export function imageAsset(url: string) {
     if (match) return { key: parsed.pathname.slice(1), siteId: match[1], id: match[2], prefix: `sites/${match[1]}/${match[2]}/${IMAGE_RECIPE}` };
     // Shared originals keep their existing URLs. Include the full original key
     // (and extension) so different source libraries cannot collide.
-    if (/^\/(?:starter\/v\d+\/(?:covers|authors)|system\/(?:branding|starter))\/[a-z0-9_./-]+\.(jpg|jpeg|png|webp|gif)$/i.test(parsed.pathname)) {
+    if (/^\/(?:starter\/(?:v\d+\/(?:covers|authors)|presets)|system\/(?:branding|starter))\/[a-z0-9_./-]+\.(jpg|jpeg|png|webp|gif)$/i.test(parsed.pathname)) {
       const key = parsed.pathname.slice(1);
       return { key, siteId: null, id: key, prefix: `starter/assets/${IMAGE_RECIPE}/${key}` };
     }

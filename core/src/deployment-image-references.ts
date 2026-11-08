@@ -130,6 +130,14 @@ async function html(source: string, resolve: Resolve) {
 }
 
 export async function rewriteImageReferences(source: string, filename: string, resolve: Resolve): Promise<string> {
+  if (filename === 'lib/image-variants.json') {
+    const manifests = JSON.parse(source) as { original: string; variants: { url: string }[] }[];
+    for (const manifest of manifests) {
+      manifest.original = await urls(manifest.original, resolve);
+      for (const variant of manifest.variants) variant.url = await urls(variant.url, resolve);
+    }
+    return JSON.stringify(manifests, null, 2) + '\n';
+  }
   if (/\.json$/i.test(filename)) return metadata(source, resolve);
   if (/\.[cm]?[jt]sx?$/i.test(filename)) return javascript(source, resolve);
   if (/\.(?:css|scss)$/i.test(filename)) return css(source, resolve);

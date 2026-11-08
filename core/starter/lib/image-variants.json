@@ -1,0 +1,1838 @@
+[
+  {
+    "version": "v1",
+    "original": "/images/authors/aenean-vitae.webp",
+    "originalHash": "8461b9668f6a4c678c340c502f6538376676047cef90ed42881397e8f44fd1f5",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/aenean-vitae.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1090
+      },
+      {
+        "url": "/images/variants/authors/aenean-vitae.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 3040
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/authors/cras-mattis.webp",
+    "originalHash": "0d3e29e2c68ebec0811b1e70fb2a3b81a717fe0a42a1b9da58142b3ce8133379",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/cras-mattis.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1102
+      },
+      {
+        "url": "/images/variants/authors/cras-mattis.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 2558
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/authors/elit-felis.webp",
+    "originalHash": "ed465c1f6a6fe454b237cfc32fb2e39f63bb60252a03584353681b6f61b0e928",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/elit-felis.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1360
+      },
+      {
+        "url": "/images/variants/authors/elit-felis.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 3766
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/authors/porta-semper.webp",
+    "originalHash": "a2ebd8239944b41d3aaa022b634c987772513a6d1a40c9e8923a6078dab1e4bb",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/porta-semper.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1386
+      },
+      {
+        "url": "/images/variants/authors/porta-semper.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 4356
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/authors/tellus-magna.webp",
+    "originalHash": "19df89f5191585fc4f2fd9c09c6bf409adb5a62b2f133090dabe51fcf7bd4edd",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/tellus-magna.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1012
+      },
+      {
+        "url": "/images/variants/authors/tellus-magna.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 2826
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/authors/vitae-ornare.webp",
+    "originalHash": "d219638a754b4d6e035c07a37fa53b3b9efb160e37b3bc071906c536a9d9b10d",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/authors/vitae-ornare.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 882
+      },
+      {
+        "url": "/images/variants/authors/vitae-ornare.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 2038
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/branding/icon-b0f9b95b579d3161.webp",
+    "originalHash": "8336305487e9e8e3619f3e5e5e3b91c06e3ed0a5e13a942297417400b7e4ec9e",
+    "width": 64,
+    "height": 64,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/branding/icon-b0f9b95b579d3161.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 2006
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/branding/logo-7e6bff827cd2b3b4.webp",
+    "originalHash": "168b0a429c967cbf48c0e514c71b6df662234cfddd4b26f6b433c42d5407f3d7",
+    "width": 128,
+    "height": 128,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/branding/logo-7e6bff827cd2b3b4.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1812
+      },
+      {
+        "url": "/images/variants/branding/logo-7e6bff827cd2b3b4.webp/128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 5320
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/branding/logo-white.webp",
+    "originalHash": "966d6d193efd0f44f6788d62d4c77f11f86c8cdfb55be40196fab333728a6041",
+    "width": 980,
+    "height": 980,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/branding/logo-white.webp/64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1628
+      },
+      {
+        "url": "/images/variants/branding/logo-white.webp/400.webp",
+        "width": 400,
+        "height": 400,
+        "bytes": 10792
+      },
+      {
+        "url": "/images/variants/branding/logo-white.webp/800.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 25478
+      },
+      {
+        "url": "/images/branding/logo-white.webp",
+        "width": 980,
+        "height": 980,
+        "bytes": 26824
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/blue-sky-and-clouds.webp",
+    "originalHash": "9e307b752189d07b4269da02b0c6680a5061185f2352651fc5a1a7fab0804f2e",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/blue-sky-and-clouds.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 676
+      },
+      {
+        "url": "/images/variants/covers/blue-sky-and-clouds.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 11904
+      },
+      {
+        "url": "/images/variants/covers/blue-sky-and-clouds.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 41288
+      },
+      {
+        "url": "/images/variants/covers/blue-sky-and-clouds.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 83594
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/bridge-at-night.webp",
+    "originalHash": "569d5e0c0a627d1b5ae9e6bffa444ec9ae9dce53607eede8d898b3c7b3e95874",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/bridge-at-night.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 384
+      },
+      {
+        "url": "/images/variants/covers/code/bridge-at-night.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2978
+      },
+      {
+        "url": "/images/variants/covers/code/bridge-at-night.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 12898
+      },
+      {
+        "url": "/images/variants/covers/code/bridge-at-night.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 103716
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/coding-laptop.webp",
+    "originalHash": "1e8762bc8cbdbac502b3e3ff04d195350008b1acb193f65ae0ddd867fa39119a",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/coding-laptop.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 414
+      },
+      {
+        "url": "/images/variants/covers/code/coding-laptop.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 4924
+      },
+      {
+        "url": "/images/variants/covers/code/coding-laptop.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 25876
+      },
+      {
+        "url": "/images/variants/covers/code/coding-laptop.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 158522
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/glowing-library.webp",
+    "originalHash": "022da573053998bf0b1bfb7dbe7adc0ceaa59b4eef71459cf28e60f8f0e4a20f",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/glowing-library.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 880
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-library.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 9106
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-library.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 27224
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-library.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 158204
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/glowing-phone.webp",
+    "originalHash": "cac183935de8cc71ad5e27a1b63e2e3dd5c380e9c2e50ce23cdaca1ae2595501",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/glowing-phone.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 526
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-phone.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 3866
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-phone.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 27800
+      },
+      {
+        "url": "/images/variants/covers/code/glowing-phone.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 201106
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/green-skyscraper.webp",
+    "originalHash": "80d7b0c7d34fae71ba70d7445716ed116dc91bb5d4e50da4ed7dcb2c6c9a1de0",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/green-skyscraper.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 718
+      },
+      {
+        "url": "/images/variants/covers/code/green-skyscraper.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 7226
+      },
+      {
+        "url": "/images/variants/covers/code/green-skyscraper.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 19024
+      },
+      {
+        "url": "/images/variants/covers/code/green-skyscraper.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 159158
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/neon-cafe.webp",
+    "originalHash": "18e13f908714a320309e2d9e31e81bba301334d1337887bb6b3668948aff4883",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/neon-cafe.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 432
+      },
+      {
+        "url": "/images/variants/covers/code/neon-cafe.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 7210
+      },
+      {
+        "url": "/images/variants/covers/code/neon-cafe.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 24068
+      },
+      {
+        "url": "/images/variants/covers/code/neon-cafe.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 140712
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/neon-chessboard.webp",
+    "originalHash": "89253677e67f81a8113424872f06fb6dd5a8de2e1a9d80eb4606618c972863bc",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/neon-chessboard.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 766
+      },
+      {
+        "url": "/images/variants/covers/code/neon-chessboard.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 9482
+      },
+      {
+        "url": "/images/variants/covers/code/neon-chessboard.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 27266
+      },
+      {
+        "url": "/images/variants/covers/code/neon-chessboard.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 179230
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/neon-lightbulb.webp",
+    "originalHash": "f772af8bc28a543c9fc12af1fae10807c9c8fc3efb137f4288a23effbb798d00",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/neon-lightbulb.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 392
+      },
+      {
+        "url": "/images/variants/covers/code/neon-lightbulb.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 3298
+      },
+      {
+        "url": "/images/variants/covers/code/neon-lightbulb.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 10220
+      },
+      {
+        "url": "/images/variants/covers/code/neon-lightbulb.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 83102
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/neon-office.webp",
+    "originalHash": "f816308cf334020020cdf2c6a065049119fd2f19197761e0b757be06f7f8f488",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/neon-office.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 578
+      },
+      {
+        "url": "/images/variants/covers/code/neon-office.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 5836
+      },
+      {
+        "url": "/images/variants/covers/code/neon-office.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 17002
+      },
+      {
+        "url": "/images/variants/covers/code/neon-office.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 117496
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/night-headlights.webp",
+    "originalHash": "257a83737d4ee66276a91eeffd62966018372fae2573cdfe34404329e4a923d5",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/night-headlights.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 548
+      },
+      {
+        "url": "/images/variants/covers/code/night-headlights.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 9060
+      },
+      {
+        "url": "/images/variants/covers/code/night-headlights.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 70102
+      },
+      {
+        "url": "/images/variants/covers/code/night-headlights.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 383626
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/projector-beam.webp",
+    "originalHash": "4e2bb631cad6d46a9791ece3593b502d62b5a04191f10dcb002f2a4ea9bcc602",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/projector-beam.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 416
+      },
+      {
+        "url": "/images/variants/covers/code/projector-beam.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 3414
+      },
+      {
+        "url": "/images/variants/covers/code/projector-beam.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 30450
+      },
+      {
+        "url": "/images/variants/covers/code/projector-beam.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 202656
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/code/spaceship.webp",
+    "originalHash": "ae8c9a8258f54d41ee460250ae1d01f05a21245294741f55262ef77bb3103fea",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/code/spaceship.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 344
+      },
+      {
+        "url": "/images/variants/covers/code/spaceship.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2528
+      },
+      {
+        "url": "/images/variants/covers/code/spaceship.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 10312
+      },
+      {
+        "url": "/images/variants/covers/code/spaceship.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 143494
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/computers-in-warm-light.webp",
+    "originalHash": "6941bf2ef011df3d98f65ae9b470543bfadbcb089cc036eb04a7796c33a45cb4",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/computers-in-warm-light.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 1264
+      },
+      {
+        "url": "/images/variants/covers/computers-in-warm-light.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 32678
+      },
+      {
+        "url": "/images/variants/covers/computers-in-warm-light.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 97024
+      },
+      {
+        "url": "/images/variants/covers/computers-in-warm-light.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 183648
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/dark-workspace.webp",
+    "originalHash": "e71d4e3299a9108b8b819dfb3a4369abd539af98b309b4172488b5c6dcc1a94b",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/dark-workspace.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 274
+      },
+      {
+        "url": "/images/variants/covers/dark/dark-workspace.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 16604
+      },
+      {
+        "url": "/images/variants/covers/dark/dark-workspace.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 79604
+      },
+      {
+        "url": "/images/variants/covers/dark/dark-workspace.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 313830
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/digital-team.webp",
+    "originalHash": "bb2f3b3495acbcd9b744f52765fa5362f7f00c8514dbef9f097fbd3f98ce53ca",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/digital-team.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 1000
+      },
+      {
+        "url": "/images/variants/covers/dark/digital-team.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 23456
+      },
+      {
+        "url": "/images/variants/covers/dark/digital-team.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 96720
+      },
+      {
+        "url": "/images/variants/covers/dark/digital-team.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 360154
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/dithered-waves.webp",
+    "originalHash": "acfdfc84d23d0e5fead0842311f6ad4667b464bcecb609e021907557aeaf917f",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/dithered-waves.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 450
+      },
+      {
+        "url": "/images/variants/covers/dark/dithered-waves.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 19682
+      },
+      {
+        "url": "/images/variants/covers/dark/dithered-waves.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 65114
+      },
+      {
+        "url": "/images/variants/covers/dark/dithered-waves.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 228330
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/fingerprint.webp",
+    "originalHash": "0eb6d4dabef0b3abad0cfc297a93eb2b1e2f36663fb19b55f07d3231a8031ed1",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/fingerprint.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 758
+      },
+      {
+        "url": "/images/variants/covers/dark/fingerprint.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 22496
+      },
+      {
+        "url": "/images/variants/covers/dark/fingerprint.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 95538
+      },
+      {
+        "url": "/images/variants/covers/dark/fingerprint.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 370474
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/glowing-cursor.webp",
+    "originalHash": "6f037f86926d8afb9c521d4e7a54f1e43224bc33d2646962687c5982f2c39018",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/glowing-cursor.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 704
+      },
+      {
+        "url": "/images/variants/covers/dark/glowing-cursor.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 16012
+      },
+      {
+        "url": "/images/variants/covers/dark/glowing-cursor.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 66582
+      },
+      {
+        "url": "/images/variants/covers/dark/glowing-cursor.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 283816
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/light-trails.webp",
+    "originalHash": "dd1b4b4061fb4f30a6e4be7e81f5c5965d71a7cf5eb4650aebaad5c47a179de7",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/light-trails.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 446
+      },
+      {
+        "url": "/images/variants/covers/dark/light-trails.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 14604
+      },
+      {
+        "url": "/images/variants/covers/dark/light-trails.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 89894
+      },
+      {
+        "url": "/images/variants/covers/dark/light-trails.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 426356
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/satellite-dish.webp",
+    "originalHash": "1e006638e4d6f8092e88780da32726a64610c8852cd0b0894da1ca56ff264eb9",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/satellite-dish.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 362
+      },
+      {
+        "url": "/images/variants/covers/dark/satellite-dish.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 21142
+      },
+      {
+        "url": "/images/variants/covers/dark/satellite-dish.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 109674
+      },
+      {
+        "url": "/images/variants/covers/dark/satellite-dish.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 434866
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/sunset.webp",
+    "originalHash": "83d405d82233da2aa0fe72a287294163a7e3ed1c430952087e4c756995d9708a",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/sunset.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 444
+      },
+      {
+        "url": "/images/variants/covers/dark/sunset.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 20952
+      },
+      {
+        "url": "/images/variants/covers/dark/sunset.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 110310
+      },
+      {
+        "url": "/images/variants/covers/dark/sunset.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 393220
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/suspension-bridge.webp",
+    "originalHash": "8a5d8377d1d931539c9635dbe72c2aaf0f008c910ad90dc1ade9b06113269439",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/suspension-bridge.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 464
+      },
+      {
+        "url": "/images/variants/covers/dark/suspension-bridge.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 14132
+      },
+      {
+        "url": "/images/variants/covers/dark/suspension-bridge.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 63962
+      },
+      {
+        "url": "/images/variants/covers/dark/suspension-bridge.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 228820
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/wind-tunnel.webp",
+    "originalHash": "ad4d45905d1399020243bb42a8b51851ca4f6224db41864cdb08c068592ff8f8",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/wind-tunnel.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 572
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-tunnel.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 18986
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-tunnel.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 76620
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-tunnel.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 275784
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/wind-turbine.webp",
+    "originalHash": "24e5a52c7bb2604b1432022d783b1f92f657d1eadf4ffa6207716be6fa1ee0d7",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/wind-turbine.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 466
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-turbine.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 7470
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-turbine.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 60966
+      },
+      {
+        "url": "/images/variants/covers/dark/wind-turbine.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 305952
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/dark/window-silhouette.webp",
+    "originalHash": "8e52dcfa0ce0b1347ae858d9a01121ca6adda52919819d1dfb42f33dd13409c3",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/dark/window-silhouette.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 324
+      },
+      {
+        "url": "/images/variants/covers/dark/window-silhouette.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 17610
+      },
+      {
+        "url": "/images/variants/covers/dark/window-silhouette.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 102224
+      },
+      {
+        "url": "/images/variants/covers/dark/window-silhouette.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 468818
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/friends-in-orange-orchard.webp",
+    "originalHash": "e17a5293488dd6d3bbba5de38ff188c557091e9bc1000853fcf4e750376b13c2",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/friends-in-orange-orchard.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 970
+      },
+      {
+        "url": "/images/variants/covers/friends-in-orange-orchard.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 21692
+      },
+      {
+        "url": "/images/variants/covers/friends-in-orange-orchard.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 67924
+      },
+      {
+        "url": "/images/variants/covers/friends-in-orange-orchard.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 145222
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/friends-using-phones.webp",
+    "originalHash": "05eac0fc73f78d367e5b7639512e5cb3d0a46554b571e855ab9d9d3d2237fb79",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/friends-using-phones.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 848
+      },
+      {
+        "url": "/images/variants/covers/friends-using-phones.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 19202
+      },
+      {
+        "url": "/images/variants/covers/friends-using-phones.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 78340
+      },
+      {
+        "url": "/images/variants/covers/friends-using-phones.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 189948
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/fruit-and-books-picnic.webp",
+    "originalHash": "7546a221cc0ac741d32753a458595926f542e0228473b6e876afd59a5f822af2",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/fruit-and-books-picnic.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 964
+      },
+      {
+        "url": "/images/variants/covers/fruit-and-books-picnic.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 31274
+      },
+      {
+        "url": "/images/variants/covers/fruit-and-books-picnic.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 98898
+      },
+      {
+        "url": "/images/variants/covers/fruit-and-books-picnic.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 192790
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/golden-desert-dunes.webp",
+    "originalHash": "b6e9ede28a83f30563d81f883ad747ba6a695ba2db42e50a46254fa6de6d648c",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/golden-desert-dunes.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 726
+      },
+      {
+        "url": "/images/variants/covers/golden-desert-dunes.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 19768
+      },
+      {
+        "url": "/images/variants/covers/golden-desert-dunes.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 73046
+      },
+      {
+        "url": "/images/variants/covers/golden-desert-dunes.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 163866
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/moonlit-flower-field.webp",
+    "originalHash": "63b159df140ed0b5ed18e4c545a0896af9782102f388cec89d4111c107124b67",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/moonlit-flower-field.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 1034
+      },
+      {
+        "url": "/images/variants/covers/moonlit-flower-field.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 23806
+      },
+      {
+        "url": "/images/variants/covers/moonlit-flower-field.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 87220
+      },
+      {
+        "url": "/images/variants/covers/moonlit-flower-field.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 199316
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/picnic-table-in-golden-field.webp",
+    "originalHash": "ba1844a0db27f232c75702f30db4d7b4616b4ca8d27f93d7b57f0af40e3a0376",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/picnic-table-in-golden-field.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 708
+      },
+      {
+        "url": "/images/variants/covers/picnic-table-in-golden-field.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 9968
+      },
+      {
+        "url": "/images/variants/covers/picnic-table-in-golden-field.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 39404
+      },
+      {
+        "url": "/images/variants/covers/picnic-table-in-golden-field.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 94420
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/conversation.webp",
+    "originalHash": "c4387a04f0ca42718d5b3bf50aed921ac243e1495aba89b76d0b1591641b65bc",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/conversation.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 280
+      },
+      {
+        "url": "/images/variants/covers/sand/conversation.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2504
+      },
+      {
+        "url": "/images/variants/covers/sand/conversation.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 6802
+      },
+      {
+        "url": "/images/variants/covers/sand/conversation.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 22924
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/desert-sun.webp",
+    "originalHash": "3733b7b387c1f2d56c8f63812cd2e9c9b742dad0f92301e677f2f2ca06dbc794",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/desert-sun.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 244
+      },
+      {
+        "url": "/images/variants/covers/sand/desert-sun.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2366
+      },
+      {
+        "url": "/images/variants/covers/sand/desert-sun.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 7394
+      },
+      {
+        "url": "/images/variants/covers/sand/desert-sun.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 59798
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/desktop-computer.webp",
+    "originalHash": "147612793f646cd7a1f50a1d0372f2879e69cbbd5cb6d2cf53ae3fb377a99c4e",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/desktop-computer.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 270
+      },
+      {
+        "url": "/images/variants/covers/sand/desktop-computer.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2850
+      },
+      {
+        "url": "/images/variants/covers/sand/desktop-computer.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 7370
+      },
+      {
+        "url": "/images/variants/covers/sand/desktop-computer.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 20622
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/empty-desks.webp",
+    "originalHash": "f3f2c76c4d708de9e7b55baf3ae77259b8f45f0d166113c065823ee59543865e",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/empty-desks.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 280
+      },
+      {
+        "url": "/images/variants/covers/sand/empty-desks.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 3522
+      },
+      {
+        "url": "/images/variants/covers/sand/empty-desks.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 11540
+      },
+      {
+        "url": "/images/variants/covers/sand/empty-desks.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 77996
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/friends-on-phones.webp",
+    "originalHash": "88ee0faffe00c77e1c64636f83e4fbaea4523a0d1fad0fa64e53b2a132d39215",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/friends-on-phones.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 216
+      },
+      {
+        "url": "/images/variants/covers/sand/friends-on-phones.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2554
+      },
+      {
+        "url": "/images/variants/covers/sand/friends-on-phones.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 6858
+      },
+      {
+        "url": "/images/variants/covers/sand/friends-on-phones.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 20024
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/handshake.webp",
+    "originalHash": "526c8d39aadfd73d316c2d8e42468bad517dd093aa3ebad5231742d452c00cb9",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/handshake.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 252
+      },
+      {
+        "url": "/images/variants/covers/sand/handshake.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2576
+      },
+      {
+        "url": "/images/variants/covers/sand/handshake.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 6684
+      },
+      {
+        "url": "/images/variants/covers/sand/handshake.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 18744
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/island-bridge.webp",
+    "originalHash": "7621bac4ff8b51f94c7d65607c90707f32b6913ae2f0282eda96ed512c50642e",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/island-bridge.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 216
+      },
+      {
+        "url": "/images/variants/covers/sand/island-bridge.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2754
+      },
+      {
+        "url": "/images/variants/covers/sand/island-bridge.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 7214
+      },
+      {
+        "url": "/images/variants/covers/sand/island-bridge.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 21286
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/jet-plane.webp",
+    "originalHash": "e0d1d57798974bbaf211b893c4b83637510783363a0b9f04892676427315364e",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/jet-plane.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 164
+      },
+      {
+        "url": "/images/variants/covers/sand/jet-plane.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 1418
+      },
+      {
+        "url": "/images/variants/covers/sand/jet-plane.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 4286
+      },
+      {
+        "url": "/images/variants/covers/sand/jet-plane.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 15236
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/open-road.webp",
+    "originalHash": "9a716c579f961e3bc3c4c1aa89073c76b3d16386d649cfd257be048a4eb5a06a",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/open-road.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 196
+      },
+      {
+        "url": "/images/variants/covers/sand/open-road.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2250
+      },
+      {
+        "url": "/images/variants/covers/sand/open-road.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 6336
+      },
+      {
+        "url": "/images/variants/covers/sand/open-road.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 19918
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/surfer.webp",
+    "originalHash": "af5a6659bd88346fadd86b54af35f2247b6515481199d7168e881c2e85eb9913",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/surfer.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 174
+      },
+      {
+        "url": "/images/variants/covers/sand/surfer.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 1874
+      },
+      {
+        "url": "/images/variants/covers/sand/surfer.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 4610
+      },
+      {
+        "url": "/images/variants/covers/sand/surfer.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 12410
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/tending-plant.webp",
+    "originalHash": "67bf76ba6ba8b37c32463d86e264eccbd31ccf111a1d89e0e9eb7d4ff9bdcbdf",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/tending-plant.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 206
+      },
+      {
+        "url": "/images/variants/covers/sand/tending-plant.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2736
+      },
+      {
+        "url": "/images/variants/covers/sand/tending-plant.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 7466
+      },
+      {
+        "url": "/images/variants/covers/sand/tending-plant.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 20668
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sand/window-sill.webp",
+    "originalHash": "eacd35815c7e1f492b284256ae5ddd10912b821d98238a10d04fb2502b2145b2",
+    "width": 1600,
+    "height": 842,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sand/window-sill.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 234
+      },
+      {
+        "url": "/images/variants/covers/sand/window-sill.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 2294
+      },
+      {
+        "url": "/images/variants/covers/sand/window-sill.webp/800.webp",
+        "width": 800,
+        "height": 421,
+        "bytes": 6054
+      },
+      {
+        "url": "/images/variants/covers/sand/window-sill.webp/1600.webp",
+        "width": 1600,
+        "height": 842,
+        "bytes": 18514
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sculpture-in-garden-arch.webp",
+    "originalHash": "7c26fb0fcb4a287b4d99f07dca96cac6dc523c373dfc6de2c3d60946c6e8d036",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sculpture-in-garden-arch.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 880
+      },
+      {
+        "url": "/images/variants/covers/sculpture-in-garden-arch.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 25924
+      },
+      {
+        "url": "/images/variants/covers/sculpture-in-garden-arch.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 80704
+      },
+      {
+        "url": "/images/variants/covers/sculpture-in-garden-arch.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 160408
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/sunlit-coastal-cliffs.webp",
+    "originalHash": "7d176ce0602d5afbeaabc4c2b44716fe383207054fcea49c331e4bc7e7265cc0",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/sunlit-coastal-cliffs.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 696
+      },
+      {
+        "url": "/images/variants/covers/sunlit-coastal-cliffs.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 12020
+      },
+      {
+        "url": "/images/variants/covers/sunlit-coastal-cliffs.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 35098
+      },
+      {
+        "url": "/images/variants/covers/sunlit-coastal-cliffs.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 70380
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/wildflower-hills.webp",
+    "originalHash": "4c156fd6a3fab33b3b13735d0a3eb02a64b2844fef517ae96f881abf94b403fc",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/wildflower-hills.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 1068
+      },
+      {
+        "url": "/images/variants/covers/wildflower-hills.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 32482
+      },
+      {
+        "url": "/images/variants/covers/wildflower-hills.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 100968
+      },
+      {
+        "url": "/images/variants/covers/wildflower-hills.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 209406
+      }
+    ]
+  },
+  {
+    "version": "v1",
+    "original": "/images/covers/yosemite-valley-river.webp",
+    "originalHash": "50c843c0b24ed142c91ce85c357f854d5cd2b4c09bfd328f1cb8b36ce6527e0e",
+    "width": 1200,
+    "height": 630,
+    "status": "ready",
+    "variants": [
+      {
+        "url": "/images/variants/covers/yosemite-valley-river.webp/64.webp",
+        "width": 64,
+        "height": 34,
+        "bytes": 1054
+      },
+      {
+        "url": "/images/variants/covers/yosemite-valley-river.webp/400.webp",
+        "width": 400,
+        "height": 210,
+        "bytes": 22838
+      },
+      {
+        "url": "/images/variants/covers/yosemite-valley-river.webp/800.webp",
+        "width": 800,
+        "height": 420,
+        "bytes": 72582
+      },
+      {
+        "url": "/images/variants/covers/yosemite-valley-river.webp/1200.webp",
+        "width": 1200,
+        "height": 630,
+        "bytes": 152206
+      }
+    ]
+  }
+]

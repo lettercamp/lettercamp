@@ -2,7 +2,7 @@ import { imageOptimization } from "./image-optimization.js";
 import { codeBlocks } from "./code-highlight.js";
 import { contentComponents } from "./content-component-syntax.js";
 import { componentBlocks } from "./component-blocks.js";
-import { rm } from 'node:fs/promises';
+import { rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { dev } from 'astro';
 import mdx from '@astrojs/mdx';
@@ -16,6 +16,7 @@ import { mediaDimensions } from './media-dimensions.js';
 import { reactIntegrationDirectory, reactViteConfig } from './react.js';
 import { writeCustomLayout } from './custom-layout.js';
 import { liveReload } from './live-reload.js';
+import { bundledImagesPath, readBundledImages } from './bundled-images.js';
 
 export type DevOptions = { port: number; host: string; open: boolean; useDefaultPorts?: boolean; base?: string; middleware?: string; strictPort?: boolean };
 
@@ -109,6 +110,25 @@ export async function startDev(directory: string, options: DevOptions) {
               });
             };
             vite.watcher.on('add', updateLayout).on('unlink', updateLayout);
+            const manifest = path.join(contentRoot, bundledImagesPath);
+            const publicRoot = path.join(contentRoot, 'public') + path.sep;
+            vite.watcher.add([manifest, publicRoot]);
+            let imageTimer: ReturnType<typeof setTimeout> | undefined;
+            let updatingImages = Promise.resolve();
+            const updateImages = (event: string, file: string) => {
+              if (!['add', 'change', 'unlink'].includes(event) || file !== manifest && !file.startsWith(publicRoot)) return;
+              clearTimeout(imageTimer);
+              imageTimer = setTimeout(() => {
+                updatingImages = updatingImages.then(async () => {
+                  await writeFile(path.join(workspace, 'src/image-manifests.json'), JSON.stringify(await readBundledImages(contentRoot)));
+                }).catch(error => vite.config.logger.error(error.message));
+              }, 100);
+            };
+            vite.watcher.on('all', updateImages);
+            vite.httpServer?.once('close', () => {
+              clearTimeout(imageTimer);
+              vite.watcher.off('all', updateImages);
+            });
           },
         }],
         server: { strictPort: options.strictPort ?? false, fs: { allow: [workspace, contentRoot, modules, reactIntegrationDirectory,

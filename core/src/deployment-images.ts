@@ -6,6 +6,7 @@ import { imageMetadata } from 'astro/assets/utils';
 import { apiOrigin, readConfig, saveConfig, type ApiSite } from './account.js';
 import { uploadBytes } from './upload.js';
 import { imageFile, rewriteImageReferences } from './deployment-image-references.js';
+import { bundledImagesPath, readBundledImages } from './bundled-images.js';
 
 export type SourceFile = { path: string; content: string };
 type LocalImage = { filename: string; hash: string; url: string; width: number; height: number; format: string };
@@ -43,10 +44,16 @@ export async function prepareDeploymentImages(directory: string, files: SourceFi
   let reading = Promise.resolve();
   const prefix = `https://lettercamp-deploy.invalid/${randomUUID()}/`;
   const prepared: SourceFile[] = [];
-  for (const file of files) {
+  const referenced = new Set<string>();
+  // Resolve authored images first, then include only their prepared variants.
+  // Unused starter presets should not add uploads to every deployment.
+  const ordered = [...files.filter(file => file.path !== bundledImagesPath), ...files.filter(file => file.path === bundledImagesPath)];
+  for (const file of ordered) {
     if (!/\.(?:json|mdx?|[cm]?[jt]sx?|s?css)$/i.test(file.path)) { prepared.push(file); continue; }
-    const source = Buffer.from(file.content, 'base64').toString('utf8');
+    let source = Buffer.from(file.content, 'base64').toString('utf8');
+    if (file.path === bundledImagesPath) source = JSON.stringify((await readBundledImages(root, source)).filter(manifest => referenced.has(manifest.original)));
     const content = await rewriteImageReferences(source, file.path, async value => {
+      if (file.path !== bundledImagesPath) referenced.add(value);
       if (!value || remote.test(value)) return null;
       const pathname = value.split(/[?#]/, 1)[0];
       if (!imageFile.test(pathname)) return null;

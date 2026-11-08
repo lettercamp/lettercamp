@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { escapePath } from 'tinyglobby';
 import { writeCustomLayout } from './custom-layout.js';
+import { readBundledImages } from './bundled-images.js';
 const require = createRequire(import.meta.url);
 const renderer = fileURLToPath(new URL('../renderer/', import.meta.url));
 
@@ -15,6 +16,7 @@ export async function prepareWorkspace(directory: string) {
   const workspace = await realpath(await mkdtemp(path.join(tmpdir(), 'lettercamp-')));
   try {
     await cp(renderer, workspace, { recursive: true });
+    await writeFile(path.join(workspace, 'src', 'image-manifests.json'), JSON.stringify(await readBundledImages(contentRoot)));
     await writeCustomLayout(workspace, contentRoot);
     await writeFile(path.join(workspace, 'package.json'), JSON.stringify({ private: true, type: 'module' }));
     // Dependencies stay in the CLI installation; the glob uses real source paths

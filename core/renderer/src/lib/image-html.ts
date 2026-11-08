@@ -1,8 +1,8 @@
 import { fromHtml } from 'hast-util-from-html';
 import { toHtml } from 'hast-util-to-html';
 import type { Element, Root, RootContent } from 'hast';
-import { IMAGE_ORIGIN, imageAttributes, imageAsset, type ImageManifest } from './image-variants';
-import { readImageManifest } from './image-manifest';
+import { imageAttributes, type ImageManifest } from './image-variants';
+import { hasImageManifest, readImageManifest } from './image-manifest';
 
 const classes = (node: Element) => Array.isArray(node.properties.className) ? node.properties.className : [];
 const has = (nodes: Element[], name: string) => nodes.some(node => classes(node).includes(name));
@@ -65,7 +65,7 @@ function sizesFor(node: Element, parents: Element[]) {
 }
 
 export async function optimizeImageHtml(html: string) {
-  if (!html.includes(`${IMAGE_ORIGIN}/`)) return html;
+  if (!html.includes('<img')) return html;
   const tree = fromHtml(html);
   const elements: { node: Element; parents: Element[] }[] = [];
   function walk(node: Root | RootContent, parents: Element[] = []) {
@@ -75,7 +75,7 @@ export async function optimizeImageHtml(html: string) {
   walk(tree);
   const urls = new Set<string>();
   const authors = new Map<Element, { image?: string; imageAttributes?: unknown }[]>();
-  const add = (url: unknown) => { if (typeof url === 'string' && imageAsset(url)) urls.add(url); };
+  const add = (url: unknown) => { if (typeof url === 'string' && hasImageManifest(url)) urls.add(url); };
   for (const { node, parents } of elements) {
     if (managedImage(node, parents)) add(node.properties.src);
     if (node.tagName === 'button' && classes(node).includes('author-more') && typeof node.properties.dataAuthors === 'string') {
