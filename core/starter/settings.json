@@ -2,8 +2,8 @@
   "name": "Lorem Ipsum Blog",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae justo vel sapien malesuada aliquet.",
   "language": "en",
-  "logo": "/images/branding/logo-7e6bff827cd2b3b4.webp",
-  "favicon": "/images/branding/icon-b0f9b95b579d3161.webp",
+  "logo": "/images/branding/logo-7e6bff827cd2b3b4.png",
+  "favicon": "/images/branding/icon-b0f9b95b579d3161.png",
   "timeZone": "UTC",
   "design": {
     "backgroundColor": "#ffffff",

@@ -105,7 +105,7 @@ export async function optimizeImageHtml(html: string) {
     const loading = node.properties.loading ?? (!small && node.properties.fetchPriority !== 'high' ? 'lazy' : undefined);
     const specifiedSizes = sizesFor(node, parents);
     const sizes = `${loading === 'lazy' && !/^auto(?:\s*,|$)/.test(specifiedSizes) ? 'auto, ' : ''}${specifiedSizes}`;
-    const attrs = imageAttributes(manifest, sizes, small ? 64 : 800);
+    const attrs = imageAttributes(manifest, sizes, small ? 64 : 786);
     if (!attrs) continue;
     Object.assign(node.properties, attrs, { loading, decoding: 'async', dataImageOriginal: original });
     if (manifest) {

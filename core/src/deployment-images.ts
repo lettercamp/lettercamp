@@ -58,7 +58,7 @@ export async function prepareDeploymentImages(directory: string, files: SourceFi
       const pathname = value.split(/[?#]/, 1)[0];
       if (!imageFile.test(pathname)) return null;
       try {
-        if (!/\.(?:jpe?g|png|webp|gif)$/i.test(pathname)) throw new Error('Cloud image uploads support JPEG, PNG, WebP, and GIF. Convert this image or use a hosted URL.');
+        if (!/\.(?:jpe?g|png|webp|gif|avif)$/i.test(pathname)) throw new Error('Cloud image uploads support JPEG, PNG, WebP, AVIF, and GIF. Convert this image or use a hosted URL.');
         const decoded = decodeURIComponent(pathname);
         if (/[\\\x00-\x1f\x7f]/.test(decoded)) throw new Error('Use a local image path with forward slashes.');
         const filename = decoded.startsWith('/') ? path.resolve(root, 'public', '.' + decoded) : path.resolve(root, path.dirname(file.path), decoded);
@@ -69,7 +69,7 @@ export async function prepareDeploymentImages(directory: string, files: SourceFi
             const bytes = await readLocalImage(root, filename);
             // Check the actual bytes before transmitting a file based on its extension.
             const dimensions = await imageMetadata(bytes, filename);
-            if (!['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(dimensions.format)) throw new Error('Choose a JPEG, PNG, WebP, or GIF image.');
+            if (!['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(dimensions.format)) throw new Error('Choose a JPEG, PNG, WebP, AVIF, or GIF image.');
             return { filename, hash: hash(bytes), url: `${prefix}${index}${path.extname(filename)}`, width: dimensions.width, height: dimensions.height, format: dimensions.format };
           });
           // A settings file or srcset can reference many large originals. Read one at a time.
@@ -89,7 +89,7 @@ function siteImage(url: unknown, siteId: string): url is string {
   try {
     const parsed = new URL(url);
     return parsed.origin === 'https://assets.lettercamp.com' && !parsed.username && !parsed.password && !parsed.search && !parsed.hash
-      && parsed.pathname.startsWith(`/sites/${siteId}/`) && /^\/sites\/[^/]+\/[a-f0-9-]{36}\.(?:jpe?g|png|webp|gif)$/i.test(parsed.pathname);
+      && parsed.pathname.startsWith(`/sites/${siteId}/`) && /^\/sites\/[^/]+\/[a-f0-9-]{36}\.(?:jpe?g|png|webp|gif|avif)$/i.test(parsed.pathname);
   } catch { return false; }
 }
 

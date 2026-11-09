@@ -1,6 +1,7 @@
 ---
 import { sitePath } from '../lib/urls.js';
 import SocialLink from './SocialLink.astro';
+import LettercampLogo from './LettercampLogo.astro';
 const { site } = Astro.props;
 const logo = sitePath(site.logo);
 const columns = (site.footer?.columns ?? []).slice(0, 4);
@@ -29,7 +30,7 @@ const socials = (site.footer?.socials ?? []).filter(({ href }) => {
     {socials.length > 0 && <nav class="footer-socials" aria-label="Social links">
       {socials.map(({ platform, href }) => <SocialLink name={platform} href={href} />)}
     </nav>}
-    <a class="footer-credit" href="https://lettercamp.com">Made with <strong>Lettercamp</strong></a>
+    <a class="footer-credit" href="https://lettercamp.com">Made with <span class="footer-credit-brand"><LettercampLogo />Lettercamp</span></a>
   </div>
   </div>
 </footer>

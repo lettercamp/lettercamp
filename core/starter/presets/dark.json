@@ -12,68 +12,68 @@
         }
       }
     },
-    "logo": "/images/branding/logo-white.webp"
+    "logo": "/images/branding/logo-white.png"
   },
   "pages": {
     "lorem-ipsum-dolor-sit-amet.mdx": {
-      "image": "/images/covers/dark/dithered-waves.webp",
+      "image": "/images/covers/dark/dithered-waves.jpg",
       "imageAlt": "Flowing black-and-white waves formed from a fine dithered dot pattern.",
-      "ogImage": "/images/covers/dark/dithered-waves.webp"
+      "ogImage": "/images/covers/dark/dithered-waves.jpg"
     },
     "vestibulum-ante-ipsum-primis-in-faucibus.mdx": {
-      "image": "/images/covers/dark/dark-workspace.webp",
+      "image": "/images/covers/dark/dark-workspace.jpg",
       "imageAlt": "A dark workspace with a desk and chair beneath abstract waves of light.",
-      "ogImage": "/images/covers/dark/dark-workspace.webp"
+      "ogImage": "/images/covers/dark/dark-workspace.jpg"
     },
     "sed-ut-perspiciatis-unde-omnis-iste-natus.mdx": {
-      "image": "/images/covers/dark/sunset.webp",
+      "image": "/images/covers/dark/sunset.jpg",
       "imageAlt": "Abstract bands of sunset light rendered in a black-and-white dithered pattern.",
-      "ogImage": "/images/covers/dark/sunset.webp"
+      "ogImage": "/images/covers/dark/sunset.jpg"
     },
     "curabitur-blandit.mdx": {
-      "image": "/images/covers/dark/glowing-cursor.webp",
+      "image": "/images/covers/dark/glowing-cursor.jpg",
       "imageAlt": "A lone figure facing a giant glowing cursor above a rocky landscape.",
-      "ogImage": "/images/covers/dark/glowing-cursor.webp"
+      "ogImage": "/images/covers/dark/glowing-cursor.jpg"
     },
     "maecenas-sed-diam-eget-risus.mdx": {
-      "image": "/images/covers/dark/fingerprint.webp",
+      "image": "/images/covers/dark/fingerprint.jpg",
       "imageAlt": "A white fingerprint spiraling across a black background.",
-      "ogImage": "/images/covers/dark/fingerprint.webp"
+      "ogImage": "/images/covers/dark/fingerprint.jpg"
     },
     "nunc-finibus.mdx": {
-      "image": "/images/covers/dark/light-trails.webp",
+      "image": "/images/covers/dark/light-trails.jpg",
       "imageAlt": "Long white trails of light sweeping through a dark, grainy sky.",
-      "ogImage": "/images/covers/dark/light-trails.webp"
+      "ogImage": "/images/covers/dark/light-trails.jpg"
     },
     "phasellus-faucibus-scelerisque-eleifend.mdx": {
-      "image": "/images/covers/dark/satellite-dish.webp",
+      "image": "/images/covers/dark/satellite-dish.jpg",
       "imageAlt": "A bright satellite dish beneath a dark, star-speckled sky.",
-      "ogImage": "/images/covers/dark/satellite-dish.webp"
+      "ogImage": "/images/covers/dark/satellite-dish.jpg"
     },
     "aliquam-erat-volutpat.mdx": {
-      "image": "/images/covers/dark/window-silhouette.webp",
+      "image": "/images/covers/dark/window-silhouette.jpg",
       "imageAlt": "A silhouetted person in profile against bright horizontal window blinds.",
-      "ogImage": "/images/covers/dark/window-silhouette.webp"
+      "ogImage": "/images/covers/dark/window-silhouette.jpg"
     },
     "donec-ullamcorper-nulla-non-metus.mdx": {
-      "image": "/images/covers/dark/wind-turbine.webp",
+      "image": "/images/covers/dark/wind-turbine.jpg",
       "imageAlt": "A wind turbine with bright, blurred blades against a black sky.",
-      "ogImage": "/images/covers/dark/wind-turbine.webp"
+      "ogImage": "/images/covers/dark/wind-turbine.jpg"
     },
     "etiam-sollicitudin.mdx": {
-      "image": "/images/covers/dark/suspension-bridge.webp",
+      "image": "/images/covers/dark/suspension-bridge.jpg",
       "imageAlt": "The cables and deck of a suspension bridge rendered in white stippled lines.",
-      "ogImage": "/images/covers/dark/suspension-bridge.webp"
+      "ogImage": "/images/covers/dark/suspension-bridge.jpg"
     },
     "aenean-mollis-nunc-sed-augue.mdx": {
-      "image": "/images/covers/dark/wind-tunnel.webp",
+      "image": "/images/covers/dark/wind-tunnel.jpg",
       "imageAlt": "White flowing lines tracing the aerodynamic shape of a vehicle.",
-      "ogImage": "/images/covers/dark/wind-tunnel.webp"
+      "ogImage": "/images/covers/dark/wind-tunnel.jpg"
     },
     "praesent-commodo-cursus-magna.mdx": {
-      "image": "/images/covers/dark/digital-team.webp",
+      "image": "/images/covers/dark/digital-team.jpg",
       "imageAlt": "Two figures overlaid with abstract code and black-and-white digital texture.",
-      "ogImage": "/images/covers/dark/digital-team.webp"
+      "ogImage": "/images/covers/dark/digital-team.jpg"
     }
   }
 }

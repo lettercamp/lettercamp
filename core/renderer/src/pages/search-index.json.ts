@@ -17,7 +17,7 @@ export async function GET() {
     while (cursor < posts.length) {
       const post = posts[cursor++];
       if (!post.image) continue;
-      try { post.imageAttributes = imageAttributes(await readImageManifest(post.image), '64px', 400); }
+      try { post.imageAttributes = imageAttributes(await readImageManifest(post.image), '64px', 394); }
       catch { /* Keep the original image when variants are unavailable. */ }
     }
   }));

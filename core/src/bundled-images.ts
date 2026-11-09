@@ -4,9 +4,10 @@ import path from 'node:path';
 
 export const bundledImagesPath = 'lib/image-variants.json';
 export type BundledImage = {
-  version: 'v1';
+  version: 'v1' | 'v2' | 'v3';
   original: string;
   originalHash?: string;
+  sourceUrl?: string;
   width: number;
   height: number;
   status: 'ready' | 'skipped';

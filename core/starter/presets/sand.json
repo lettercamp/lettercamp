@@ -18,64 +18,64 @@
   },
   "pages": {
     "lorem-ipsum-dolor-sit-amet.mdx": {
-      "image": "/images/covers/sand/window-sill.webp",
+      "image": "/images/covers/sand/window-sill.jpg",
       "imageAlt": "A black ink drawing of a window with a potted plant and a mug on the sill.",
-      "ogImage": "/images/covers/sand/window-sill.webp"
+      "ogImage": "/images/covers/sand/window-sill.jpg"
     },
     "vestibulum-ante-ipsum-primis-in-faucibus.mdx": {
-      "image": "/images/covers/sand/island-bridge.webp",
+      "image": "/images/covers/sand/island-bridge.jpg",
       "imageAlt": "A black ink drawing of a suspension bridge connecting two islands.",
-      "ogImage": "/images/covers/sand/island-bridge.webp"
+      "ogImage": "/images/covers/sand/island-bridge.jpg"
     },
     "sed-ut-perspiciatis-unde-omnis-iste-natus.mdx": {
-      "image": "/images/covers/sand/tending-plant.webp",
+      "image": "/images/covers/sand/tending-plant.jpg",
       "imageAlt": "A black ink drawing of a gardener tending a leafy potted plant.",
-      "ogImage": "/images/covers/sand/tending-plant.webp"
+      "ogImage": "/images/covers/sand/tending-plant.jpg"
     },
     "curabitur-blandit.mdx": {
-      "image": "/images/covers/sand/handshake.webp",
+      "image": "/images/covers/sand/handshake.jpg",
       "imageAlt": "A black ink drawing of two hands shaking.",
-      "ogImage": "/images/covers/sand/handshake.webp"
+      "ogImage": "/images/covers/sand/handshake.jpg"
     },
     "maecenas-sed-diam-eget-risus.mdx": {
-      "image": "/images/covers/sand/conversation.webp",
+      "image": "/images/covers/sand/conversation.jpg",
       "imageAlt": "A black ink drawing of two people talking beneath empty speech bubbles.",
-      "ogImage": "/images/covers/sand/conversation.webp"
+      "ogImage": "/images/covers/sand/conversation.jpg"
     },
     "nunc-finibus.mdx": {
-      "image": "/images/covers/sand/surfer.webp",
+      "image": "/images/covers/sand/surfer.jpg",
       "imageAlt": "A black ink drawing of a surfer riding a wave.",
-      "ogImage": "/images/covers/sand/surfer.webp"
+      "ogImage": "/images/covers/sand/surfer.jpg"
     },
     "phasellus-faucibus-scelerisque-eleifend.mdx": {
-      "image": "/images/covers/sand/desert-sun.webp",
+      "image": "/images/covers/sand/desert-sun.jpg",
       "imageAlt": "A black ink drawing of the sun above rolling desert dunes.",
-      "ogImage": "/images/covers/sand/desert-sun.webp"
+      "ogImage": "/images/covers/sand/desert-sun.jpg"
     },
     "aliquam-erat-volutpat.mdx": {
-      "image": "/images/covers/sand/desktop-computer.webp",
+      "image": "/images/covers/sand/desktop-computer.jpg",
       "imageAlt": "A black ink drawing of a desktop computer with a keyboard and mouse.",
-      "ogImage": "/images/covers/sand/desktop-computer.webp"
+      "ogImage": "/images/covers/sand/desktop-computer.jpg"
     },
     "donec-ullamcorper-nulla-non-metus.mdx": {
-      "image": "/images/covers/sand/open-road.webp",
+      "image": "/images/covers/sand/open-road.jpg",
       "imageAlt": "A black ink drawing of a small car driving along an open road.",
-      "ogImage": "/images/covers/sand/open-road.webp"
+      "ogImage": "/images/covers/sand/open-road.jpg"
     },
     "etiam-sollicitudin.mdx": {
-      "image": "/images/covers/sand/empty-desks.webp",
+      "image": "/images/covers/sand/empty-desks.jpg",
       "imageAlt": "A black ink drawing of four empty office desks with computers and chairs.",
-      "ogImage": "/images/covers/sand/empty-desks.webp"
+      "ogImage": "/images/covers/sand/empty-desks.jpg"
     },
     "aenean-mollis-nunc-sed-augue.mdx": {
-      "image": "/images/covers/sand/jet-plane.webp",
+      "image": "/images/covers/sand/jet-plane.jpg",
       "imageAlt": "A black ink drawing of a jet plane in flight.",
-      "ogImage": "/images/covers/sand/jet-plane.webp"
+      "ogImage": "/images/covers/sand/jet-plane.jpg"
     },
     "praesent-commodo-cursus-magna.mdx": {
-      "image": "/images/covers/sand/friends-on-phones.webp",
+      "image": "/images/covers/sand/friends-on-phones.jpg",
       "imageAlt": "A black ink drawing of two friends sitting in a park and looking at their phones.",
-      "ogImage": "/images/covers/sand/friends-on-phones.webp"
+      "ogImage": "/images/covers/sand/friends-on-phones.jpg"
     }
   }
 }

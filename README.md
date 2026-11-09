@@ -27,10 +27,19 @@ Lettercamp is an open-source platform that makes it easy to create and manage a 
 
 ![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp)
 
-- **Write in Markdown and MDX.** Keep your content in files and make it easier for your agent to draft and edit content without relying on a database.
-- **Spin up a modern content site quickly.** Lettercamp ships everything you need to publish and more, so you can focus on creating and publishing the best content possible.
+- **Write in Markdown and MDX** Keep your content in files and make it easier for your agent to draft and edit content without relying on a database.
+- **Spin up a modern content site quickly** Lettercamp ships everything you need to publish and more, so you can focus on creating and publishing the best content possible.
 - **Customize to your brand** Easily replace brand logos, fonts, and colors so that your publication reflects your brand.
 - **Free and open-source** The core Lettercamp framework is [MIT-licensed](LICENSE), giving you complete control over your content, publication, and deploys. Our company operates [Lettercamp Cloud](https://www.lettercamp.com), which offers an hosted version.
+
+![Lettercamp Post](https://static.lettercamp.com/assets/lettercamp/static/W0DwSaJZH6Xe-post-screenshot.webp)
+
+Lettercamp ships with several built-in features that help you more easily ship content articles:
+
+- **Full rich content support** Add quotes, codeblocks, tables, images, and more directly in markdown and have these reflected on your post content.
+- **Built-in pagination and search** Your blog automatically scales to any number of posts while staying optimized for search engines and AI agents.
+- **SEO optimized** Blog posts support authors, metadata, table of contents, and other SEO-friendly features to help your content rank better.
+- **Performant (100 across Lighthouse scores)** Optimized for speed out of the box so you can focus on writing instead of tweaking loading times.
 
 ## Why Lettercamp?
 
@@ -66,9 +75,20 @@ Lettercamp ships with a few default presets, but makes it easy to customize your
 
 If the native options aren't enough, you can extend Lettercamp with custom implementations for components, headers, footers, and more.
 
+## Roadmap
+
+Our team plans to continue improving Lettercamp based on feedback from the community. There are several areas on the immediate roadmap:
+
+- **Translation and i18n** Native support for multiple languages and localization to improve global content reach.
+- **Integrated AI Agent** Readers can interact or chat with the content directly using an AI agent
+- **Expanded integrations** Lettercamp posts should natively support popular third-party services and tools and embed content seamlessly.
+- **Additional UI enhancements** Continuous improvements to the user interface for a better reading experience. Posts can include more rich elements, such as dark mode, reading progress, bookmarking, saved selections, and more.
+
+If you have suggestions or ideas for the roadmap, please [open an issue](https://github.com/lettercamp/lettercamp/issues) to share your thoughts with the community.
+
 ## Lettercamp Cloud
 
-Lettercamp Cloud is the hosted platform for deploying and managing Lettercamp sites. In addition to providing hosting for the built sites, Lettercamp Cloud also offers a web-based editor and dashboard, which allows your content team to edit and manage content without needing to commit code. This product also includes several enterprise ready features, including access control, user management, payments, and more. However, the core publication site remains the same as the open-source offering.
+[Lettercamp Cloud](https://www.lettercamp.com) is the hosted platform for deploying and managing Lettercamp sites. In addition to providing hosting for the built sites, Lettercamp Cloud also offers a web-based editor and dashboard, which allows your content team to edit and manage content without needing to commit code. This product also includes several enterprise ready features, including access control, user management, payments, and more. However, the core publication site remains the same as the open-source offering.
 
 ## Contributing
 

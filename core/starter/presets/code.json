@@ -1,7 +1,7 @@
 {
   "name": "Code",
   "settings": {
-    "logo": "/images/branding/logo-white.webp",
+    "logo": "/images/branding/logo-white.png",
     "design": {
       "backgroundColor": "#070707",
       "typography": {
@@ -24,64 +24,64 @@
   },
   "pages": {
     "lorem-ipsum-dolor-sit-amet.mdx": {
-      "image": "/images/covers/code/coding-laptop.webp",
+      "image": "/images/covers/code/coding-laptop.jpg",
       "imageAlt": "Hands typing on a laptop with code and green neon light on its screen.",
-      "ogImage": "/images/covers/code/coding-laptop.webp"
+      "ogImage": "/images/covers/code/coding-laptop.jpg"
     },
     "vestibulum-ante-ipsum-primis-in-faucibus.mdx": {
-      "image": "/images/covers/code/night-headlights.webp",
+      "image": "/images/covers/code/night-headlights.jpg",
       "imageAlt": "Bright green headlights casting beams across a dark road.",
-      "ogImage": "/images/covers/code/night-headlights.webp"
+      "ogImage": "/images/covers/code/night-headlights.jpg"
     },
     "sed-ut-perspiciatis-unde-omnis-iste-natus.mdx": {
-      "image": "/images/covers/code/spaceship.webp",
+      "image": "/images/covers/code/spaceship.jpg",
       "imageAlt": "A dark spaceship silhouette with three bright green engine trails.",
-      "ogImage": "/images/covers/code/spaceship.webp"
+      "ogImage": "/images/covers/code/spaceship.jpg"
     },
     "curabitur-blandit.mdx": {
-      "image": "/images/covers/code/glowing-library.webp",
+      "image": "/images/covers/code/glowing-library.jpg",
       "imageAlt": "Library shelves filled with books glowing green in the dark.",
-      "ogImage": "/images/covers/code/glowing-library.webp"
+      "ogImage": "/images/covers/code/glowing-library.jpg"
     },
     "maecenas-sed-diam-eget-risus.mdx": {
-      "image": "/images/covers/code/neon-cafe.webp",
+      "image": "/images/covers/code/neon-cafe.jpg",
       "imageAlt": "A dark cafe lined with vivid green neon lighting.",
-      "ogImage": "/images/covers/code/neon-cafe.webp"
+      "ogImage": "/images/covers/code/neon-cafe.jpg"
     },
     "nunc-finibus.mdx": {
-      "image": "/images/covers/code/neon-lightbulb.webp",
+      "image": "/images/covers/code/neon-lightbulb.jpg",
       "imageAlt": "A lightbulb glowing neon green against a black background.",
-      "ogImage": "/images/covers/code/neon-lightbulb.webp"
+      "ogImage": "/images/covers/code/neon-lightbulb.jpg"
     },
     "phasellus-faucibus-scelerisque-eleifend.mdx": {
-      "image": "/images/covers/code/green-skyscraper.webp",
+      "image": "/images/covers/code/green-skyscraper.jpg",
       "imageAlt": "A tall office building with glowing windows beneath a green night sky.",
-      "ogImage": "/images/covers/code/green-skyscraper.webp"
+      "ogImage": "/images/covers/code/green-skyscraper.jpg"
     },
     "aliquam-erat-volutpat.mdx": {
-      "image": "/images/covers/code/neon-office.webp",
+      "image": "/images/covers/code/neon-office.jpg",
       "imageAlt": "Rows of office desks and monitors beneath green ceiling lights.",
-      "ogImage": "/images/covers/code/neon-office.webp"
+      "ogImage": "/images/covers/code/neon-office.jpg"
     },
     "donec-ullamcorper-nulla-non-metus.mdx": {
-      "image": "/images/covers/code/neon-chessboard.webp",
+      "image": "/images/covers/code/neon-chessboard.jpg",
       "imageAlt": "Chess pieces on a board illuminated from below with green light.",
-      "ogImage": "/images/covers/code/neon-chessboard.webp"
+      "ogImage": "/images/covers/code/neon-chessboard.jpg"
     },
     "etiam-sollicitudin.mdx": {
-      "image": "/images/covers/code/projector-beam.webp",
+      "image": "/images/covers/code/projector-beam.jpg",
       "imageAlt": "A projector casting a bright green beam through darkness.",
-      "ogImage": "/images/covers/code/projector-beam.webp"
+      "ogImage": "/images/covers/code/projector-beam.jpg"
     },
     "aenean-mollis-nunc-sed-augue.mdx": {
-      "image": "/images/covers/code/bridge-at-night.webp",
+      "image": "/images/covers/code/bridge-at-night.jpg",
       "imageAlt": "A long bridge crossing dark water with green reflections beneath it.",
-      "ogImage": "/images/covers/code/bridge-at-night.webp"
+      "ogImage": "/images/covers/code/bridge-at-night.jpg"
     },
     "praesent-commodo-cursus-magna.mdx": {
-      "image": "/images/covers/code/glowing-phone.webp",
+      "image": "/images/covers/code/glowing-phone.jpg",
       "imageAlt": "A hand touching a smartphone screen illuminated by green light.",
-      "ogImage": "/images/covers/code/glowing-phone.webp"
+      "ogImage": "/images/covers/code/glowing-phone.jpg"
     }
   }
 }
