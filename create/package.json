@@ -1,6 +1,6 @@
 {
   "name": "create-lettercamp",
-  "version": "0.1.0",
+  "version": "0.1.39",
   "description": "Create a new Lettercamp site",
   "keywords": [
     "lettercamp",
@@ -35,7 +35,7 @@
     "prepack": "tsx ../scripts/package-readme.ts"
   },
   "dependencies": {
-    "@lettercamp/cli": "0.1.0"
+    "@lettercamp/cli": "0.1.39"
   },
   "license": "MIT"
 }
