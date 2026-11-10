@@ -1,13 +1,13 @@
 import { cp, mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { isMap, isSeq, parseDocument } from 'yaml';
 import { spawn } from 'node:child_process';
 import { ask, choose } from './prompts.js';
 import { version } from './version.js';
+import { copyStarter, type StarterOptions } from './starter.js';
 
-export type CreateOptions = { preset?: string; yes?: boolean; install?: boolean };
+export type CreateOptions = StarterOptions & { preset?: string; yes?: boolean; install?: boolean };
 
 async function ensureEmpty(directory: string) {
   let entries;
@@ -139,7 +139,7 @@ export async function createSite(directory?: string, options: CreateOptions = {}
   const temporary = await mkdtemp(path.join(tmpdir(), 'lettercamp-new-'));
   try {
     console.log('Preparing the Lettercamp starter…');
-    await cp(fileURLToPath(new URL('../starter/', import.meta.url)), temporary, { recursive: true });
+    await copyStarter(temporary, options);
     let preset = options.preset;
     if (preset === undefined && interactive) {
       const presets = ['default', ...await availablePresets(temporary)];

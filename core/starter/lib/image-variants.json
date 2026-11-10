@@ -20,7 +20,28 @@
         "height": 128,
         "bytes": 1702
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/aenean-vitae.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/aenean-vitae.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 793
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/aenean-vitae.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 1702
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -43,7 +64,28 @@
         "height": 128,
         "bytes": 1681
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/cras-mattis.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/cras-mattis.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 795
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/cras-mattis.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 1681
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -66,7 +108,28 @@
         "height": 128,
         "bytes": 1988
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/elit-felis.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/elit-felis.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 897
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/elit-felis.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 1988
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -89,7 +152,28 @@
         "height": 128,
         "bytes": 2398
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/porta-semper.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/porta-semper.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 893
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/porta-semper.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 2398
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -112,7 +196,28 @@
         "height": 128,
         "bytes": 1851
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/tellus-magna.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/tellus-magna.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 737
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/tellus-magna.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 1851
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -135,7 +240,28 @@
         "height": 128,
         "bytes": 1291
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v2/authors/vitae-ornare.jpg",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/vitae-ornare.jpg/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 661
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v2/authors/vitae-ornare.jpg/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 1291
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -152,7 +278,22 @@
         "height": 64,
         "bytes": 1345
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/system/branding/icon-b0f9b95b579d3161.webp",
+      "width": 64,
+      "height": 64,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/system/branding/icon-b0f9b95b579d3161.webp/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 1345
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -175,7 +316,28 @@
         "height": 128,
         "bytes": 2645
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/system/branding/logo-7e6bff827cd2b3b4.webp",
+      "width": 128,
+      "height": 128,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/system/branding/logo-7e6bff827cd2b3b4.webp/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 1345
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/system/branding/logo-7e6bff827cd2b3b4.webp/128.avif",
+          "width": 128,
+          "height": 128,
+          "bytes": 2645
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -216,7 +378,46 @@
         "height": 980,
         "bytes": 8580
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/presets/dark/logo-40288fb49408e302.png",
+      "width": 980,
+      "height": 980,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/presets/dark/logo-40288fb49408e302.png/64.avif",
+          "width": 64,
+          "height": 64,
+          "bytes": 1254
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/presets/dark/logo-40288fb49408e302.png/394.avif",
+          "width": 394,
+          "height": 394,
+          "bytes": 5310
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/presets/dark/logo-40288fb49408e302.png/668.avif",
+          "width": 668,
+          "height": 668,
+          "bytes": 8459
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/presets/dark/logo-40288fb49408e302.png/786.avif",
+          "width": 786,
+          "height": 786,
+          "bytes": 9202
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/presets/dark/logo-40288fb49408e302.png/980.avif",
+          "width": 980,
+          "height": 980,
+          "bytes": 8580
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -257,7 +458,46 @@
         "height": 630,
         "bytes": 45764
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/blue-sky-and-clouds.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/blue-sky-and-clouds.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 532
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/blue-sky-and-clouds.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 5769
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/blue-sky-and-clouds.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 17691
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/blue-sky-and-clouds.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 23510
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/blue-sky-and-clouds.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 45764
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -298,7 +538,46 @@
         "height": 808,
         "bytes": 32482
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/bridge-at-night.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/bridge-at-night.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 508
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/bridge-at-night.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1700
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/bridge-at-night.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3593
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/bridge-at-night.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4852
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/bridge-at-night.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 32482
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -339,7 +618,46 @@
         "height": 808,
         "bytes": 67557
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/coding-laptop.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/coding-laptop.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 545
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/coding-laptop.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 2898
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/coding-laptop.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 6921
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/coding-laptop.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 10065
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/coding-laptop.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 67557
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -380,7 +698,46 @@
         "height": 808,
         "bytes": 61627
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/glowing-library.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-library.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 646
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-library.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 5483
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-library.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 10534
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-library.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 13421
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-library.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 61627
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -421,7 +778,46 @@
         "height": 808,
         "bytes": 82631
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/glowing-phone.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-phone.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 652
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-phone.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 2434
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-phone.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 6613
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-phone.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 10615
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/glowing-phone.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 82631
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -462,7 +858,46 @@
         "height": 808,
         "bytes": 22994
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/green-skyscraper.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/green-skyscraper.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 581
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/green-skyscraper.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 3784
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/green-skyscraper.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 6993
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/green-skyscraper.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 8581
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/green-skyscraper.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 22994
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -503,7 +938,46 @@
         "height": 808,
         "bytes": 44922
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/neon-cafe.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-cafe.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 502
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-cafe.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 3788
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-cafe.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 9094
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-cafe.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 11724
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-cafe.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 44922
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -544,7 +1018,46 @@
         "height": 808,
         "bytes": 50253
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/neon-chessboard.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-chessboard.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 704
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-chessboard.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 5929
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-chessboard.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 11190
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-chessboard.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 14394
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-chessboard.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 50253
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -585,7 +1098,46 @@
         "height": 808,
         "bytes": 22665
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/neon-lightbulb.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-lightbulb.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 580
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-lightbulb.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1791
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-lightbulb.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3426
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-lightbulb.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4497
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-lightbulb.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 22665
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -626,7 +1178,46 @@
         "height": 808,
         "bytes": 31262
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/neon-office.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-office.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 600
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-office.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 3989
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-office.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 8456
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-office.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 10295
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/neon-office.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 31262
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -667,7 +1258,46 @@
         "height": 808,
         "bytes": 161964
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/night-headlights.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/night-headlights.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 551
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/night-headlights.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 3182
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/night-headlights.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 13396
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/night-headlights.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 22966
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/night-headlights.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 161964
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -708,7 +1338,46 @@
         "height": 808,
         "bytes": 78642
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/projector-beam.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/projector-beam.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 501
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/projector-beam.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1675
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/projector-beam.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 5567
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/projector-beam.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 9674
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/projector-beam.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 78642
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -749,7 +1418,46 @@
         "height": 808,
         "bytes": 19435
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/code/spaceship.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/spaceship.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 526
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/spaceship.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1600
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/spaceship.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 2819
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/spaceship.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 3636
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/code/spaceship.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 19435
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -790,7 +1498,46 @@
         "height": 630,
         "bytes": 94766
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/computers-in-warm-light.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/computers-in-warm-light.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 795
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/computers-in-warm-light.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 15224
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/computers-in-warm-light.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 42423
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/computers-in-warm-light.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 53804
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/computers-in-warm-light.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 94766
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -831,7 +1578,46 @@
         "height": 808,
         "bytes": 156743
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/dark-workspace.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dark-workspace.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 430
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dark-workspace.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 6265
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dark-workspace.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 25063
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dark-workspace.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 38318
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dark-workspace.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 156743
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -872,7 +1658,46 @@
         "height": 808,
         "bytes": 157134
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/digital-team.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/digital-team.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 759
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/digital-team.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 10970
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/digital-team.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 32564
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/digital-team.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 46253
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/digital-team.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 157134
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -913,7 +1738,46 @@
         "height": 808,
         "bytes": 87967
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/dithered-waves.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dithered-waves.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 489
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dithered-waves.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 8696
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dithered-waves.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 22001
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dithered-waves.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 29074
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/dithered-waves.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 87967
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -954,7 +1818,46 @@
         "height": 808,
         "bytes": 174017
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/fingerprint.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/fingerprint.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 628
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/fingerprint.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 12703
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/fingerprint.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 37694
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/fingerprint.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 53120
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/fingerprint.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 174017
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -995,7 +1898,46 @@
         "height": 808,
         "bytes": 121519
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/glowing-cursor.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/glowing-cursor.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 562
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/glowing-cursor.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 8311
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/glowing-cursor.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 22992
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/glowing-cursor.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 32970
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/glowing-cursor.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 121519
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1036,7 +1978,46 @@
         "height": 808,
         "bytes": 186865
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/light-trails.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/light-trails.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 462
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/light-trails.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 4562
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/light-trails.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 21572
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/light-trails.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 35181
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/light-trails.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 186865
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1077,7 +2058,46 @@
         "height": 808,
         "bytes": 188866
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/satellite-dish.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/satellite-dish.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 439
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/satellite-dish.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 7933
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/satellite-dish.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 29830
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/satellite-dish.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 45692
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/satellite-dish.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 188866
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1118,7 +2138,46 @@
         "height": 808,
         "bytes": 133668
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/sunset.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/sunset.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 450
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/sunset.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 4969
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/sunset.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 21373
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/sunset.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 33245
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/sunset.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 133668
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1159,7 +2218,46 @@
         "height": 808,
         "bytes": 116909
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/suspension-bridge.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/suspension-bridge.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 461
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/suspension-bridge.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 7034
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/suspension-bridge.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 25412
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/suspension-bridge.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 36180
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/suspension-bridge.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 116909
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1200,7 +2298,46 @@
         "height": 808,
         "bytes": 137071
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/wind-tunnel.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-tunnel.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 467
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-tunnel.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 10499
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-tunnel.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 28965
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-tunnel.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 40139
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-tunnel.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 137071
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1241,7 +2378,46 @@
         "height": 808,
         "bytes": 150866
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/wind-turbine.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-turbine.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 455
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-turbine.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 3346
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-turbine.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 13477
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-turbine.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 22416
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/wind-turbine.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 150866
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1282,7 +2458,46 @@
         "height": 808,
         "bytes": 189173
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/dark/window-silhouette.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/window-silhouette.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 429
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/window-silhouette.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 4428
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/window-silhouette.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 15454
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/window-silhouette.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 30128
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/dark/window-silhouette.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 189173
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1323,7 +2538,46 @@
         "height": 630,
         "bytes": 74928
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/friends-in-orange-orchard.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-in-orange-orchard.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 703
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-in-orange-orchard.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 10862
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-in-orange-orchard.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 27654
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-in-orange-orchard.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 36374
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-in-orange-orchard.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 74928
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1364,7 +2618,46 @@
         "height": 630,
         "bytes": 100962
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/friends-using-phones.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-using-phones.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 651
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-using-phones.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 8417
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-using-phones.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 28824
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-using-phones.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 41641
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/friends-using-phones.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 100962
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1405,7 +2698,46 @@
         "height": 630,
         "bytes": 98676
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/fruit-and-books-picnic.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/fruit-and-books-picnic.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 747
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/fruit-and-books-picnic.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 14251
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/fruit-and-books-picnic.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 42924
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/fruit-and-books-picnic.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 56092
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/fruit-and-books-picnic.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 98676
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1446,7 +2778,46 @@
         "height": 630,
         "bytes": 81800
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/golden-desert-dunes.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/golden-desert-dunes.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 599
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/golden-desert-dunes.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 8724
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/golden-desert-dunes.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 24381
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/golden-desert-dunes.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 34930
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/golden-desert-dunes.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 81800
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1487,7 +2858,46 @@
         "height": 630,
         "bytes": 85338
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/moonlit-flower-field.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/moonlit-flower-field.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 686
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/moonlit-flower-field.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 8727
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/moonlit-flower-field.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 24351
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/moonlit-flower-field.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 34793
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/moonlit-flower-field.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 85338
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1528,7 +2938,46 @@
         "height": 630,
         "bytes": 51756
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/picnic-table-in-golden-field.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/picnic-table-in-golden-field.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 550
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/picnic-table-in-golden-field.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 4851
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/picnic-table-in-golden-field.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 13986
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/picnic-table-in-golden-field.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 21084
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/picnic-table-in-golden-field.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 51756
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1569,7 +3018,46 @@
         "height": 808,
         "bytes": 14839
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/conversation.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/conversation.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 450
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/conversation.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 2042
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/conversation.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3825
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/conversation.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4556
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/conversation.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 14839
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1610,7 +3098,46 @@
         "height": 808,
         "bytes": 17573
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/desert-sun.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desert-sun.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 444
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desert-sun.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1893
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desert-sun.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3291
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desert-sun.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4124
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desert-sun.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 17573
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1651,7 +3178,46 @@
         "height": 808,
         "bytes": 11670
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/desktop-computer.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desktop-computer.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 472
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desktop-computer.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1724
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desktop-computer.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3391
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desktop-computer.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 3779
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/desktop-computer.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 11670
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1692,7 +3258,46 @@
         "height": 808,
         "bytes": 22093
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/empty-desks.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/empty-desks.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 456
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/empty-desks.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 2319
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/empty-desks.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 4248
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/empty-desks.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 5588
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/empty-desks.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 22093
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1733,7 +3338,46 @@
         "height": 808,
         "bytes": 11724
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/friends-on-phones.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/friends-on-phones.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 428
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/friends-on-phones.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1941
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/friends-on-phones.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3716
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/friends-on-phones.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4240
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/friends-on-phones.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 11724
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1774,7 +3418,46 @@
         "height": 808,
         "bytes": 10271
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/handshake.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/handshake.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 427
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/handshake.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1804
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/handshake.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3248
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/handshake.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4058
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/handshake.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 10271
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1815,7 +3498,46 @@
         "height": 808,
         "bytes": 10534
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/island-bridge.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/island-bridge.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 428
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/island-bridge.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1931
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/island-bridge.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3203
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/island-bridge.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4434
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/island-bridge.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 10534
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1856,7 +3578,46 @@
         "height": 808,
         "bytes": 7799
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/jet-plane.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/jet-plane.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 366
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/jet-plane.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 951
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/jet-plane.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 1827
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/jet-plane.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 2335
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/jet-plane.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 7799
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1897,7 +3658,46 @@
         "height": 808,
         "bytes": 10560
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/open-road.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/open-road.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 397
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/open-road.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1711
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/open-road.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 2881
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/open-road.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 3554
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/open-road.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 10560
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1938,7 +3738,46 @@
         "height": 808,
         "bytes": 6888
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/surfer.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/surfer.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 392
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/surfer.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1400
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/surfer.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 2532
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/surfer.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 2952
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/surfer.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 6888
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -1979,7 +3818,46 @@
         "height": 808,
         "bytes": 10335
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/tending-plant.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/tending-plant.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 423
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/tending-plant.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1987
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/tending-plant.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 3272
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/tending-plant.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 4243
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/tending-plant.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 10335
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -2020,7 +3898,46 @@
         "height": 808,
         "bytes": 9869
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sand/window-sill.png",
+      "width": 3040,
+      "height": 1600,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/window-sill.png/64.avif",
+          "width": 64,
+          "height": 34,
+          "bytes": 445
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/window-sill.png/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 1553
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/window-sill.png/668.avif",
+          "width": 668,
+          "height": 352,
+          "bytes": 2911
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/window-sill.png/786.avif",
+          "width": 786,
+          "height": 414,
+          "bytes": 3683
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sand/window-sill.png/1536.avif",
+          "width": 1536,
+          "height": 808,
+          "bytes": 9869
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -2061,7 +3978,46 @@
         "height": 630,
         "bytes": 84402
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sculpture-in-garden-arch.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sculpture-in-garden-arch.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 652
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sculpture-in-garden-arch.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 12899
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sculpture-in-garden-arch.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 35721
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sculpture-in-garden-arch.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 46038
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sculpture-in-garden-arch.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 84402
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -2102,7 +4058,46 @@
         "height": 630,
         "bytes": 41365
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/sunlit-coastal-cliffs.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sunlit-coastal-cliffs.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 696
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sunlit-coastal-cliffs.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 6737
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sunlit-coastal-cliffs.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 14693
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sunlit-coastal-cliffs.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 19250
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/sunlit-coastal-cliffs.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 41365
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -2143,7 +4138,46 @@
         "height": 630,
         "bytes": 102424
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/wildflower-hills.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/wildflower-hills.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 765
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/wildflower-hills.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 15503
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/wildflower-hills.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 39929
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/wildflower-hills.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 53008
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/wildflower-hills.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 102424
+        }
+      ]
+    }
   },
   {
     "version": "v3",
@@ -2184,6 +4218,45 @@
         "height": 630,
         "bytes": 79303
       }
-    ]
+    ],
+    "remote": {
+      "version": "v3",
+      "original": "https://assets.lettercamp.com/starter/v1/covers/yosemite-valley-river.jpg",
+      "width": 1200,
+      "height": 630,
+      "status": "ready",
+      "variants": [
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/yosemite-valley-river.jpg/64.avif",
+          "width": 64,
+          "height": 33,
+          "bytes": 803
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/yosemite-valley-river.jpg/394.avif",
+          "width": 394,
+          "height": 207,
+          "bytes": 11031
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/yosemite-valley-river.jpg/668.avif",
+          "width": 668,
+          "height": 351,
+          "bytes": 28926
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/yosemite-valley-river.jpg/786.avif",
+          "width": 786,
+          "height": 413,
+          "bytes": 38860
+        },
+        {
+          "url": "https://assets.lettercamp.com/starter/assets/v3/starter/v1/covers/yosemite-valley-river.jpg/1200.avif",
+          "width": 1200,
+          "height": 630,
+          "bytes": 79303
+        }
+      ]
+    }
   }
 ]

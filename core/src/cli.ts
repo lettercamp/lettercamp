@@ -10,6 +10,7 @@ function creationCommand(command: Command) {
     .description('Create a site and install its local Lettercamp CLI')
     .argument('[directory]', 'Destination directory (default: my-lettercamp)')
     .option('--preset <name>', 'Starter preset, or default for no preset')
+    .option('--remote-assets', 'Use hosted starter images and fonts instead of local files', false)
     .option('-y, --yes', 'Use defaults for unanswered setup questions', false)
     .option('--no-install', 'Create the site without running npm install')
     .action(async (directory: string | undefined, options: CreateOptions) => {

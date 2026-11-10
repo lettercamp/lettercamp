@@ -23,10 +23,12 @@ const old = JSON.parse(await readFile(manifestPath, 'utf8').catch(error => {
   throw error;
 })) as BundledImage[];
 const sources = new Map(old.filter(item => item.sourceUrl).map(item => [item.original, item.sourceUrl!]));
+const remote = new Map(old.filter(item => item.remote).map(item => [item.remote!.original, item.remote!]));
 const sourceManifest = option('--source-manifest', '');
 if (sourceManifest) {
   const hosted = JSON.parse(await readFile(sourceManifest, 'utf8')) as BundledImage[];
   for (const item of hosted) {
+    remote.set(item.original, item);
     const pathname = new URL(item.original).pathname;
     const content = /\/(covers|authors)\/(.+)\.[^.]+$/.exec(pathname);
     const local = content ? `/images/${content[1]}/${content[2]}.webp`
@@ -92,7 +94,7 @@ async function visit(directory: string) {
       variants.push({ url, width: info.width, height: info.height, bytes: data.length });
     }
     await writeFile(path.join(images, relative), bundled);
-    manifests.push({ version: IMAGE_RECIPE, original, ...(sourceUrl ? { sourceUrl } : {}), originalHash: createHash('sha256').update(bundled).digest('hex'), width, height, status: 'ready', variants });
+    manifests.push({ version: IMAGE_RECIPE, original, ...(sourceUrl ? { sourceUrl, remote: remote.get(sourceUrl) } : {}), originalHash: createHash('sha256').update(bundled).digest('hex'), width, height, status: 'ready', variants });
   }
 }
 await visit(images);

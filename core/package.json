@@ -70,7 +70,8 @@
   },
   "exports": {
     "./cli": "./dist/lettercamp.js",
-    "./create": "./dist/create-lettercamp.js"
+    "./create": "./dist/create-lettercamp.js",
+    "./starter": "./dist/starter.js"
   },
   "license": "MIT"
 }

@@ -12,6 +12,7 @@ export type BundledImage = {
   height: number;
   status: 'ready' | 'skipped' | 'pending' | 'failed';
   variants: { url: string; width: number; height: number; bytes: number }[];
+  remote?: Omit<BundledImage, 'originalHash' | 'sourceUrl' | 'remote'>;
 };
 
 // A starter's prepared variants must stop applying if its original is replaced
