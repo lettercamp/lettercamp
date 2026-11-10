@@ -41,7 +41,7 @@ Lettercamp ships with several built-in features that help you more easily ship c
 - **SEO optimized** Blog posts support authors, metadata, table of contents, and other SEO-friendly features to help your content rank better.
 - **Performant (100 across Lighthouse scores)** Optimized for speed out of the box so you can focus on writing instead of tweaking loading times.
 
-![Lettercamp Lighthouse Scores](https://static.lettercamp.com/assets/lettercamp/static/Qc74EPruJZcX-lettercamp-lighthouse.avif)
+![Lettercamp Lighthouse Scores](https://static.lettercamp.com/assets/lettercamp/static/yNsrOBzh8ZjB-lettercamp-lighthouse-perf.avif)
 
 ## Why Lettercamp?
 
