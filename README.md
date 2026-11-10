@@ -96,6 +96,8 @@ If you have suggestions or ideas for the roadmap, please [open an issue](https:/
 
 [Lettercamp Cloud](https://www.lettercamp.com) is the hosted platform for deploying and managing Lettercamp sites. In addition to providing hosting for the built sites, Lettercamp Cloud also offers a web-based editor and dashboard, which allows your content team to edit and manage content without needing to commit code. This product also includes several enterprise ready features, including access control, user management, payments, and more. However, the core publication site remains the same as the open-source offering.
 
+![Lettercamp Cloud](https://static.lettercamp.com/assets/lettercamp/static/7CxWPr7PK4n2-lettercamp-cloud.avif)
+
 ## Contributing
 
 Bug reports, fixes, documentation improvements, and feature ideas are welcome.
