@@ -51,6 +51,8 @@ Existing solutions require building your entire website on a third party provide
 
 Finally, Lettercamp is designed to be the easiest way to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences.
 
+![Lettercamp MDX example](https://static.lettercamp.com/assets/lettercamp/static/AthIMhCtM49K-lettercamp-markdown.avif)
+
 ## Quick start
 
 Create your first publication:
