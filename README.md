@@ -63,7 +63,7 @@ cd my-lettercamp-site
 npm run dev
 ```
 
-Want to see a live example of Lettercamp? You can check out the [Lettercamp starter site](https://starter.lettercamp.com).
+Want to see a live example of Lettercamp? You can check out the [Lettercamp starter site](https://starter.lettercamp.site).
 
 See the [documentation](https://www.lettercamp.com/docs) for customization and
 [publishing with the CLI](https://www.lettercamp.com/docs/cli), or use
