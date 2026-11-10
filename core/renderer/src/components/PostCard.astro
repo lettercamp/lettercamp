@@ -2,7 +2,7 @@
 import AuthorByline from './AuthorByline.astro';
 import { sitePath } from '../lib/urls.js';
 const { post, site, priority = false } = Astro.props;
-const image = sitePath(post.ogImage ?? post.image ?? site.seo?.ogImage);
+const image = sitePath(post.image ?? post.ogImage ?? site.seo?.ogImage);
 ---
 
 <article class="post-card" data-post-category={post.category}>
