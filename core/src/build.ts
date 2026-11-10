@@ -40,7 +40,7 @@ export async function buildSite(directory: string, options: BuildOptions) {
     // is external. Keep them beside the renderer's node_modules, not the content.
     process.chdir(workspace);
     await build({
-      root: workspace, configFile: false, site: origin.origin, base: origin.pathname, trailingSlash: 'always',
+      root: workspace, configFile: false, site: origin.origin, base: origin.pathname, trailingSlash: 'never',
       cacheDir: path.join(workspace, '.cache'),
       publicDir: remoteAssetsOnly ? path.join(workspace, '.lettercamp-no-public') : path.join(root, 'public'), outDir, output: 'static',
       integrations: [mdx(), react(), imageOptimization(workspace)],

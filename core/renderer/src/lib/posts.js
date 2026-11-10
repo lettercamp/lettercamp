@@ -32,7 +32,7 @@ export function getPosts(language = 'en', timeZone = 'UTC') {
         ...frontmatter,
         title: frontmatter.title ?? slug,
         category: typeof frontmatter.category === 'string' ? frontmatter.category.trim() : '',
-        href: sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}/`),
+        href: sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}`),
         date: postDate(frontmatter.date, language, timeZone),
       };
     })

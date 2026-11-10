@@ -16,7 +16,7 @@ export function getStaticPaths() {
   const byHref = new Map(posts.map(post => [post.href, post]));
   return Object.entries(pages).map(([filename, page]) => {
     const slug = pageSlug(filename);
-    const href = sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}/`);
+    const href = sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}`);
     return { params: { slug }, props: { page, relatedPosts: selectRelated(byHref.get(href)) } };
   });
 }

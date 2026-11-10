@@ -14,5 +14,5 @@ export function categoryRoutes(categories) {
         used.add(tag);
         tags.set(name, tag);
     }
-    return names.map(name => ({ name, tag: tags.get(name), href: `/category/${encodeURIComponent(tags.get(name))}/` }));
+    return names.map(name => ({ name, tag: tags.get(name), href: `/category/${encodeURIComponent(tags.get(name))}` }));
 }

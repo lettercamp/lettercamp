@@ -28,8 +28,10 @@ export function pageMetadata(site, page, url, article = false, basePath = "", po
     const canonical = new URL(url);
     canonical.search = "";
     canonical.hash = "";
-    if (listing && listing.page > 1)
+    if (!homepage || listing && listing.page > 1)
         canonical.pathname = canonical.pathname.replace(/\/+$/, "");
+    else
+        canonical.pathname = basePath.replace(/\/+$/, "") + "/";
     const resolveUrl = (value) => {
         try {
             const resolved = text(value) && new URL(text(value), canonical);

@@ -55,6 +55,8 @@ export async function startDev(directory: string, options: DevOptions) {
       logLevel: 'warn',
       configFile: false,
       base: options.base ?? '/',
+      // The middleware below redirects trailing slashes instead of Astro's dev-only 404.
+      trailingSlash: 'ignore',
       publicDir: path.join(contentRoot, 'public'),
       output: 'static',
       integrations: [mdx(), react(), imageOptimization(workspace), liveReload(contentRoot, options.base ?? '/'), ...(options.middleware ? [{
@@ -74,6 +76,16 @@ export async function startDev(directory: string, options: DevOptions) {
           name: 'lettercamp-content',
           configureServer(vite) {
             closeVite = () => vite.close();
+            // Astro rejects mismatched slashes in dev; mirror hosted redirects instead.
+            vite.middlewares.use((request, response, next) => {
+              const url = new URL(request.originalUrl ?? request.url ?? '/', 'http://localhost');
+              const home = (options.base ?? '/').replace(/\/+$/, '') + '/';
+              if (!['GET', 'HEAD'].includes(request.method ?? '') || url.pathname === '/' || url.pathname === home || !url.pathname.endsWith('/')) return next();
+              response.statusCode = 308;
+              response.setHeader('Location', url.pathname.replace(/\/+$/, '') + url.search);
+              response.setHeader('Cache-Control', 'no-store');
+              response.end();
+            });
             if (options.middleware) vite.middlewares.use((request, _response, next) => {
               // Astro removes query parameters from prerendered page requests.
               // Preserve the original URL through its dev-adapter locals channel.

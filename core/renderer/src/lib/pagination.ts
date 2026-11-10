@@ -3,7 +3,7 @@ export const POSTS_PER_PAGE = 12;
 export const pageCount = (total: number) => Math.max(1, Math.ceil(total / POSTS_PER_PAGE));
 
 export function pagePath(base: string, page: number) {
-  return page === 1 ? base : `${base}page/${page}`;
+  return page === 1 ? base : `${base.replace(/\/+$/, "")}/page/${page}`;
 }
 
 // Show seven slots: expand near either end, with ellipses around middle pages.
