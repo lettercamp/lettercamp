@@ -10,7 +10,7 @@ export type BundledImage = {
   sourceUrl?: string;
   width: number;
   height: number;
-  status: 'ready' | 'skipped';
+  status: 'ready' | 'skipped' | 'pending' | 'failed';
   variants: { url: string; width: number; height: number; bytes: number }[];
 };
 

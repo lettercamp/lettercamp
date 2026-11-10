@@ -60,6 +60,7 @@ function recent(time: number | undefined, now: number) {
 
 export function shouldNotify(argv: string[], env = process.env, terminal = !!(process.stdin.isTTY && process.stdout.isTTY && process.stderr.isTTY)) {
   return terminal && env.TERM !== 'dumb'
+    && env.LETTERCAMP_CLOUD_BUILD !== '1'
     && !['CI', 'CONTINUOUS_INTEGRATION', 'BUILD_NUMBER', 'RUN_ID', 'GITHUB_ACTIONS', 'TF_BUILD', 'JENKINS_URL', 'TEAMCITY_VERSION'].some(key => env[key] && env[key] !== 'false' && env[key] !== '0')
     && env.LETTERCAMP_NO_UPDATE_NOTIFIER === undefined && env.NO_UPDATE_NOTIFIER === undefined
     && !argv.some(arg => ['--json', '--help', '-h', '--version', '-v', '--yes', '-y'].includes(arg));

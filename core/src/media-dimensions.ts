@@ -3,6 +3,7 @@ import path from 'node:path';
 import { imageMetadata } from 'astro/assets/utils';
 import { fromHtml } from 'hast-util-from-html';
 import { toHtml } from 'hast-util-to-html';
+import { readBundledImages } from './bundled-images.js';
 
 type Size = { width: number; height: number };
 type Attribute = { type: string; name?: string | null; value?: unknown };
@@ -20,11 +21,22 @@ const maxProbeBytes = 1024 * 1024;
 // retain their authored dimensions and never cause new server-side requests.
 export function mediaDimensions(options: { root: string }) {
   const cache = new Map<string, Promise<Size | undefined>>();
+  let prepared: Promise<Map<string, Size>> | undefined;
   async function probe(src: string, file: File): Promise<Size | undefined> {
     try {
+      prepared ??= readBundledImages(options.root).then(manifests => new Map(manifests.flatMap(manifest =>
+        [manifest, ...manifest.variants.map(variant => ({ ...variant, original: variant.url }))]
+          .filter(image => positive(image.width) && positive(image.height))
+          .map(image => [image.original, { width: image.width, height: image.height }] as const))));
+      const supplied = (await prepared).get(src);
+      if (supplied) return supplied;
       if (/^(?:[a-z][\w+.-]*:|\/\/)/i.test(src)) {
         const url = new URL(src);
         if (url.origin !== 'https://assets.lettercamp.com' || url.username || url.password) return;
+        if (process.env.LETTERCAMP_CLOUD_BUILD === '1') {
+          console.warn(`Image dimensions were not supplied for ${src}; keeping authored sizing in this offline Cloud build.`);
+          return;
+        }
         const response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(5000) });
         if (!response.body) return;
         if (!response.ok) { await response.body.cancel(); return; }

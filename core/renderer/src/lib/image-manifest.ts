@@ -9,8 +9,16 @@ const prepared = new Map((bundled as ImageManifest[]).map(manifest => {
 export const hasImageManifest = (url: string) => prepared.has(url) || imageAsset(url) !== null;
 
 const cache = new Map<string, { expires: number; value: Promise<ImageManifest | null> }>();
+const missing = new Set<string>();
 export async function readImageManifest(url: string): Promise<ImageManifest | null> {
   const bundled = prepared.get(url);
+  if (process.env.LETTERCAMP_CLOUD_BUILD === '1') {
+    if (!bundled && imageAsset(url) && !missing.has(url)) {
+      missing.add(url);
+      console.warn(`Image metadata was not supplied for ${url}; keeping the original in this offline Cloud build.`);
+    }
+    return bundled ?? null;
+  }
   // Local bundles are self-contained. Refresh older hosted snapshots when a
   // new recipe exists, including sites created before the starter was updated.
   if (bundled && (!imageAsset(url) || bundled.version === IMAGE_RECIPE)) return bundled;
