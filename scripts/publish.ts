@@ -5,9 +5,10 @@ import semver from 'semver';
 type Package = { name: string; version: string; dependencies: Record<string, string> };
 type Metadata = { versions: Record<string, unknown>; 'dist-tags': { latest?: string } };
 
-// Publish dependencies before exposing the initializer that installs them.
+// Publish all packages concurrently, then gate the release on registry availability.
 const packages = ['core', 'wrapper', 'create'].map(folder => JSON.parse(readFileSync(`${folder}/package.json`, 'utf8')) as Package);
 const version = packages[0].version;
+const registryWaitMinutes = 10;
 if (!semver.valid(version) || semver.prerelease(version) || packages.slice(1).some(pkg =>
     pkg.version !== version || pkg.dependencies['@lettercamp/cli'] !== version)) {
   throw new Error('All packages and their core dependencies must use the same stable version.');
@@ -43,12 +44,12 @@ async function publishPackage({ pkg, publish }: (typeof plans)[number]) {
       else reject(new Error(`${pkg.name}@${version}: npm publish failed (${signal ? `signal ${signal}` : `exit ${code}`}).`));
     });
   });
-  // npm can accept a publish before installs can resolve the version. Wait before
-  // publishing dependants; a workflow retry skips versions already published.
-  report(`Waiting up to five minutes for npm to process ${pkg.name}@${version}…`);
+  // npm can accept a publish before installs can resolve the version. Verify
+  // availability before completing the workflow; retries skip published versions.
+  report(`Waiting up to ${registryWaitMinutes} minutes for npm to process ${pkg.name}@${version}…`);
   let available = false;
   let lastStatus = 'not yet available';
-  const deadline = Date.now() + 5 * 60_000;
+  const deadline = Date.now() + registryWaitMinutes * 60_000;
   while (Date.now() < deadline) {
     let response: Response | undefined;
     try {
@@ -69,13 +70,12 @@ async function publishPackage({ pkg, publish }: (typeof plans)[number]) {
     }
     await new Promise(resolve => setTimeout(resolve, 5_000));
   }
-  if (!available) throw new Error(`npm accepted ${pkg.name}@${version}, but availability could not be confirmed after five minutes (${lastStatus}). Wait for registry processing or approve any staged release, then rerun pnpm release. Already published versions will be skipped.`);
+  if (!available) throw new Error(`npm accepted ${pkg.name}@${version}, but availability could not be confirmed after ${registryWaitMinutes} minutes (${lastStatus}). Wait for registry processing or approve any staged release, then rerun pnpm release. Already published versions will be skipped.`);
   report(`${pkg.name}@${version} is available on npm.`);
 }
 
-await publishPackage(plans[0]);
-// Both entrypoints depend on the core, not on one another. Drain both jobs on
-// failure so a retry never races a publish still running in this process.
-const wrappers = await Promise.allSettled(plans.slice(1).map(publishPackage));
-const failures = wrappers.flatMap(result => result.status === 'rejected' ? [result.reason] : []);
-if (failures.length) throw new AggregateError(failures, 'Wrapper publication failed. Rerun to resume already published versions.');
+// Drain every publication and availability check even if another package fails,
+// so a retry never races a publish still running in this process.
+const publications = await Promise.allSettled(plans.map(publishPackage));
+const failures = publications.flatMap(result => result.status === 'rejected' ? [result.reason] : []);
+if (failures.length) throw new AggregateError(failures, 'Package publication failed. Rerun to resume already published versions.');
