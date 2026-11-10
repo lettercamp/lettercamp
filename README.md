@@ -49,7 +49,7 @@ If you want to start publishing content on your domain, you'll have to build a c
 
 Existing solutions require building your entire website on a third party provider, or managing a headless CMS which contains your content in a third party database. Lettercamp solves these issues by providing an entire site as a static site, which means published content pages are fast, performant, and easier to manage. Lettercamp is built on top of the popular open-source [Astro framework](https://github.com/withastro/astro).
 
-Finally, Lettercamp is designed to be the easiest way to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences.
+Finally, Lettercamp is designed to make it easy to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences. Since the markdown lives directly in your codebase, there's no complicated MCP setup or signups required. Just iterate directly with your agent on your content as you would with any other local files.
 
 ![Lettercamp MDX example](https://static.lettercamp.com/assets/lettercamp/static/AthIMhCtM49K-lettercamp-markdown.avif)
 
