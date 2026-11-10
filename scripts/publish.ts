@@ -32,9 +32,9 @@ for (const pkg of packages) {
   if (publish && latest && semver.gt(latest, version)) throw new Error(`${pkg.name}: a newer release is already live; do not publish an older snapshot.`);
   plans.push({ pkg, publish });
 }
-for (const { pkg, publish } of plans) {
-  if (!publish) { report(`${pkg.name}@${version} already published; skipping.`); continue; }
-  if (process.argv.includes('--check')) { report(`Would publish ${pkg.name}@${version}.`); continue; }
+async function publishPackage({ pkg, publish }: (typeof plans)[number]) {
+  if (!publish) { report(`${pkg.name}@${version} already published; skipping.`); return; }
+  if (process.argv.includes('--check')) { report(`Would publish ${pkg.name}@${version}.`); return; }
   await new Promise<void>((resolve, reject) => {
     const child = spawn('npm', ['publish', '--workspace', pkg.name, '--access', 'public'], { stdio: 'inherit' });
     child.once('error', reject);
@@ -72,3 +72,10 @@ for (const { pkg, publish } of plans) {
   if (!available) throw new Error(`npm accepted ${pkg.name}@${version}, but availability could not be confirmed after five minutes (${lastStatus}). Wait for registry processing or approve any staged release, then rerun pnpm release. Already published versions will be skipped.`);
   report(`${pkg.name}@${version} is available on npm.`);
 }
+
+await publishPackage(plans[0]);
+// Both entrypoints depend on the core, not on one another. Drain both jobs on
+// failure so a retry never races a publish still running in this process.
+const wrappers = await Promise.allSettled(plans.slice(1).map(publishPackage));
+const failures = wrappers.flatMap(result => result.status === 'rejected' ? [result.reason] : []);
+if (failures.length) throw new AggregateError(failures, 'Wrapper publication failed. Rerun to resume already published versions.');

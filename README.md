@@ -41,11 +41,13 @@ Lettercamp ships with several built-in features that help you more easily ship c
 - **SEO optimized** Blog posts support authors, metadata, table of contents, and other SEO-friendly features to help your content rank better.
 - **Performant (100 across Lighthouse scores)** Optimized for speed out of the box so you can focus on writing instead of tweaking loading times.
 
+![Lettercamp Lighthouse Scores](https://static.lettercamp.com/assets/lettercamp/static/Qc74EPruJZcX-lettercamp-lighthouse.avif)
+
 ## Why Lettercamp?
 
 If you want to start publishing content on your domain, you'll have to build a content site that supports rendering articles, post pages, pagination, authors, SEO features, and much more. Lettercamp provides all of these features (and more) out of the box, letting you focus on building your own product instead of building a content site.
 
-Existing solutions require building your entire website on a third party provider, or managing a headless CMS which contains your content in a third party database. Lettercamp solves these issues by providing an entire site as a static site, which means published content pages are fast, performant, and easier to manage.
+Existing solutions require building your entire website on a third party provider, or managing a headless CMS which contains your content in a third party database. Lettercamp solves these issues by providing an entire site as a static site, which means published content pages are fast, performant, and easier to manage. Lettercamp is built on top of the popular open-source [Astro framework](https://github.com/withastro/astro).
 
 Finally, Lettercamp is designed to be the easiest way to connect your content to an AI agent. Instead of drafting articles and then copying and pasting them into a third party site, with Lettercamp your agent can directly iterate on the code to draft articles and create interactive content experiences.
 
