@@ -1,4 +1,5 @@
 import semver from 'semver';
+import { terminal } from './terminal.js';
 
 export async function execute(name: 'lettercamp' | 'create-lettercamp') {
   try {
@@ -9,7 +10,7 @@ export async function execute(name: 'lettercamp' | 'create-lettercamp') {
     const { run } = await import('./cli.js');
     await run(process.argv, name);
   } catch (error) {
-    console.error(`\nLettercamp: ${error instanceof Error ? error.message : String(error)}`);
+    terminal.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
   }
 }

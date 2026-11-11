@@ -2,6 +2,7 @@ import { constants } from 'node:fs';
 import { lstat, open, realpath } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
+import { terminal } from './terminal.js';
 import { imageMetadata } from 'astro/assets/utils';
 import { apiOrigin, readConfig, saveConfig, type ApiSite } from './account.js';
 import { uploadBytes } from './upload.js';
@@ -119,7 +120,7 @@ export async function uploadDeploymentImages(plan: Awaited<ReturnType<typeof pre
       else if (response.status !== 404) throw new Error(`Unable to check a previous image upload (HTTP ${response.status}). Run lettercamp deploy again.`);
     }
     if (!url) {
-      console.error(`Uploading image ${path.relative(plan.root, image.filename)}…`);
+      terminal.step(`Uploading image ${path.relative(plan.root, image.filename)}…`);
       const result = await uploadBytes(bytes, image.filename, site.slug, token);
       if (!siteImage(result.url, site.id)) throw new Error('Lettercamp returned an unexpected image URL.');
       url = result.url;

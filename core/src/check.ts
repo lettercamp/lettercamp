@@ -1,6 +1,7 @@
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { style, terminal } from './terminal.js';
 import { projectPath } from './account.js';
 import { BuildError } from './build-errors.js';
 import { checkImports, supportedImportsUrl, type CheckIssue } from './import-check.js';
@@ -74,7 +75,7 @@ export function formatIssues(issues: CheckIssue[]) {
     // Imports share one explanation. Other problems carry their own message and fix.
     const fixes = listed ? [...new Set(rule.fix ? [rule.fix] : items.flatMap(issue => issue.fix ?? []))] : [];
     return [
-      `${rule.title} (${items.length})`,
+      style.bold(`${rule.title} (${items.length})`),
       ...(listed && rule.why ? [`  ${rule.why}`] : []),
       ...fixes.map(fix => `  Fix: ${fix}`),
       ...items.map(issue => listed
@@ -134,7 +135,7 @@ async function checkPublication(root: string, options: CheckOptions): Promise<Ch
 }
 
 export async function check(options: CheckOptions = {}) {
-  if (!options.json) console.error('Checking the publication for Lettercamp Cloud…');
+  if (!options.json) terminal.step('Checking the publication for Lettercamp Cloud…');
   let result: CheckResult;
   // Components can log while rendering. Keep stdout exclusively for the JSON
   // result, including when a dependency bypasses Astro's quiet logger.
@@ -148,11 +149,11 @@ export async function check(options: CheckOptions = {}) {
   if (options.json) { console.log(JSON.stringify(result, null, 2)); return; }
   if (result.ok) {
     console.log(result.build === 'passed'
-      ? '\n✓ Ready to deploy. Imports are supported and the publication builds.'
-      : '\n✓ Imports are supported. The build was skipped; run lettercamp check without --no-build before deploying.');
+      ? `\n${style.success('✓ Ready to deploy.')} Imports are supported and the publication builds.`
+      : `\n${style.success('✓ Imports are supported.')} The build was skipped; run lettercamp check without --no-build before deploying.`);
     return;
   }
-  console.log(`\n✗ Found ${summary(result.issues)}. Lettercamp Cloud cannot build this publication yet.\n\n${formatIssues(result.issues)}\n`);
+  console.log(`\n${style.error(`✗ Found ${summary(result.issues)}.`)} Lettercamp Cloud cannot build this publication yet.\n\n${formatIssues(result.issues)}\n`);
   if (result.issues.some(issue => issue.import)) console.log(`Docs: ${supportedImportsUrl}`);
   console.log(`Fix the problems above, then run lettercamp check again.${result.build === 'skipped' && options.build !== false ? ' The build runs once they are fixed.' : ''}`);
 }

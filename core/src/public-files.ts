@@ -3,6 +3,7 @@ import { constants } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { ApiError } from './hosting.js';
+import { terminal } from './terminal.js';
 import { apiRequest, responseJson, type ApiSite } from './account.js';
 
 export const publicFilesPath = 'lib/public-files.json';
@@ -93,12 +94,12 @@ export async function uploadPublicFiles(root: string, site: ApiSite, token: stri
     if (!progressed) break;
   }
   const missing = started.missing ? new Set(started.missing) : null;
-  if (missing && missing.size < manifest.files.length) console.error(`Reusing ${manifest.files.length - missing.size} unchanged public files.`);
+  if (missing && missing.size < manifest.files.length) terminal.note(`Reusing ${manifest.files.length - missing.size} unchanged public files.`);
   for (const file of manifest.files) {
     if (missing && !missing.has(file.path)) continue;
     const bytes = await readPublicFile(root, file.path);
     if (digest(bytes) !== file.hash) throw new ApiError(`public/${file.path} changed. Run deploy again to upload the new version.`, 409);
-    console.error(`Uploading public/${file.path}…`);
+    terminal.step(`Uploading public/${file.path}…`);
     await uploadResponse(await apiRequest(`${route}?deployment=${manifest.deploymentId}&path=${encodeURIComponent(file.path)}`, {
       method: 'PUT', headers: { 'Content-Type': 'application/octet-stream' }, body: new Uint8Array(bytes),
     }, token, 120_000));

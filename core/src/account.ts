@@ -8,7 +8,7 @@ type User = { id: string; name: string; email: string };
 type Credentials = { origin: string; token: string; expiresAt: string; user: User };
 export type ApiSite = { id: string; slug: string; name: string; workspaceId?: string };
 export type SiteBinding = { origin: string; siteId: string; revision?: string; pending?: string; fresh?: boolean;
-  creation?: { id: string; workspaceId: string; name: string; slug: string }; provider?: 'vercel' | 'cloudflare' | 'nginx' };
+  creation?: { id: string; workspaceId: string; name: string; slug: string; previous?: SiteBinding }; provider?: 'vercel' | 'cloudflare' | 'nginx' };
 type SiteBindings = Record<string, SiteBinding>;
 const configRoot = () => process.env.LETTERCAMP_CONFIG_DIR || path.join(
   process.platform === 'win32' ? process.env.APPDATA || path.join(homedir(), 'AppData', 'Roaming') : process.env.XDG_CONFIG_HOME || path.join(homedir(), '.config'), 'lettercamp');
@@ -146,13 +146,23 @@ export async function selectUploadSite(token: string, requested?: string) {
   const project = await projectPath();
   const bindings = await readConfig<SiteBindings>('sites.json') ?? {};
   const binding = bindings[project];
-  const selected = requested || (binding?.origin === apiOrigin() ? binding.siteId : undefined);
+  const uploads = await readConfig<SiteBindings>('upload-sites.json') ?? {};
+  const upload = uploads[project];
+  const selected = requested || (upload?.origin === apiOrigin() ? upload.siteId : undefined)
+    || (binding?.origin === apiOrigin() ? binding.siteId : undefined);
   const site = selected ? sites.find(item => item.id === selected || item.slug === selected) : sites.length === 1 ? sites[0] : undefined;
   if (!site) {
     if (!sites.length) throw new Error('No accessible sites. Run lettercamp deploy to create one.');
     throw new Error(`${selected ? 'That site is unavailable to this account.' : 'Choose a site for this publication.'} Use --site <slug>. Available sites: ${sites.map(item => item.slug).join(', ')}`);
   }
-  return { site, remember: () => saveBinding({ ...(binding?.origin === apiOrigin() && binding.siteId === site.id ? binding : {}), origin: apiOrigin(), siteId: site.id }) };
+  return { site, remember: () => saveConfig('upload-sites.json', { ...uploads, [project]: { origin: apiOrigin(), siteId: site.id } }) };
+}
+
+// Older CLI versions also saved upload/domain selections here. Only a folder
+// with creation or deployment history may publish to an existing site.
+export async function getDeploymentBinding(): Promise<SiteBinding | null> {
+  const binding = await getBinding();
+  return binding && (binding.creation || binding.fresh || binding.revision || binding.pending) ? binding : null;
 }
 
 export async function getBinding(): Promise<SiteBinding | null> {

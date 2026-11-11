@@ -4,6 +4,7 @@ import type { BuildOptions } from './build.js';
 import type { DevOptions } from './dev.js';
 import { preview } from './preview.js';
 import type { CreateOptions } from './new.js';
+import { style } from './terminal.js';
 
 function creationCommand(command: Command) {
   return command
@@ -23,6 +24,8 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
   const program = new Command()
     .name(name)
     .description('Create, preview, and publish your Lettercamp publication.')
+    .configureHelp({ styleTitle: style.bold, styleCommandText: style.accent, styleOptionText: style.accent, styleArgumentText: style.accent })
+    .configureOutput({ outputError: (message, write) => write(style.error(message)) })
     .version(version, '-v, --version', 'Show the installed CLI version');
 
   if (name === 'create-lettercamp') {
@@ -62,9 +65,10 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
   creationCommand(program.command('new'));
 
   program.command('deploy')
-    .description('Publish this folder; create or connect a site on first use')
-    .addHelpText('after', '\nFiles in public/ are uploaded with their paths intact, subject to your plan limits.\nSupported images are optimized during the Cloud build.\nReferenced images outside public/ use the media library. Your local files stay unchanged.')
-    .action(async () => { const { deploy } = await import('./deploy.js'); await deploy(); });
+    .description('Create a new site on first deploy, then update this folder’s site')
+    .option('--new', 'Create a new site and use it for future deploys from this folder', false)
+    .addHelpText('after', '\nFirst deploy creates a new site; later deploys update this folder’s saved site.\nUse --new to create another site without changing the previous one.\nInteractive menus accept arrow keys or numbers, then Enter.\n\nFiles in public/ are uploaded with their paths intact, subject to your plan limits.\nSupported images are optimized during the Cloud build.\nReferenced images outside public/ use the media library. Your local files stay unchanged.')
+    .action(async options => { const { deploy } = await import('./deploy.js'); await deploy(options); });
 
   program.command('check')
     .description('Check that this folder will build on Lettercamp Cloud, without deploying')

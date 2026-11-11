@@ -3,13 +3,13 @@ import { constants } from 'node:fs';
 import { open } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import { projectPath, getBinding, saveBinding, readConfig, saveConfig, removeConfig, credentials, apiOrigin } from './account.js';
+import { projectPath, getDeploymentBinding, saveBinding, readConfig, saveConfig, removeConfig, apiOrigin } from './account.js';
 import { ApiError, publishingToken, request, selectHostingSite, status, waitForDeployment } from './hosting.js';
-import { confirm } from './prompts.js';
 import { prepareDeploymentImages, uploadDeploymentImages, type SourceFile } from './deployment-images.js';
 import { imageFile } from './deployment-image-references.js';
 import { collectPublicFiles, checkPublicLimits, checkPlanLimits, publicPlanLimits, uploadPublicFiles, publicFilesPath, type PublicFiles } from './public-files.js';
 import { assertDeployable, assertSupportedImports } from './check.js';
+import { terminal } from './terminal.js';
 
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 const roots = ['pages', 'components', 'lib', 'styles', 'assets'];
@@ -50,13 +50,16 @@ export async function publicationFiles(root: string) {
   return files.sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
 }
 
-export async function deploy() {
+export async function deploy(options: { new?: boolean } = {}) {
   const root = await projectPath();
   // Catch the wrong directory before opening a browser or creating a hosted site.
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp deploy inside your publication folder containing settings.json.'); });
-  const savedBinding = await getBinding();
+  terminal.heading('Welcome to Lettercamp Cloud.');
+  const token = await publishingToken({ confirmAccount: true });
+  const savedBinding = options.new ? null : await getDeploymentBinding();
+  if (options.new && (await getDeploymentBinding())?.pending) throw new Error('This folder has an unfinished deployment. Run lettercamp deploy to finish it before using --new.');
   if (!savedBinding?.pending) {
-    console.error('Checking the publication for Lettercamp Cloud…');
+    terminal.step('Checking the publication for Lettercamp Cloud…');
     await assertSupportedImports(root);
   }
   const readPublicFiles = async () => { const files = await collectPublicFiles(root); checkPublicLimits(files); return files; };
@@ -64,15 +67,15 @@ export async function deploy() {
   if (publicFiles?.length && savedBinding && !savedBinding.creation && savedBinding.origin === apiOrigin()) {
     // A linked, signed-in folder learns its plan limits before the local build.
     // New sites and expired sessions are checked when the upload starts.
-    const limits = await credentials().then(saved => publicPlanLimits(savedBinding.siteId, saved.token)).catch(() => null);
+    const limits = await publicPlanLimits(savedBinding.siteId, token).catch(() => null);
     if (limits) checkPlanLimits(publicFiles, limits);
   }
   const images = savedBinding?.pending ? null : await prepareDeploymentImages(root, await publicationFiles(root));
   if (images) {
     await assertDeployable(root, images.files, publicFiles ?? []);
+    terminal.success('Publication checks passed.');
   }
-  const token = await publishingToken();
-  let { site, binding } = await selectHostingSite(token, true);
+  let { site, binding } = await selectHostingSite(token, true, options.new);
   let current = await status(token, site.id, binding.pending);
   if (!current.managed) throw new Error('This site uses a connected GitHub repository. Push your changes to that repository to publish.');
   let snapshot: Snapshot;
@@ -80,15 +83,16 @@ export async function deploy() {
     const pending = await readConfig<Snapshot>(`deployment-${binding.pending}.json`);
     if (!pending) throw new Error('The saved upload is missing. Restore your Lettercamp configuration before resuming this deployment.');
     snapshot = pending;
-    console.error('Resuming the saved deployment. New local edits can be published with the next lettercamp deploy.');
+    terminal.step('Resuming the saved deployment.');
+    terminal.note('New local edits can be published with the next lettercamp deploy.');
   } else {
     if (current.pending) {
-      console.error('Waiting for the current publication to finish…');
+      terminal.step('Waiting for the current publication to finish…');
       await waitForDeployment(token, site.id, current.pending);
       current = await status(token, site.id);
     }
     if (!current.revision) {
-      console.error('Finishing site provisioning…');
+      terminal.step('Finishing site provisioning…');
       await request(token, `sites/${site.id}/status`, { action: 'retry' });
       current = await status(token, site.id);
       if (current.pending) await waitForDeployment(token, site.id, current.pending);
@@ -96,9 +100,7 @@ export async function deploy() {
       if (!current.revision) throw new Error('The site repository is not ready. Run lettercamp deploy again shortly.');
     }
     if (binding.revision !== current.revision && !binding.fresh) {
-      console.error(binding.revision ? 'The hosted source changed since your last deployment.' : `This folder will replace the publication source on ${site.slug}.lettercamp.site.`);
-      console.error('Local settings, pages, components, lib, styles, and assets replace those remote files, including deletions.');
-      if (!await confirm('Replace the hosted publication with this folder?')) return;
+      throw new Error('The hosted source changed since your last deployment. Nothing was uploaded. Review the changes in Lettercamp Cloud, or run lettercamp deploy --new to publish this folder as a separate site.');
     }
     // A saved deployment skipped collection above; a newly chosen site still needs the folder.
     const collected = publicFiles ?? await readPublicFiles();
@@ -112,7 +114,7 @@ export async function deploy() {
     await saveConfig(`deployment-${snapshot.id}.json`, snapshot);
     binding = { ...binding, pending: snapshot.id, fresh: undefined };
     await saveBinding(binding);
-    console.error(`Deploying ${snapshot.files.length} source files to ${site.slug}.lettercamp.site…`);
+    terminal.step(`Deploying ${snapshot.files.length} source files to ${site.slug}.lettercamp.site…`);
   }
   if (!current.activity || current.activity.id !== snapshot.id) {
     try {
@@ -139,5 +141,6 @@ export async function deploy() {
       if (finished) await removeConfig(`deployment-${snapshot.id}.json`);
     }
   });
+  terminal.success('Deployment complete.');
   console.log(`Live at ${result.site.url}`);
 }

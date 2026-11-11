@@ -52,6 +52,21 @@ supporting files inside the publication.
 - See [CLI uploads](https://www.lettercamp.com/docs/cli/upload) for supported formats,
   output fields, limits, and optimization behavior.
 
+## Deploy this folder
+
+- The first `npx lettercamp deploy` creates a new site. Later deploys update that
+  folder's saved deployment destination; there is no option to select and replace
+  an unrelated existing site. Initial setup needs an interactive terminal.
+- Interactive deploys show the verified account before proceeding. Automated
+  redeploys can reuse a valid login and established destination without prompts.
+- Use `npx lettercamp deploy --new` only when the requested outcome is a separate
+  new site. It changes this folder's future deployment destination and leaves the
+  previous site unchanged. Do not use it as an automatic retry for a failed deploy.
+- Resume an interrupted deployment or site creation with `npx lettercamp deploy`.
+  If remote source changed, review it in Cloud instead of overwriting it.
+- `upload --site` remembers an asset-upload destination separately; it never
+  changes this folder's deployment destination.
+
 ## Resources
 
 - [Lettercamp](https://www.lettercamp.com)
