@@ -19,7 +19,8 @@ export function pageMetadata(site, page, url, article = false, basePath = "", po
     if (homepage)
         page = { ...seo, ...page };
     const title = text(page.title) || text(site.name);
-    const pageTitle = title === site.name ? title : `${title} — ${text(site.name)}`;
+    // Articles use their own title; other pages get the site name appended.
+    const pageTitle = article || title === site.name ? title : `${title} — ${text(site.name)}`;
     const suffix = listing && listing.page > 1 ? ` — Page ${listing.page}` : "";
     const documentTitle = (text(page.metaTitle) || (homepage && text(seo.metaTitle)) || pageTitle) + suffix;
     const description = text(page.metaDescription) || text(page.description) || text(site.description);
