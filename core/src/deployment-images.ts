@@ -57,6 +57,9 @@ export async function prepareDeploymentImages(directory: string, files: SourceFi
       if (!value || remote.test(value)) return null;
       const pathname = value.split(/[?#]/, 1)[0];
       if (!imageFile.test(pathname)) return null;
+      // Public files are deployed unchanged, including SVG/ICO and prepared variants.
+      const publicFilename = pathname.startsWith('/') ? path.resolve(root, 'public', '.' + pathname) : path.resolve(root, path.dirname(file.path), pathname);
+      if (publicFilename.startsWith(path.join(root, 'public') + path.sep)) return null;
       try {
         if (!/\.(?:jpe?g|png|webp|gif|avif)$/i.test(pathname)) throw new Error('Cloud image uploads support JPEG, PNG, WebP, AVIF, and GIF. Convert this image or use a hosted URL.');
         const decoded = decodeURIComponent(pathname);

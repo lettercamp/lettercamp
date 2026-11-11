@@ -9,6 +9,7 @@ import { ApiError, publishingToken, request, selectHostingSite, status, waitForD
 import { confirm } from './prompts.js';
 import { prepareDeploymentImages, uploadDeploymentImages, type SourceFile } from './deployment-images.js';
 import { imageFile } from './deployment-image-references.js';
+import { collectPublicFiles, copyPublicFiles, uploadPublicFiles, publicFilesPath, type PublicFile, type PublicFiles } from './public-files.js';
 
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 const roots = ['pages', 'components', 'lib', 'styles', 'assets'];
@@ -16,6 +17,7 @@ export async function publicationFiles(root: string) {
   const files: Snapshot['files'] = [];
   let total = 0;
   async function visit(relative: string) {
+    if (relative === publicFilesPath) return; // Generated from this upload, never reuse a previous deployment reference.
     const filename = path.join(root, relative);
     const info = await lstat(filename);
     if (info.isSymbolicLink()) throw new Error(`Source uploads do not follow symlinks: ${relative}`);
@@ -48,7 +50,7 @@ export async function publicationFiles(root: string) {
   return files.sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
 }
 
-async function checkDeploymentFiles(root: string, files: SourceFile[]) {
+async function checkDeploymentFiles(root: string, files: SourceFile[], publicFiles: PublicFile[]) {
   const temporary = await mkdtemp(path.join(tmpdir(), 'lettercamp-deploy-check-'));
   const source = path.join(temporary, 'publication');
   try {
@@ -57,13 +59,14 @@ async function checkDeploymentFiles(root: string, files: SourceFile[]) {
       await mkdir(path.dirname(filename), { recursive: true });
       await writeFile(filename, Buffer.from(file.content, 'base64'));
     }
+    await copyPublicFiles(root, path.join(source, 'public'), publicFiles);
     // Resolve custom components' dependencies as they would in the original project.
     const modules = path.join(root, 'node_modules');
     if (await lstat(modules).then(() => true, error => { if (error.code === 'ENOENT') return false; throw error; })) {
       await symlink(modules, path.join(source, 'node_modules'), 'junction');
     }
     const { buildSite } = await import('./build.js');
-    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output'), remoteAssetsOnly: true });
+    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output') });
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }
 
@@ -71,10 +74,12 @@ export async function deploy() {
   const root = await projectPath();
   // Catch the wrong directory before opening a browser or creating a hosted site.
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp deploy inside your publication folder containing settings.json.'); });
-  const images = (await getBinding())?.pending ? null : await prepareDeploymentImages(root, await publicationFiles(root));
+  const savedBinding = await getBinding();
+  const publicFiles = savedBinding?.pending ? [] : await collectPublicFiles(root);
+  const images = savedBinding?.pending ? null : await prepareDeploymentImages(root, await publicationFiles(root));
   if (images) {
     console.error('Checking the publication for Lettercamp Cloud…');
-    await checkDeploymentFiles(root, images.files);
+    await checkDeploymentFiles(root, images.files, publicFiles);
   }
   const token = await publishingToken();
   let { site, binding } = await selectHostingSite(token, true);
@@ -106,16 +111,23 @@ export async function deploy() {
       if (!await confirm('Replace the hosted publication with this folder?')) return;
     }
     const prepared = images ?? await prepareDeploymentImages(root, await publicationFiles(root));
-    if (!images) await checkDeploymentFiles(root, prepared.files);
+    if (!images) await checkDeploymentFiles(root, prepared.files, publicFiles);
     const files = await uploadDeploymentImages(prepared, site, token);
-    snapshot = { id: randomUUID(), revision: current.revision, files };
+    const id = randomUUID();
+    const manifest: PublicFiles = { version: 1, deploymentId: id, files: publicFiles };
+    files.push({ path: publicFilesPath, content: Buffer.from(JSON.stringify(manifest)).toString('base64') });
+    snapshot = { id, revision: current.revision, files };
     await saveConfig(`deployment-${snapshot.id}.json`, snapshot);
     binding = { ...binding, pending: snapshot.id, fresh: undefined };
     await saveBinding(binding);
     console.error(`Deploying ${snapshot.files.length} source files to ${site.slug}.lettercamp.site…`);
   }
   if (!current.activity || current.activity.id !== snapshot.id) {
-    try { await request(token, `sites/${site.id}/deploy`, snapshot); }
+    try {
+      const manifestFile = snapshot.files.find(file => file.path === publicFilesPath);
+      if (manifestFile) await uploadPublicFiles(root, site, token, JSON.parse(Buffer.from(manifestFile.content, 'base64').toString('utf8')));
+      await request(token, `sites/${site.id}/deploy`, snapshot);
+    }
     catch (error) {
       // Validation/conflict responses are definitive; network failures retain the upload.
       if (error instanceof ApiError && [400, 403, 409, 413].includes(error.status)) {
