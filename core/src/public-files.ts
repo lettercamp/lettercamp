@@ -9,6 +9,10 @@ export const publicFilesPath = 'lib/public-files.json';
 export type PublicFile = { path: string; size: number; hash: string };
 export type PublicFiles = { version: 1; deploymentId: string; files: PublicFile[] };
 export type PublishingLimits = { fileBytes: number; deploymentBytes: number; files: number; storageBytes: number };
+// Deploys cap the public folder; the server enforces the same limits.
+export function checkPublicLimits(files: PublicFile[]) {
+  if (files.length > 1000 || files.reduce((sum, file) => sum + file.size, 0) > 500 * 1048576) throw new Error('The public folder supports up to 1,000 files and 500 MB per deployment. Host larger assets elsewhere or use lettercamp upload.');
+}
 const digest = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 export async function readPublicFile(root: string, file: string) {
   const base = path.join(await realpath(root), 'public');
@@ -65,15 +69,33 @@ async function uploadResponse<T>(response: Response): Promise<T> {
   }
   return responseJson<T>(response);
 }
+export const publicPlanLimits = async (siteId: string, token: string) =>
+  (await uploadResponse<{ limits: PublishingLimits }>(await apiRequest(`/api/cli/sites/${siteId}/public`, {}, token))).limits;
+export function checkPlanLimits(files: PublicFile[], limits: PublishingLimits) {
+  if (files.length > limits.files || files.some(file => file.size > limits.fileBytes) || files.reduce((sum, file) => sum + file.size, 0) > limits.deploymentBytes) {
+    const large = files.find(file => file.size > limits.fileBytes);
+    // Definitive: clears a saved deployment so the next deploy picks up local changes.
+    throw new ApiError(`Your plan supports ${limits.files} public files, ${limits.fileBytes / 1048576} MB per file, and ${limits.deploymentBytes / 1048576} MB per deployment.${large ? ` public/${large.path} is too large.` : ''}`, 413);
+  }
+}
 export async function uploadPublicFiles(root: string, site: ApiSite, token: string, manifest: PublicFiles) {
   const route = `/api/cli/sites/${site.id}/public`;
-  const { limits } = await uploadResponse<{ limits: PublishingLimits }>(await apiRequest(route, {}, token));
-  if (manifest.files.length > limits.files || manifest.files.some(file => file.size > limits.fileBytes)
-    || manifest.files.reduce((sum, file) => sum + file.size, 0) > limits.deploymentBytes) {
-    throw new Error(`Your plan supports ${limits.files} files, ${limits.fileBytes / 1048576} MB per file, and ${limits.deploymentBytes / 1048576} MB per deployment.`);
+  checkPlanLimits(manifest.files, await publicPlanLimits(site.id, token));
+  // The server keeps files already uploaded for this deployment and copies unchanged
+  // files from the previous one in bounded batches; repeat while it makes progress.
+  const start = async () => uploadResponse<{ missing?: string[]; reusable?: number }>(await apiRequest(route, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(manifest) }, token, 120_000));
+  let started = await start();
+  for (let attempt = 0; started.reusable && attempt < 20; attempt++) {
+    const next = await start();
+    const progressed = (next.missing?.length ?? 0) < (started.missing?.length ?? 0);
+    started = next;
+    if (!progressed) break;
   }
-  await uploadResponse(await apiRequest(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(manifest) }, token));
+  const missing = started.missing ? new Set(started.missing) : null;
+  if (missing && missing.size < manifest.files.length) console.error(`Reusing ${manifest.files.length - missing.size} unchanged public files.`);
   for (const file of manifest.files) {
+    if (missing && !missing.has(file.path)) continue;
     const bytes = await readPublicFile(root, file.path);
     if (digest(bytes) !== file.hash) throw new ApiError(`public/${file.path} changed. Run deploy again to upload the new version.`, 409);
     console.error(`Uploading public/${file.path}…`);

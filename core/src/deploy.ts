@@ -4,12 +4,12 @@ import { constants } from 'node:fs';
 import { open } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import { projectPath, getBinding, saveBinding, readConfig, saveConfig, removeConfig } from './account.js';
+import { projectPath, getBinding, saveBinding, readConfig, saveConfig, removeConfig, credentials, apiOrigin } from './account.js';
 import { ApiError, publishingToken, request, selectHostingSite, status, waitForDeployment } from './hosting.js';
 import { confirm } from './prompts.js';
 import { prepareDeploymentImages, uploadDeploymentImages, type SourceFile } from './deployment-images.js';
 import { imageFile } from './deployment-image-references.js';
-import { collectPublicFiles, copyPublicFiles, uploadPublicFiles, publicFilesPath, type PublicFile, type PublicFiles } from './public-files.js';
+import { collectPublicFiles, checkPublicLimits, checkPlanLimits, publicPlanLimits, copyPublicFiles, uploadPublicFiles, publicFilesPath, type PublicFile, type PublicFiles } from './public-files.js';
 
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 const roots = ['pages', 'components', 'lib', 'styles', 'assets'];
@@ -66,7 +66,8 @@ async function checkDeploymentFiles(root: string, files: SourceFile[], publicFil
       await symlink(modules, path.join(source, 'node_modules'), 'junction');
     }
     const { buildSite } = await import('./build.js');
-    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output') });
+    // Lettercamp Cloud generates image variants itself; skip that work in this check.
+    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output') }, false);
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }
 
@@ -75,11 +76,18 @@ export async function deploy() {
   // Catch the wrong directory before opening a browser or creating a hosted site.
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp deploy inside your publication folder containing settings.json.'); });
   const savedBinding = await getBinding();
-  const publicFiles = savedBinding?.pending ? [] : await collectPublicFiles(root);
+  const readPublicFiles = async () => { const files = await collectPublicFiles(root); checkPublicLimits(files); return files; };
+  const publicFiles = savedBinding?.pending ? null : await readPublicFiles();
+  if (publicFiles?.length && savedBinding && !savedBinding.creation && savedBinding.origin === apiOrigin()) {
+    // A linked, signed-in folder learns its plan limits before the local build.
+    // New sites and expired sessions are checked when the upload starts.
+    const limits = await credentials().then(saved => publicPlanLimits(savedBinding.siteId, saved.token)).catch(() => null);
+    if (limits) checkPlanLimits(publicFiles, limits);
+  }
   const images = savedBinding?.pending ? null : await prepareDeploymentImages(root, await publicationFiles(root));
   if (images) {
     console.error('Checking the publication for Lettercamp Cloud…');
-    await checkDeploymentFiles(root, images.files, publicFiles);
+    await checkDeploymentFiles(root, images.files, publicFiles ?? []);
   }
   const token = await publishingToken();
   let { site, binding } = await selectHostingSite(token, true);
@@ -110,11 +118,13 @@ export async function deploy() {
       console.error('Local settings, pages, components, lib, styles, and assets replace those remote files, including deletions.');
       if (!await confirm('Replace the hosted publication with this folder?')) return;
     }
+    // A saved deployment skipped collection above; a newly chosen site still needs the folder.
+    const collected = publicFiles ?? await readPublicFiles();
     const prepared = images ?? await prepareDeploymentImages(root, await publicationFiles(root));
-    if (!images) await checkDeploymentFiles(root, prepared.files, publicFiles);
+    if (!images) await checkDeploymentFiles(root, prepared.files, collected);
     const files = await uploadDeploymentImages(prepared, site, token);
     const id = randomUUID();
-    const manifest: PublicFiles = { version: 1, deploymentId: id, files: publicFiles };
+    const manifest: PublicFiles = { version: 1, deploymentId: id, files: collected };
     files.push({ path: publicFilesPath, content: Buffer.from(JSON.stringify(manifest)).toString('base64') });
     snapshot = { id, revision: current.revision, files };
     await saveConfig(`deployment-${snapshot.id}.json`, snapshot);
