@@ -31,7 +31,7 @@ export function pageMetadata(site, page, url, article = false, basePath = "", po
     if (!homepage || listing && listing.page > 1)
         canonical.pathname = canonical.pathname.replace(/\/+$/, "");
     else
-        canonical.pathname = basePath.replace(/\/+$/, "") + "/";
+        canonical.pathname = basePath.replace(/\/+$/, "") || "/";
     const resolveUrl = (value) => {
         try {
             const resolved = text(value) && new URL(text(value), canonical);

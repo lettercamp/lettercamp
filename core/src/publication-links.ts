@@ -4,7 +4,7 @@ type Node = { type: string; url?: string; data?: object; attributes?: { type: st
 // Absolute URLs and anchors retain their authored meaning.
 export function publicationLinks(options: { basePath: string }) {
   const base = options.basePath.replace(/\/+$/, '');
-  const prefix = (value: string) => value.startsWith('/') && !value.startsWith('//') ? base + value : value;
+  const prefix = (value: string) => value.startsWith('/') && !value.startsWith('//') ? base + value.replace(/^\/(?=[?#]|$)/, '') : value;
   return (tree: Node) => {
     if (!base) return;
     function visit(node: Node) {

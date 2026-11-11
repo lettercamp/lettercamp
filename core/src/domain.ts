@@ -60,7 +60,7 @@ export async function domain(address?: string) {
   }
   if (connection()?.status === 'active') {
     await finishAddress();
-    console.log(`Connected: https://${label()}/`);
+    console.log(`Connected: https://${label()}`);
     return;
   }
   if (document.subfolder?.status === 'verifying') {
@@ -97,7 +97,7 @@ export async function domain(address?: string) {
     if (message !== previous) { console.error(message); previous = message; }
     if (current.status === 'active') {
       await finishAddress();
-      console.log(`Live at https://${label()}/`);
+      console.log(`Live at https://${label()}`);
       return;
     }
     if (document.subfolder?.status === 'building') {
@@ -105,7 +105,7 @@ export async function domain(address?: string) {
       if (publishing.pending) {
         await waitForDeployment(token, site.id, publishing.pending);
         document = await request<DomainDocument>(token, route);
-        if (connection()?.status === 'active') { console.log(`Live at https://${label()}/`); return; }
+        if (connection()?.status === 'active') { console.log(`Live at https://${label()}`); return; }
       }
       else if (current.error) throw new Error(`${current.error} Run lettercamp domain to retry.`);
     }

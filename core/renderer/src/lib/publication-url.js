@@ -6,7 +6,7 @@ export function publicationPath(path, basePath = "") {
     if (typeof path !== "string" || !path.startsWith("/") || path.startsWith("//"))
         return path;
     const base = basePath.replace(/\/+$/, "");
-    return base + path;
+    return base + (base ? path.replace(/^\/(?=[?#]|$)/, "") : path);
 }
 export function publicationUrl(path, siteUrl) {
     return new URL(publicationPath(path, publicationBasePath(siteUrl)), siteUrl);
