@@ -100,7 +100,7 @@ async function configureProject(directory: string, destination: string) {
     private: true,
     type: 'module',
     engines: { node: '>=22.23.4' },
-    scripts: { dev: 'lettercamp dev', build: 'lettercamp build', deploy: 'lettercamp deploy' },
+    scripts: { dev: 'lettercamp dev', build: 'lettercamp build', check: 'lettercamp check', deploy: 'lettercamp deploy' },
     devDependencies: { lettercamp: version },
   }, null, 2) + '\n', { flag: 'wx' });
   await writeFile(path.join(directory, '.nvmrc'), '22.23.4\n');
@@ -170,5 +170,5 @@ export async function createSite(directory?: string, options: CreateOptions = {}
   }
   if (options.install === false) console.log('  npm install');
   console.log('  npm run dev');
-  console.log('\nRun npm run deploy when you are ready to publish.');
+  console.log('\nRun npm run check to test the publication for Lettercamp Cloud, and npm run deploy to publish.');
 }

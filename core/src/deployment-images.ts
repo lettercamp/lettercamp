@@ -81,6 +81,12 @@ export async function prepareDeploymentImages(directory: string, files: SourceFi
         }
         return await pending;
       } catch (error) { throw new Error(`${file.path}: cannot upload ${JSON.stringify(value)}. ${error instanceof Error ? error.message : error}`); }
+    }).catch(error => {
+      // Syntax errors from a page or component otherwise arrive without their file.
+      const message = error instanceof Error ? error.message : String(error);
+      if (message.startsWith(`${file.path}:`)) throw error;
+      const { line, column } = error as { line?: number; column?: number };
+      throw new Error(`${file.path}${line ? `:${line}${column ? `:${column}` : ''}` : ''}: ${message}`);
     });
     prepared.push({ path: file.path, content: Buffer.from(content).toString('base64') });
   }

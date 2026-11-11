@@ -16,8 +16,10 @@ import { searchContent } from './search-content.js';
 import { mediaDimensions } from './media-dimensions.js';
 import { reactViteConfig } from './react.js';
 import { assertRemoteBuiltAssets, assertRemoteSourceAssets } from './remote-assets.js';
+import { BuildError, describeBuildError, type BuildTarget } from './build-errors.js';
 
-export type BuildOptions = { site: string; outDir?: string; assetsPrefix?: string; remoteAssetsOnly?: boolean };
+// quiet and target are set by lettercamp check and deploy, not by command-line options.
+export type BuildOptions = { site: string; outDir?: string; assetsPrefix?: string; remoteAssetsOnly?: boolean; quiet?: boolean; target?: BuildTarget };
 
 export async function buildSite(directory: string, options: BuildOptions, optimizePublic = true): Promise<string> {
   const origin = new URL(options.site);
@@ -31,7 +33,7 @@ export async function buildSite(directory: string, options: BuildOptions, optimi
   if (outDir === root || root.startsWith(outDir + path.sep) || ['pages', 'public', 'components'].some(name => overlaps(outDir, path.join(root, name)))) {
     throw new Error('Output must not replace the publication or its source files.');
   }
-  const { workspace, cleanup } = await prepareWorkspace(root);
+  const { workspace, contentRoot, cleanup } = await prepareWorkspace(root);
   const publicFiles = remoteAssetsOnly ? [] : await collectPublicFiles(root);
   const previousCwd = process.cwd();
   const previousNodeEnv = process.env.NODE_ENV;
@@ -45,6 +47,7 @@ export async function buildSite(directory: string, options: BuildOptions, optimi
     // is external. Keep them beside the renderer's node_modules, not the content.
     process.chdir(workspace);
     await build({
+      ...(options.quiet ? { logLevel: 'silent' as const } : {}),
       root: workspace, configFile: false, site: origin.origin, base: origin.pathname, trailingSlash: 'never',
       cacheDir: path.join(workspace, '.cache'),
       publicDir: path.join(workspace, '.lettercamp-no-public'), outDir, output: 'static',
@@ -54,6 +57,10 @@ export async function buildSite(directory: string, options: BuildOptions, optimi
       // Ship the publication's CSS with the document, avoiding a render-blocking
       // HTML -> stylesheet round trip on every cold landing.
       build: { format: 'directory', inlineStylesheets: 'always', ...(options.assetsPrefix ? { assetsPrefix: options.assetsPrefix } : {}) },
+    }).catch(error => {
+      // Replace bundler stack traces and temporary paths with the file and a fix.
+      const target = options.target ?? (process.env.LETTERCAMP_CLOUD_BUILD === '1' ? 'cloud' : 'local');
+      throw new BuildError(describeBuildError(error, { roots: [root, contentRoot], target }), error);
     });
     if (remoteAssetsOnly) await assertRemoteBuiltAssets(outDir);
     // Copy public files after rendering, refusing to overwrite generated pages or code.

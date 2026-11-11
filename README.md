@@ -13,6 +13,10 @@
 </p>
 
 <p align="center">
+  <code>npm create lettercamp</code>
+</p>
+
+<p align="center">
   <a href="https://www.lettercamp.com/docs">Documentation</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="https://www.lettercamp.com/docs/cli">CLI reference</a> ·

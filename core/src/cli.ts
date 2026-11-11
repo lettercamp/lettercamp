@@ -53,10 +53,10 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('upload')
     .description('Upload images or fonts and print their permanent URLs')
-    .argument('<files...>', 'JPEG, PNG, WebP, GIF, TTF, OTF, WOFF, or WOFF2 files, up to 10 MB each')
+    .argument('<files...>', 'JPEG, PNG, WebP, AVIF, GIF, TTF, OTF, WOFF, or WOFF2 files, subject to workspace limits (maximum 100 MB each)')
     .option('--site <slug>', 'Destination site (remembered for this local publication)')
     .option('--json', 'Print URL and image dimensions or font settings; multiple files return an array')
-    .addHelpText('after', '\nExamples:\n  lettercamp upload cover.png portrait.jpg --site my-blog\n  lettercamp upload brand.woff2 --json\n\nMultiple files print filename<TAB>URL. Failed files are reported and remaining uploads continue.\nThe command exits unsuccessfully if any upload fails. Single-file output is unchanged.')
+    .addHelpText('after', '\nExamples:\n  lettercamp upload cover.png portrait.jpg --site my-blog --json\n  lettercamp upload brand.woff2 --json\n\nUses your saved login and an existing site. Run lettercamp login if sign-in is required.\nUse --json for agents and scripts, then write the returned URLs into your source.\nImage optimization runs in the background; the original URL is usable immediately.\nUploads do not edit source files or publish the site.\n\nMultiple files print filename<TAB>URL. Failed files are reported and remaining uploads continue.\nThe command exits unsuccessfully if any upload fails. Single-file output is unchanged.')
     .action(async (files: string[], options) => { const { upload } = await import('./upload.js'); await upload(files, options); });
 
   creationCommand(program.command('new'));
@@ -65,6 +65,13 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
     .description('Publish this folder; create or connect a site on first use')
     .addHelpText('after', '\nFiles in public/ are uploaded with their paths intact, subject to your plan limits.\nSupported images are optimized during the Cloud build.\nReferenced images outside public/ use the media library. Your local files stay unchanged.')
     .action(async () => { const { deploy } = await import('./deploy.js'); await deploy(); });
+
+  program.command('check')
+    .description('Check that this folder will build on Lettercamp Cloud, without deploying')
+    .option('--json', 'Print the result and each problem as JSON')
+    .option('--no-build', 'Check imports and source files, skipping the build')
+    .addHelpText('after', '\nRuns the same checks as lettercamp deploy, without signing in or uploading.\nReports imports that Lettercamp Cloud cannot resolve, then builds a copy of the deployment.\nExits unsuccessfully if any problem is found.')
+    .action(async options => { const { check } = await import('./check.js'); await check(options); });
 
   program.command('domain')
     .description('Connect an address, resume setup, or remove the current connection')
