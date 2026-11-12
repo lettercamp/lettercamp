@@ -19,7 +19,7 @@ const { site, category, posts, categories, current, total, count, base } = Astro
     {categories.length > 0 ? <nav class="category-selector" aria-label="Filter posts by category">
       <a href={sitePath("/")} data-category="" aria-current={!category ? "page" : undefined}>All</a>
       {categories.map(item => <a href={item.href} data-category={item.name} aria-current={category === item.name ? "page" : undefined}>{item.name}</a>)}
-    </nav> : <p class="post-count">{count} posts</p>}
+    </nav> : <p class="post-count">{count} {count === 1 ? 'post' : 'posts'}</p>}
     <PostSearch />
   </div>
   <p class="sr-only">{count} articles — Page {current} of {total}</p>
