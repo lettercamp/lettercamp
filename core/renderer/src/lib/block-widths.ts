@@ -5,6 +5,8 @@ const full = ':is([data-table-width="full"], [data-code-width="full"], [data-blo
 
 export const blockWidthStyles = `
 .publication-post { container-type: inline-size; }
+.publication-post .article-body, .publication-post .prose { width: 100%; min-width: 0; }
+.publication-post .prose { contain: inline-size; }
 .publication-post .prose [data-lettercamp-component] { display: grid; grid-template-columns: minmax(0, 1fr); }
 .publication-post .prose [data-lettercamp-component] > :not(style, script),
 .publication-post .prose [data-lettercamp-component] > astro-island > :not(style, script) {
@@ -24,5 +26,10 @@ ${blocks}${full} {
   --block-display-width: max(var(--block-normal-width), var(--block-available-width, 100cqw));
   max-width: none; margin-inline: calc((100% - var(--block-display-width)) / 2);
   margin-left: calc((100% - var(--block-display-width)) / 2 - var(--block-column-offset, 0px));
+}
+${blocks}[data-table-pixel-width] {
+  --block-display-width: min(var(--table-pixel-width), var(--block-available-width, 100cqw));
+  max-width: none; margin-inline: calc((100% - var(--block-display-width)) / 2);
+  margin-left: calc((100% - var(--block-display-width)) / 2 + min(0px, (var(--block-available-width, 100cqw) - var(--block-display-width)) / 2 - var(--block-column-offset, 0px)));
 }
 `;

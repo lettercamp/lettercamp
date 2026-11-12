@@ -113,7 +113,7 @@ export function expandContentComponent(node: Nodes): Nodes | null {
 }
 
 function expandTable(node: ContentElement, props: Record<string, ComponentValue>): Nodes | null {
-  if (!allowed(props, ["width", "columnWidths", "rowHeight"])) return null;
+  if (!allowed(props, ["width", "pixelWidth", "columnWidths", "rowHeight"])) return null;
   const children = meaningful(node.children.flatMap(child => child.type === "paragraph" ? child.children : [child]));
   let rows: ContentElement[];
   if (children.length === 1 && children[0].type === "table") {
@@ -156,7 +156,9 @@ function expandTable(node: ContentElement, props: Record<string, ComponentValue>
   const requested = Array.isArray(props.columnWidths) ? props.columnWidths : typeof props.columnWidths === "string" ? props.columnWidths.split(",").map(Number) : undefined;
   if (requested && (requested.length !== columnCount || requested.some(value => !Number.isFinite(value) || value <= 0))) return null;
   const widths = requested ?? Array<number>(columnCount).fill(1), total = widths.reduce((sum, width) => sum + width, 0);
-  return html("div", { "data-lettercamp-table": "true", "data-table-width": widthOf(props.width), "data-row-height": positive(props.rowHeight) }, [html("table", {}, [
+  const pixelWidth = positive(props.pixelWidth);
+  return html("div", { "data-lettercamp-table": "true", "data-table-width": widthOf(props.width), "data-table-pixel-width": pixelWidth,
+    style: pixelWidth ? `--table-pixel-width: ${pixelWidth}px` : undefined, "data-row-height": positive(props.rowHeight) }, [html("table", {}, [
     html("colgroup", {}, widths.map(width => html("col", { width: `${width / total * 100}%` }))), html("tbody", {}, converted),
   ])]);
 }
@@ -192,6 +194,8 @@ export function renderContentComponents(tree: Root) {
     isContentElement(node) && node.name === "summary"
       ? node.children.flatMap<Nodes>(child => child.type === "paragraph" ? child.children : [child]) : node.children;
   const visit = (node: Nodes): Nodes => {
+    // Plain Markdown tables use the same layout as tables edited in rich mode.
+    if (node.type === "table") return lower(expandTable(contentElement("Table", {}, [node]), {})!);
     if (isContentComponent(node) && !imported.has(node.name!)) {
       const expanded = expandContentComponent(node);
       if (!expanded) throw new Error(`Invalid <${node.name}> component. Use supported literal properties and children.`);
