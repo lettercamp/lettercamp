@@ -1,11 +1,5 @@
 ---
-import PostCard from './PostCard.astro';
-const { posts, site } = Astro.props;
+import { RelatedPosts } from './public.jsx';
+import { PostCard as CustomPostCard } from '../custom-posts.js';
 ---
-
-{posts.length > 0 && <section class="related-posts" aria-labelledby="related-posts-heading" hidden={site.post?.showRelatedPosts === false}>
-  <h2 id="related-posts-heading">Related</h2>
-  <div class="post-list">
-    {posts.map(post => <PostCard post={post} site={site} />)}
-  </div>
-</section>}
+{CustomPostCard ? <RelatedPosts {...Astro.props} show={true} hidden={Astro.props.site.post?.showRelatedPosts === false} client:load /> : <RelatedPosts {...Astro.props} show={true} hidden={Astro.props.site.post?.showRelatedPosts === false} />}

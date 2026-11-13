@@ -7,11 +7,14 @@ export const reactIntegrationDirectory = path.dirname(require.resolve('@astrojs/
 // Astro resolves renderer entrypoints from the temporary workspace. Locate the
 // CLI's integration even when npm puts it in a nested node_modules folder.
 // The integration deduplicates React against the workspace's CLI dependencies.
-export const reactViteConfig = {
+export const reactViteConfig = (workspace: string) => ({
+  // node_modules is shared through a symlink. Keep optimized dependencies in
+  // this workspace so builds and other previews cannot replace its React runtime.
+  cacheDir: path.join(workspace, '.vite'),
   resolve: {
-    alias: Object.keys(require('@astrojs/react/package.json').exports).map(entry => {
+    alias: [{ find: /^lettercamp\/components$/, replacement: path.join(workspace, 'src/components/public.jsx') }, ...Object.keys(require('@astrojs/react/package.json').exports).map(entry => {
       const id = '@astrojs/react' + (entry === '.' ? '' : entry.slice(1));
       return { find: new RegExp(`^${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), replacement: require.resolve(id) };
-    }),
+    })],
   },
-};
+});

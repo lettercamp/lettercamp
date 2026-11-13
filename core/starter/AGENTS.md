@@ -5,8 +5,8 @@ supporting files inside the publication.
 
 ## Custom component dependencies
 
-- For Lettercamp-hosted publications, custom components can import `react`, `react-dom`, and
-  local components, JavaScript or TypeScript helpers, and CSS files.
+- For Lettercamp-hosted publications, custom components can import `react`, `react-dom`, `lettercamp/components`, and
+  local components, JavaScript or TypeScript helpers, and CSS or Sass files.
 - Other npm packages are not supported in hosted custom components, including
   icon libraries and framework-specific components. Use inline SVG elements or local icon components and
   standard HTML elements for links and images.
@@ -15,10 +15,10 @@ supporting files inside the publication.
   in a parent project or on packages used internally by Lettercamp.
 - Import local files with relative paths and exact filename casing. Do not use
   package.json `#` aliases, tsconfig aliases such as `@/`, or absolute file paths.
-- Use plain CSS or CSS Modules (`.module.css`), not Sass, Less, or Stylus.
-  Convert preprocessor syntax; renaming `.scss` to `.css` alone is not enough.
+- Use CSS or Sass, including component-specific `.module.css` or `.module.scss` files.
+  The CLI includes the Sass compiler. Less and Stylus are not supported.
 - Keep imported source files inside `pages/`, `components/`, `lib/`, `styles/`, or
-  `assets/`. Header and footer overrides need a default export.
+  `assets/`. Layout overrides need a default export.
 - After changing components, styles, or MDX, run `npx lettercamp check --json`.
   Fix the reported problems and rerun until `ok` is true and `build` is `passed`.
   Do not treat `--no-build` as a complete check. Do not fix Cloud import errors
@@ -27,6 +27,28 @@ supporting files inside the publication.
   compatibility. Use `npx lettercamp dev` to inspect layout and interactions in
   addition to the Cloud check. The check does not deploy or upload anything.
 - Self-hosted builds can use dependencies installed in their own build environment.
+
+## Custom layouts
+
+- Optional `Header`, `Footer`, `PostList`, `PostCard`, and `PostLayout` files in
+  `components/layouts/` replace their defaults independently. Nested paths take
+  precedence over legacy flat `components/` paths. Ordinary reusable components
+  can live in `components/elements/`; they are not automatically rendered. Use one `.jsx` or `.tsx` file per name.
+- `PostList` receives posts, categories, pagination, site settings, and a resolved
+  `PostCard` component. `PostCard` also applies to default related-post cards.
+- `PostLayout` receives post metadata, headings, related posts, site settings,
+  the resolved `PostCard`, and `children`. Render `children` once: Lettercamp
+  supplies the article body with all built-in rich blocks and their styles.
+- Keep content in `pages/*.md` or `pages/*.mdx`. Do not move article text into
+  templates or parse Markdown yourself. This preserves online rich editing.
+- Templates own their markup and SCSS Modules. Use the supplied `site` settings
+  where online design controls should apply. URLs in `post.href`, `post.image`,
+  author images, categories, and pagination are already resolved.
+- Cloud previews use components from the last successful build and live draft
+  content/settings. Publish code changes to update that bundle. Arbitrary MDX
+  imports still appear as placeholders in the online editor and draft preview.
+- See [Custom layouts](https://www.lettercamp.com/docs/custom-layout) for props,
+  examples, styling hooks, and preview behavior.
 
 ## Upload images and fonts
 
@@ -71,3 +93,24 @@ supporting files inside the publication.
 
 - [Lettercamp](https://www.lettercamp.com)
 - [Lettercamp documentation](https://www.lettercamp.com/docs)
+
+## Reusable UI
+
+- Import optional UI from `lettercamp/components`: `PostByline`, `SearchButton`,
+  `ShareButton`, `TableOfContents`, `Pagination`, `CategoryNavigation`, `RelatedPosts`,
+  `PostHeader`, `Header`, `Footer`, and `PostCard`. Public Header/Footer/PostCard
+  always render defaults, so they can safely be wrapped by an override.
+  These include default styling and behavior; no extra package installation is needed.
+- Copy the default-looking `examples/layouts/` files into `components/layouts/`
+  as a starting point. Layouts arrange elements; imported elements own their
+  default appearance and behavior. Components are
+  only shown where you render them; Lettercamp does not insert missing navigation.
+- Pass live `site` settings to `PostByline`, `TableOfContents`, and `RelatedPosts`.
+  Pass normalized `post`, `headings`, `categories`, and `pagination` from the layout.
+  `<Pagination {...pagination} />` includes the listing base URL.
+- All helpers accept `className` and `style`. Use documented global part classes
+  for dialogs; they render outside the custom layout. See the UI components guide.
+- `ShareButton` shares the current page, not a card's destination. Search uses the
+  last built search index, including in the online preview.
+- Keep the managed article `children` intact. These helpers do not replace tables,
+  images, or other editor content blocks.

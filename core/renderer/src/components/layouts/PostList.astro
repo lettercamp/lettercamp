@@ -1,10 +1,10 @@
 ---
-import { sitePath } from '../lib/urls.js';
-import PostCard from './PostCard.astro';
-import PostSearch from './PostSearch.astro';
-import Pagination from './Pagination.astro';
-import { readHomeLayout, readHomeWidthPx } from '../lib/home-layout';
-import { readContentWidthEm } from '../lib/post-layout';
+import PostCard from '../PostCard.astro';
+import { CategoryNavigation } from '../public.jsx';
+import PostSearch from '../PostSearch.astro';
+import Pagination from '../Pagination.astro';
+import { readHomeLayout, readHomeWidthPx } from '../../lib/home-layout';
+import { readContentWidthEm } from '../../lib/post-layout';
 const { site, category, posts, categories, current, total, count, base } = Astro.props;
 ---
 
@@ -16,10 +16,7 @@ const { site, category, posts, categories, current, total, count, base } = Astro
     {site.description && <p class="description" style="margin-top: 12px">{site.description}</p>}
   </header>
   <div class="blog-toolbar">
-    {categories.length > 0 ? <nav class="category-selector" aria-label="Filter posts by category">
-      <a href={sitePath("/")} data-category="" aria-current={!category ? "page" : undefined}>All</a>
-      {categories.map(item => <a href={item.href} data-category={item.name} aria-current={category === item.name ? "page" : undefined}>{item.name}</a>)}
-    </nav> : <p class="post-count">{count} {count === 1 ? 'post' : 'posts'}</p>}
+    {categories.length > 0 ? <CategoryNavigation categories={categories} category={category} /> : <p class="post-count">{count} {count === 1 ? 'post' : 'posts'}</p>}
     <PostSearch />
   </div>
   <p class="sr-only">{count} articles — Page {current} of {total}</p>

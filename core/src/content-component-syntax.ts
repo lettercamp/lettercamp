@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { mdxjs } from "micromark-extension-mdxjs";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { gfm } from "micromark-extension-gfm";
@@ -51,14 +52,15 @@ export function normalizeContentComponentSyntax(tree: Root, source: string) {
   tree.children = tree.children.map(visit) as Root["children"];
 }
 
-export function contentComponents(this: { data(): object }) {
+export function contentComponents(this: { data(): object }, options: { settingsPath?: string } = {}) {
   const data = this.data() as Record<string, unknown>;
   for (const [name, extension] of [["micromarkExtensions", contentComponentSyntax()], ["fromMarkdownExtensions", mdxFromMarkdown()]] as const) {
     const extensions = (data[name] ??= []) as unknown[];
     extensions.push(extension);
   }
-  return (tree: Root, file: { extname?: string; value: unknown }) => {
+  return async (tree: Root, file: { extname?: string; value: unknown }) => {
     if (file.extname !== ".mdx") normalizeContentComponentSyntax(tree, String(file.value));
-    renderContentComponents(tree);
+    const siteName = options.settingsPath ? JSON.parse(await readFile(options.settingsPath, "utf8")).name : undefined;
+    renderContentComponents(tree, siteName);
   };
 }

@@ -140,7 +140,7 @@ export async function rewriteImageReferences(source: string, filename: string, r
   }
   if (/\.json$/i.test(filename)) return metadata(source, resolve);
   if (/\.[cm]?[jt]sx?$/i.test(filename)) return javascript(source, resolve);
-  if (/\.(?:css|scss)$/i.test(filename)) return css(source, resolve);
+  if (/\.(?:css|scss|sass)$/i.test(filename)) return css(source, resolve);
   if (!/\.mdx?$/i.test(filename)) return source;
   const frontmatter = /^(---\r?\n)([\s\S]*?)(\r?\n---(?:\r?\n|$))/.exec(source);
   let prefix = '';

@@ -5,6 +5,7 @@ import { parse } from '@babel/parser';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { mdxFromMarkdown } from 'mdast-util-mdx';
 import { mdxjs } from 'micromark-extension-mdxjs';
+import { findCustomLayouts, findSubscribeOverride } from './custom-layout.js';
 
 export const supportedImportsUrl = 'https://www.lettercamp.com/docs/react-components#supported-imports';
 export type CheckIssue = {
@@ -23,7 +24,7 @@ const sourceRoots = ['pages', 'components', 'lib', 'styles', 'assets'];
 const excluded = new Set(['node_modules', 'dist', 'build', 'coverage']);
 const builtins = new Set(builtinModules);
 const codeFile = /\.(?:[cm]?[jt]s|[jt]sx)$/i;
-const preprocessor = /\.(?:scss|sass|less|styl|stylus)$/i;
+const preprocessor = /\.(?:less|styl|stylus)$/i;
 const extensions = ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'];
 const posix = path.posix;
 
@@ -139,7 +140,7 @@ function aliasResolver(manifest: unknown) {
 }
 
 // Report every import that resolves on this computer but not in a Cloud build.
-// Only files reachable from pages and the custom header or footer are read.
+// Only files reachable from pages and reserved layout components are read.
 export async function checkImports(root: string): Promise<CheckIssue[]> {
   const issues: CheckIssue[] = [];
   const seen = new Set<string>();
@@ -205,10 +206,10 @@ export async function checkImports(root: string): Promise<CheckIssue[]> {
     const issue = { file, line: found.line, column: found.column, import: found.specifier };
     const { kind, name } = classifySpecifier(specifier);
     let target: string;
-    if (kind === 'runtime') return;
+    if (kind === 'runtime' || specifier === 'lettercamp/components') return;
     if (kind === 'package') {
       if (!hostedPackages.has(name!)) add({ ...issue, code: 'unsupported-package',
-        message: `"${found.specifier}" is an npm package. Lettercamp Cloud builds provide only react and react-dom, so this import cannot be resolved when you deploy.`,
+        message: `"${found.specifier}" is an npm package. Lettercamp Cloud builds provide react, react-dom, and lettercamp/components, so this import cannot be resolved when you deploy.`,
         fix: packageFix(name!) });
       return;
     }
@@ -261,14 +262,14 @@ export async function checkImports(root: string): Promise<CheckIssue[]> {
     if (preprocessor.test(resolved.actual)) {
       const css = posix.basename(resolved.actual).replace(preprocessor, '.css');
       add({ ...issue, code: 'unsupported-stylesheet',
-        message: `"${found.specifier}" needs a CSS preprocessor. Lettercamp Cloud builds support plain CSS and CSS Modules, not Sass, Less, or Stylus.`,
+        message: `"${found.specifier}" needs a CSS preprocessor. Lettercamp Cloud builds support CSS, Sass, and CSS Modules, not Less or Stylus.`,
         fix: `Convert the stylesheet to plain CSS and save it as ${css}. Replace preprocessor variables with CSS custom properties and write out mixins and @use rules.` });
     } else if (codeFile.test(resolved.actual) || /\.mdx$/i.test(resolved.actual)) enqueue(resolved.actual);
   }
 
   const layouts = new Set<string>();
   for (const name of (await list('pages')).keys()) if (/\.mdx$/i.test(name)) enqueue(`pages/${name}`);
-  for (const name of (await list('components')).keys()) if (/^(?:Header|Footer)\.[jt]sx$/.test(name)) { layouts.add(`components/${name}`); enqueue(`components/${name}`); }
+  for (const file of [...Object.values(await findCustomLayouts(root)), await findSubscribeOverride(root)]) if (file) { layouts.add(file); enqueue(file); }
 
   for (let file = queue.shift(); file !== undefined; file = queue.shift()) {
     const source = await readFile(path.join(root, file), 'utf8').catch(() => null);

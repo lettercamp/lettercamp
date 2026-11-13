@@ -1,0 +1,10 @@
+/* The content wrapper keeps block sizing independent of a theme's layout. */
+.lettercamp-post-body {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.lettercamp-post-body > .prose {
+  max-width: var(--post-content-width);
+  margin-inline: auto;
+}

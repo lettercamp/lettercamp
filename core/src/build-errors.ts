@@ -79,8 +79,8 @@ export function describeBuildError(error: unknown, options: { roots: string[]; t
   if (match = /Preprocessor dependency "([^"]+)" not found/i.exec(text)) return {
     docs: supportedImportsUrl,
     message: `A stylesheet needs the "${match[1]}" preprocessor, which is not available${cloud ? ' in Lettercamp Cloud builds' : ''}.`,
-    fix: cloud ? 'Convert .scss, .sass, .less, and .styl files to plain CSS or CSS Modules (.module.css).'
-      : `Run npm install ${match[1]} in the publication folder, or convert the stylesheet to plain CSS. Lettercamp Cloud supports plain CSS only.`,
+    fix: cloud ? 'Use CSS or Sass (.css, .scss, .sass, or their .module variants). Update the CLI if Sass is missing.'
+      : `Run npm install ${match[1]} in the publication folder, or convert the stylesheet to plain CSS. Lettercamp Cloud supports CSS and Sass.`,
   };
   if (match = /\b(window|document|navigator|localStorage|sessionStorage) is not defined/.exec(text)) return {
     docs: componentsUrl,

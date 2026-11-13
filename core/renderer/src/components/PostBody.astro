@@ -1,0 +1,7 @@
+---
+import { readContentWidthEm } from '../lib/post-layout';
+const { site } = Astro.props;
+---
+<div class="publication-post lettercamp-post-body" data-lettercamp-body style={{ '--post-content-width': `calc(var(--text-base) * ${readContentWidthEm(site.post)})` }}>
+  <div class="prose"><slot /></div>
+</div>

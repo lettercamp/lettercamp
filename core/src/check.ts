@@ -49,14 +49,14 @@ export async function checkDeployment(root: string, files: SourceFile[], publicF
 
 // One heading per kind of problem: the rule and its fix once, then each location.
 const rules: Record<CheckIssue['code'], { title: string; why?: string; fix?: string }> = {
-  'unsupported-package': { title: 'npm packages', why: 'Lettercamp Cloud builds provide only react and react-dom. Other packages cannot be resolved, even when they are installed on this computer.' },
+  'unsupported-package': { title: 'npm packages', why: 'Lettercamp Cloud builds provide react, react-dom, and lettercamp/components. Other packages cannot be resolved, even when they are installed on this computer.' },
   'subpath-import': { title: 'package.json import aliases', why: 'package.json is not part of a deployment, so Lettercamp Cloud cannot resolve "#" aliases.', fix: 'Use a relative path, shown beside each import where it is known.' },
   'path-alias': { title: 'Path aliases', why: 'Aliases from tsconfig.json or a bundler configuration are not available in Lettercamp Cloud builds.' },
   'absolute-path': { title: 'Absolute import paths', why: 'An absolute path does not point into your publication during a build.' },
   'outside-publication': { title: 'Files outside the publication', why: 'A deployment contains settings.json and the pages/, components/, lib/, styles/, and assets/ folders.' },
   'missing-file': { title: 'Missing files', why: 'These imports do not match a file in your publication.' },
   'case-mismatch': { title: 'Filename casing', why: 'Lettercamp Cloud builds on a case-sensitive file system.', fix: 'Use the spelling shown beside each import, or rename the file to match.' },
-  'unsupported-stylesheet': { title: 'CSS preprocessors', why: 'Lettercamp Cloud builds support plain CSS and CSS Modules, not Sass, Less, or Stylus.',
+  'unsupported-stylesheet': { title: 'CSS preprocessors', why: 'Lettercamp Cloud builds support CSS, Sass, and CSS Modules, not Less or Stylus.',
     fix: 'Convert each stylesheet to plain CSS with a .css or .module.css name. Replace preprocessor variables with CSS custom properties and write out mixins and @use rules.' },
   'missing-default-export': { title: 'Header and footer exports' },
   'mdx-syntax': { title: 'MDX syntax' },

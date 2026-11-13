@@ -1,8 +1,7 @@
 export const postSearchScript = String.raw`(() => {
-  const trigger = document.querySelector('.post-search-trigger');
   const dialog = document.querySelector('#post-search-dialog');
-  if (!trigger || !dialog || !dialog.dataset.searchIndex || typeof dialog.showModal !== 'function') return;
-  const opener = trigger.querySelector('button');
+  if (!dialog || !dialog.dataset.searchIndex || typeof dialog.showModal !== 'function') return;
+  let opener;
   const input = dialog.querySelector('input');
   const results = dialog.querySelector('.post-search-results');
   const status = dialog.querySelector('.post-search-status');
@@ -185,9 +184,14 @@ export const postSearchScript = String.raw`(() => {
     ++generation;
     clearTimeout(timer);
     dialog.close();
-    opener.focus({ preventScroll: true });
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
   }
-  opener.addEventListener('click', open);
+  document.addEventListener('click', event => {
+    const button = event.target instanceof Element ? event.target.closest('[data-lettercamp-search]') : null;
+    if (!button || button.disabled) return;
+    opener = button;
+    open();
+  });
   input.addEventListener('input', event => { if (!event.isComposing) search(); });
   input.addEventListener('compositionend', search);
   dialog.querySelector('.post-search-close').addEventListener('click', close);
@@ -212,5 +216,5 @@ export const postSearchScript = String.raw`(() => {
       links[0]?.click();
     }
   });
-  trigger.hidden = false;
+  document.addEventListener('lettercamp:post-updated', () => { if (dialog.open) close(); });
 })();`;

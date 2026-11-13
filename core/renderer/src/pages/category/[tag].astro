@@ -1,5 +1,5 @@
 ---
-import ListingPage from '../../components/ListingPage.astro';
+import ListingPage from '../../components/layouts/ListingPage.astro';
 import { getCategories } from '../../lib/posts.js';
 export function getStaticPaths() {
   return getCategories().map(category => ({ params: { tag: category.tag }, props: { category: category.name } }));

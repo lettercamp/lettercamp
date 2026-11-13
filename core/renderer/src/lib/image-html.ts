@@ -78,7 +78,7 @@ export async function optimizeImageHtml(html: string) {
   const add = (url: unknown) => { if (typeof url === 'string' && hasImageManifest(url)) urls.add(url); };
   for (const { node, parents } of elements) {
     if (managedImage(node, parents)) add(node.properties.src);
-    if (node.tagName === 'button' && classes(node).includes('author-more') && typeof node.properties.dataAuthors === 'string') {
+    if (!parents.some(parent => parent.tagName === 'astro-island') && node.tagName === 'button' && classes(node).includes('author-more') && typeof node.properties.dataAuthors === 'string') {
       const data = JSON.parse(node.properties.dataAuthors);
       authors.set(node, data); data.forEach((author: { image?: string }) => add(author.image));
     }

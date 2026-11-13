@@ -1,9 +1,9 @@
-.post-search-trigger { position: relative; flex: 0 0 240px; margin-left: auto; }
-.post-search-trigger svg { position: absolute; left: 13px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--site-text-muted); pointer-events: none; }
-.post-search-trigger button { width: 100%; height: 36px; padding: 0 14px 0 38px; border: 0; border-radius: 999px; background: var(--site-surface-hover); color: var(--site-text-secondary); font: 400 var(--text-label)/1.5 var(--font-family); text-align: left; cursor: pointer; }
-.post-search-trigger button:hover { background: var(--site-surface-active); color: var(--site-foreground); }
+.blog-toolbar .post-search-trigger { position: relative; flex: 0 0 240px; margin-left: auto; }
+.post-search-trigger > svg { flex: none; width: 16px; height: 16px; pointer-events: none; }
+.lettercamp-search-button { display: inline-flex; align-items: center; gap: 8px; width: 240px; height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--site-surface-hover); color: var(--site-text-secondary); font: 400 var(--text-label)/1.5 var(--font-family); text-align: left; cursor: pointer; }
+.lettercamp-search-button:hover { background: var(--site-surface-active); color: var(--site-foreground); }
 .post-search-header input::placeholder { color: var(--site-text-secondary); opacity: 1; }
-.post-search-trigger button:focus-visible { outline: 1px solid var(--site-border-strong); outline-offset: 3px; border-radius: 999px; background: var(--site-surface-active); }
+.lettercamp-search-button:focus-visible { outline: 1px solid var(--site-border-strong); outline-offset: 3px; border-radius: 999px; background: var(--site-surface-active); }
 html:has(.post-search-dialog) { scrollbar-gutter: stable; }
 html:has(.post-search-dialog[open]) { overflow: hidden; }
 .post-search-dialog { position: fixed; inset: 0; width: min(640px, calc(100vw - 32px)); max-width: none; height: 440px; max-height: min(440px, calc(100dvh - 48px)); margin: auto; padding: 0; overflow: hidden; border: 1px solid var(--site-border); border-radius: 14px; background: var(--site-background); color: var(--site-foreground); box-shadow: 0 20px 80px #0003; font: 400 var(--text-label)/1.5 var(--font-family); }
@@ -32,12 +32,12 @@ html:has(.post-search-dialog[open]) { overflow: hidden; }
   .blog-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 0; }
   .category-selector { grid-area: 1 / 1 / 2 / -1; padding-inline-end: 56px; gap: 20px; }
   .post-count { grid-area: 1 / 1; }
-  .post-search-trigger { grid-area: 1 / 2; z-index: 1; width: 44px; background: var(--site-background); }
-  .post-search-trigger::before { content: ''; position: absolute; inset: 0 100% 0 -16px; background: linear-gradient(to right, transparent, var(--site-background)); pointer-events: none; }
-  .post-search-trigger svg { left: auto; right: 0; width: 18px; height: 18px; }
-  .post-search-trigger button { height: 44px; padding: 0; background: transparent; }
-  .post-search-trigger button:is(:hover, :focus-visible) { background: transparent; }
-  .post-search-trigger button span { display: none; }
+  .blog-toolbar .post-search-trigger { grid-area: 1 / 2; z-index: 1; width: 44px; background: var(--site-background); }
+  .blog-toolbar .post-search-trigger::before { content: ''; position: absolute; inset: 0 100% 0 -16px; background: linear-gradient(to right, transparent, var(--site-background)); pointer-events: none; }
+  .blog-toolbar .post-search-trigger > svg { width: 18px; height: 18px; }
+  .blog-toolbar .lettercamp-search-button { justify-content: flex-end; width: 44px; height: 44px; padding: 0; }
+  .blog-toolbar .lettercamp-search-button:is(:hover, :focus-visible) { background: transparent; }
+  .blog-toolbar .lettercamp-search-button span { display: none; }
 }
 @media (max-width: 640px) {
   .post-search-dialog { width: calc(100vw - 24px); max-height: min(440px, calc(100dvh - 24px)); }

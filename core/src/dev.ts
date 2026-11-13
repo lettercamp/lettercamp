@@ -65,11 +65,11 @@ export async function startDev(directory: string, options: DevOptions) {
           addMiddleware({ entrypoint: options.middleware!, order: 'post' });
         } },
       }] : [])],
-      markdown: { syntaxHighlight: false, processor: unified({ remarkPlugins: [contentComponents, readingTime, searchContent, codeBlocks, componentBlocks, [mediaDimensions, { root: contentRoot }]], rehypePlugins: [[mediaDimensions, { root: contentRoot }]] }) },
+      markdown: { syntaxHighlight: false, processor: unified({ remarkPlugins: [[contentComponents, { settingsPath: path.join(contentRoot, 'settings.json') }], readingTime, searchContent, codeBlocks, componentBlocks, [mediaDimensions, { root: contentRoot }]], rehypePlugins: [[mediaDimensions, { root: contentRoot }]] }) },
       devToolbar: { enabled: false },
       server: { port, host: options.host, open: options.open },
       vite: {
-        ...reactViteConfig,
+        ...reactViteConfig(workspace),
         clearScreen: false,
         logLevel: 'warn',
         plugins: [{
@@ -109,7 +109,7 @@ export async function startDev(directory: string, options: DevOptions) {
             vite.watcher.add([path.join(contentRoot, 'pages'), path.join(contentRoot, 'settings.json'), components]);
             let updatingLayout = Promise.resolve();
             const updateLayout = (file: string) => {
-              if (path.dirname(file) !== components || !/^(Header|Footer)\.(jsx|tsx)$/.test(path.basename(file))) return;
+              if (![components, path.join(components, 'layouts'), path.join(components, 'elements')].includes(path.dirname(file)) || !/^(Header|Footer|PostList|PostCard|PostLayout|Subscribe)\.(jsx|tsx)$/.test(path.basename(file))) return;
               updatingLayout = updatingLayout.then(async () => {
                 await writeCustomLayout(workspace, contentRoot);
                 // Also clear an earlier duplicate-file error when the valid

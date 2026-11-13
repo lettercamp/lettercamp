@@ -1,0 +1,16 @@
+---
+import { customPostFiles } from '../custom-posts.js';
+import { getPosts, getCategories } from '../lib/posts.js';
+const { site, snapshot } = Astro.props;
+const enabled = Object.keys(customPostFiles).length > 0;
+const data = enabled ? { ...snapshot, site, components: customPostFiles,
+  posts: getPosts(site.language, site.timeZone), categories: getCategories() } : null;
+---
+{enabled && <script is:inline type="application/json" data-lettercamp-theme set:html={JSON.stringify(data).replaceAll('<', '\\u003c')} />}
+<script>
+  // Build once with the site. Draft text and settings arrive as data; no dev
+  // server or executable article source is needed in the online editor.
+  if (new URLSearchParams(location.search).get('__lettercamp_preview') === '1' && document.querySelector('[data-lettercamp-theme]')) {
+    import('../lib/theme-preview.jsx').then(({ installThemePreview }) => installThemePreview());
+  }
+</script>

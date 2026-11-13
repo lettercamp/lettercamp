@@ -1,0 +1,20 @@
+---
+import { PostHeader, TableOfContents } from '../public.jsx';
+import PostBody from '../PostBody.astro';
+import RelatedPosts from '../RelatedPosts.astro';
+import { readContentWidthEm } from '../../lib/post-layout';
+const { site, post, headings, relatedPosts } = Astro.props;
+const postLayout = site.post ?? {};
+---
+  <article class="publication publication-post" style={{ '--post-content-width': `calc(var(--text-base) * ${readContentWidthEm(postLayout)})` }} data-post-hero={postLayout.heroLayout ?? 'stacked'}
+    data-image-content-width={readContentWidthEm(postLayout) * (Number(site.design?.typography?.bodyBaseSizePx) || 16)}
+    data-reading-minutes={post.readingMinutes}
+    data-post-show-cover={String(post.showCover !== false)}
+    data-post-cover={postLayout.showCover === false || post.showCover === false ? 'hidden' : 'visible'} data-post-toc={postLayout.showTableOfContents === false ? 'hidden' : 'visible'}>
+    <PostHeader post={post} site={site} />
+    <div data-lettercamp-static-toc class:list={['article-body', { 'article-body-with-toc': headings.length > 0 }]}>
+      <TableOfContents headings={headings} site={site} show={true} variant={postLayout.heroLayout === 'split' ? 'sidebar' : 'floating'} />
+      <PostBody site={site}><slot /></PostBody>
+    </div>
+    <RelatedPosts posts={relatedPosts} site={site} />
+  </article>

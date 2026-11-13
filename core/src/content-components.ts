@@ -1,9 +1,11 @@
+import { subscribeDefaults, subscribeTitle } from "./subscribe.js";
+import { normalizeEmbed, embedFrame, embedProvider } from "./embeds.js";
 import type { Nodes, Root, RootContent } from "mdast";
 import type { MdxJsxFlowElement, MdxJsxTextElement } from "mdast-util-mdx";
 import { readCodeSettings, writeCodeSettings } from "./code-block.js";
 import { textStyleString } from "./text-styles.js";
 
-export const contentComponentNames = ["KeyTakeaways", "FAQ", "FAQItem", "Image", "Video", "Audio", "CodeBlock", "Table", "TableRow", "TableCell"] as const;
+export const contentComponentNames = ["Subscribe", "KeyTakeaways", "FAQ", "FAQItem", "Image", "Video", "Audio", "Embed", "CodeBlock", "Table", "TableRow", "TableCell"] as const;
 export type ContentElement = MdxJsxFlowElement | MdxJsxTextElement;
 export type ComponentValue = string | number | boolean | number[];
 export const isContentElement = (node: Nodes): node is ContentElement => node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
@@ -54,13 +56,40 @@ const widthOf = (value: ComponentValue | undefined) => value === "wide" || value
 const positive = (value: ComponentValue | undefined) => Number.isFinite(Number(value)) && Number(value) > 0 ? Number(value) : undefined;
 const allowed = (props: Record<string, ComponentValue>, names: string[]) => Object.keys(props).every(name => names.includes(name));
 
-export function expandContentComponent(node: Nodes): Nodes | null {
+export function expandContentComponent(node: Nodes, siteName?: string): Nodes | null {
   if (!isContentComponent(node)) return null;
   const props = componentProps(node);
   if (!props) return null;
   if (props.width !== undefined && !["regular", "wide", "full"].includes(String(props.width))) return null;
   const inline = node.type === "mdxJsxTextElement";
   switch (node.name) {
+    case "Subscribe": {
+      if (inline || !allowed(props, ["title", "description", "buttonLabel", "width"]) || meaningful(node.children).length) return null;
+      if (["title", "description", "buttonLabel"].some(key => props[key] !== undefined && typeof props[key] !== "string")) return null;
+      const title = props.title ?? subscribeTitle(siteName), description = props.description ?? subscribeDefaults.description;
+      const buttonLabel = props.buttonLabel || subscribeDefaults.buttonLabel;
+      return html("div", { "data-lettercamp-subscribe": "true", "data-block-width": widthOf(props.width),
+        "data-subscribe-props": JSON.stringify(props), "data-subscribe-card": "" }, [
+        ...(title ? [html("h2", { "data-subscribe-title": "", "data-subscribe-default-title": props.title === undefined ? "" : undefined }, [{ type: "text", value: String(title) }])] : []),
+        ...(description ? [html("p", { "data-subscribe-description": "" }, [{ type: "text", value: String(description) }])] : []),
+        html("form", { "data-subscribe-form": "", "data-lettercamp-native-subscribe": "", method: "post" }, [
+          html("label", { "data-subscribe-label": "" }, [html("input", { type: "email", name: "email", autoComplete: "email", "aria-label": "Email address", placeholder: "Type your email...", required: true, maxLength: 254 })]),
+          html("label", { "data-subscribe-trap": "", "aria-hidden": "true" }, [{ type: "text", value: "Website" }, html("input", { type: "text", name: "website", tabIndex: -1, autoComplete: "off" })]),
+          html("button", { "data-subscribe-button": "", type: "submit", disabled: true }, [{ type: "text", value: String(buttonLabel) }]),
+        ]),
+        html("p", { "data-subscribe-message": "", role: "status", "aria-live": "polite" }),
+      ]);
+    }
+    case "Embed": {
+      if (inline || !allowed(props, ["src", "title", "pixelWidth", "pixelHeight", "width", "caption", "fallback"]) || typeof props.src !== "string" || meaningful(node.children).length) return null;
+      const embed = normalizeEmbed({ src: props.src, title: typeof props.title === "string" ? props.title : undefined,
+        pixelWidth: positive(props.pixelWidth), pixelHeight: positive(props.pixelHeight), width: widthOf(props.width), caption: typeof props.caption === "string" ? props.caption : undefined, fallback: typeof props.fallback === "string" ? props.fallback : undefined });
+      const frame = embedFrame(embed);
+      return html("div", { "data-lettercamp-embed": "true", "data-embed-src": embed.src, "data-embed-title": embed.title,
+        "data-embed-width": embed.pixelWidth, "data-embed-height": embed.pixelHeight, "data-block-width": embed.width, "data-embed-caption": embed.caption, "data-embed-text-value": embed.fallback,
+      }, frame ? [...(embedProvider(embed.src)?.provider === "x" ? [html("blockquote", { "data-embed-text": "true" }, [{ type: "text", value: embed.fallback || "View this post on X" }])] : []), html("iframe", { ...frame, style: `--embed-ratio: ${embed.pixelWidth} / ${embed.pixelHeight}` }),
+        ...(embed.caption ? [html("figcaption", {}, [{ type: "text", value: embed.caption }])] : [])] : []);
+    }
     case "FAQ": {
       if (inline || !allowed(props, ["width"])) return null;
       const items = meaningful(node.children.flatMap<Nodes>(child => child.type === "paragraph" ? child.children : [child]));
@@ -186,7 +215,7 @@ export function importedComponentNames(tree: Root): Set<string> {
 
 // Lower built-ins to the existing HTML contract before highlighting and layout.
 // Generic mdast nodes with hName work in both Markdown and Astro's MDX compiler.
-export function renderContentComponents(tree: Root) {
+export function renderContentComponents(tree: Root, siteName?: string) {
   const imported = importedComponentNames(tree);
   // Markdown needs a paragraph context to escape question text when exporting
   // legacy HTML. A native summary only accepts phrasing content on the page.
@@ -197,7 +226,7 @@ export function renderContentComponents(tree: Root) {
     // Plain Markdown tables use the same layout as tables edited in rich mode.
     if (node.type === "table") return lower(expandTable(contentElement("Table", {}, [node]), {})!);
     if (isContentComponent(node) && !imported.has(node.name!)) {
-      const expanded = expandContentComponent(node);
+      const expanded = expandContentComponent(node, siteName);
       if (!expanded) throw new Error(`Invalid <${node.name}> component. Use supported literal properties and children.`);
       return lower(expanded);
     }

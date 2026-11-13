@@ -109,7 +109,7 @@ h1 { font-size: var(--text-title); font-weight: 500; line-height: 1.15; letter-s
 .image-placeholder { display: grid; place-items: center; height: 100%; font-size: calc(var(--text-base) * 1.625); letter-spacing: -.05em; color: var(--site-text-secondary); }
 .post-card h3 { font-size: var(--text-card-title); font-weight: 500; line-height: 1.35; letter-spacing: -.01em; margin: 0 0 8px; text-wrap: pretty; }
 .post-card p { font-size: var(--text-summary); line-height: 1.55; margin: 0; color: var(--text-secondary); }
-.post-byline { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: auto; padding-top: 24px; color: var(--site-text-muted); font-size: var(--text-label); line-height: 1.4; }
+.post-byline:not(.lettercamp-post-byline) { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: auto; padding-top: 24px; color: var(--site-text-muted); font-size: var(--text-label); line-height: 1.4; }
 .post-authors { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; }
 .author-portraits { position: relative; z-index: 2; display: inline-flex; align-items: center; flex-shrink: 0; isolation: isolate; }
 .author-portrait { position: relative; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 24px; height: 24px; border: 1px solid var(--site-surface); border-radius: 50%; background: var(--site-surface-active); }
@@ -165,8 +165,8 @@ h1 { font-size: var(--text-title); font-weight: 500; line-height: 1.15; letter-s
 .article-hero-image { margin: 0; }
 .article-hero-image img { width: 100%; border-radius: calc(var(--image-short-side, 200px) * var(--image-radius, 0.02)); }
 .publication-post { --post-content-width: calc(var(--text-base) * 40); }
-.publication-post[data-post-cover='hidden'] .article-hero-image, .publication-post[data-post-toc='hidden'] .article-sidebar { display: none; }
-.publication-post[data-post-cover='hidden'] .article-hero, .publication-post[data-post-hero='stacked'] .article-hero { display: block; }
+.publication-post[data-post-cover='hidden'] .article-hero-image, .publication-post[data-post-toc='hidden'] :is(.article-sidebar, .lettercamp-toc) { display: none; }
+.publication-post[data-post-cover='hidden'] .article-hero, .lettercamp-post-header[data-post-cover='hidden'], :is(.publication-post[data-post-hero='stacked'] .article-hero, .lettercamp-post-header[data-post-hero='stacked']) { display: block; }
 .publication-post[data-post-toc='hidden'] .article-body { display: block; max-width: var(--post-content-width); }
 .article-body { max-width: var(--post-content-width, 640px); margin-inline: auto; }
 .article-body-with-toc { display: grid; grid-template-columns: 180px minmax(0, var(--post-content-width, 640px)); align-items: start; gap: 32px; max-width: calc(var(--post-content-width, 640px) + 212px); }
@@ -293,36 +293,36 @@ h1 { font-size: var(--text-title); font-weight: 500; line-height: 1.15; letter-s
 }
 /* Vertical posts share one reading column from the headline through the body. */
 .publication-post[data-post-hero='stacked'] { margin-top: 48px; }
-.publication-post[data-post-hero='stacked'] .article-hero { margin-bottom: 40px; padding-bottom: 0; border-bottom: 0; }
-.publication-post[data-post-hero='stacked'] .article-intro { max-width: var(--post-content-width); margin-inline: auto; text-align: left; }
-.publication-post[data-post-hero='stacked'] h1 { margin-bottom: 0; line-height: 1.12; }
-.publication-post[data-post-hero='stacked'] .article-intro .description { margin: 16px 0 0; }
-.publication-post[data-post-hero='stacked'] .byline { justify-content: flex-start; margin-top: 24px; }
-.publication-post[data-post-hero='stacked'] .byline :is(.post-byline, .post-authors) { justify-content: flex-start; }
-.publication-post[data-post-hero='stacked'] .article-hero-image { margin: 32px auto 0; }
-.publication-post[data-post-hero='stacked'] .article-hero-image img { border-radius: calc(var(--image-short-side, 200px) * var(--image-radius, 0.02)); }
+:is(.publication-post[data-post-hero='stacked'] .article-hero, .lettercamp-post-header[data-post-hero='stacked']) { margin-bottom: 40px; padding-bottom: 0; border-bottom: 0; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .article-intro { max-width: var(--post-content-width); margin-inline: auto; text-align: left; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) h1 { margin-bottom: 0; line-height: 1.12; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .article-intro .description { margin: 16px 0 0; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .byline { justify-content: flex-start; margin-top: 24px; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .byline :is(.post-byline, .post-authors) { justify-content: flex-start; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .article-hero-image { margin: 32px auto 0; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .article-hero-image img { border-radius: calc(var(--image-short-side, 200px) * var(--image-radius, 0.02)); }
 .publication-post[data-post-hero='stacked'] .article-body { display: block; max-width: var(--post-content-width); }
 .publication-post[data-post-hero='stacked'] .article-sidebar { position: static; max-height: none; overflow: visible; margin: 0 0 32px; padding: 0; border: 0; }
 .toc-trigger { display: none; }
-.publication-post[data-post-hero='stacked'] .article-sidebar[data-floating-toc] { position: fixed; z-index: 20; left: 8px; top: 50%; transform: translateY(-50%); margin: 0; }
-.publication-post[data-post-hero='stacked'] .toc-trigger { display: flex; flex-direction: column; align-items: center; gap: 0; max-height: min(60dvh, 320px); overflow: hidden; width: 28px; padding: 8px 6px; border: 0; border-radius: 6px; background: transparent; color: var(--site-text-strong); cursor: pointer; }
+:is(.publication-post[data-post-hero='stacked'] .article-sidebar, .lettercamp-toc[data-toc-variant='floating'])[data-floating-toc] { position: fixed; z-index: 20; left: 8px; top: 50%; transform: translateY(-50%); margin: 0; }
+:is(.publication-post[data-post-hero='stacked'], .lettercamp-toc[data-toc-variant='floating']) .toc-trigger { display: flex; flex-direction: column; align-items: center; gap: 0; max-height: min(60dvh, 320px); overflow: hidden; width: 28px; padding: 8px 6px; border: 0; border-radius: 6px; background: transparent; color: var(--site-text-strong); cursor: pointer; }
 .toc-trigger span { position: relative; display: block; flex: none; width: 16px; height: 12px; }
 .toc-trigger span::after { content: ''; position: absolute; left: 0; top: 5px; width: 100%; height: 2px; border-radius: 2px; background: currentColor; opacity: .3; transform: scaleX(.5); transform-origin: left center; transition: transform 140ms ease-out, opacity 140ms ease-out; }
 .toc-trigger:is([aria-expanded='true'], :hover, :focus-visible) span::after { opacity: .38; transform: scaleX(.5625); }
 .toc-trigger span[data-active]::after, .toc-trigger:is([aria-expanded='true'], :hover, :focus-visible) span[data-active]::after { opacity: .5; transform: scaleX(.625); }
 .toc-trigger:is([aria-expanded='true'], :hover, :focus-visible) span:hover::after { opacity: 1; transform: scaleX(1); }
 .toc-trigger:focus-visible { outline: 2px solid var(--site-text-faint); outline-offset: 1px; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc { visibility: hidden; opacity: 0; position: absolute; left: 100%; top: 50%; transform: translate(-4px, -50%) scale(.98); transform-origin: left center; width: min(240px, calc(100vw - 60px)); max-height: calc(100dvh - 48px); overflow-y: auto; overscroll-behavior: contain; padding: 5px; margin-left: 6px; border: 0; border-radius: 9px; background: var(--site-background, #fff); box-shadow: 0 0 0 1px var(--site-border), 0 6px 18px rgb(0 0 0 / 2%), 0 3px 9px rgb(0 0 0 / 4%), 0 1px 1px rgb(0 0 0 / 4%); transition: opacity 120ms ease-out, transform 140ms ease-out; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc]::after { content: ''; position: absolute; left: 100%; top: 0; width: 6px; height: 100%; }
-.publication-post[data-post-hero='stacked'] [data-toc-open] .article-toc { visibility: visible; opacity: 1; transform: translate(0, -50%) scale(1); }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc h2 { margin: 0 0 3px; padding: 6px 8px 4px; color: var(--site-text-muted); font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc li + li { margin-top: 4px; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc a { padding: 5px 8px; border-radius: 5px; color: var(--site-text-strong); font-size: var(--text-label); line-height: 1.4; white-space: normal; overflow-wrap: anywhere; text-decoration: none; transition: background-color 120ms ease; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc a[aria-current='location'] { color: var(--site-text-strong); font-weight: 500; background: var(--site-surface-active); }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc a:is(:hover, :focus-visible) { background: var(--site-surface); color: var(--site-accent, var(--site-text-strong)); outline: none; }
-.publication-post[data-post-hero='stacked'] [data-floating-toc] .toc-label { display: inline; animation: none; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc { visibility: hidden; opacity: 0; position: absolute; left: 100%; top: 50%; transform: translate(-4px, -50%) scale(.98); transform-origin: left center; width: min(240px, calc(100vw - 60px)); max-height: calc(100dvh - 48px); overflow-y: auto; overscroll-behavior: contain; padding: 5px; margin-left: 6px; border: 0; border-radius: 9px; background: var(--site-background, #fff); box-shadow: 0 0 0 1px var(--site-border), 0 6px 18px rgb(0 0 0 / 2%), 0 3px 9px rgb(0 0 0 / 4%), 0 1px 1px rgb(0 0 0 / 4%); transition: opacity 120ms ease-out, transform 140ms ease-out; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc])::after { content: ''; position: absolute; left: 100%; top: 0; width: 6px; height: 100%; }
+:is(.publication-post[data-post-hero='stacked'] [data-toc-open], .lettercamp-toc[data-toc-variant='floating'][data-toc-open]) .article-toc { visibility: visible; opacity: 1; transform: translate(0, -50%) scale(1); }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc h2 { margin: 0 0 3px; padding: 6px 8px 4px; color: var(--site-text-muted); font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc li + li { margin-top: 4px; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc a { padding: 5px 8px; border-radius: 5px; color: var(--site-text-strong); font-size: var(--text-label); line-height: 1.4; white-space: normal; overflow-wrap: anywhere; text-decoration: none; transition: background-color 120ms ease; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc a[aria-current='location'] { color: var(--site-text-strong); font-weight: 500; background: var(--site-surface-active); }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc a:is(:hover, :focus-visible) { background: var(--site-surface); color: var(--site-accent, var(--site-text-strong)); outline: none; }
+:is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .toc-label { display: inline; animation: none; }
 @media (prefers-reduced-motion: reduce) {
-  .toc-trigger span::after, .publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc, .publication-post[data-post-hero='stacked'] [data-floating-toc] .article-toc a { transition: none; }
+  .toc-trigger span::after, :is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc, :is(.publication-post[data-post-hero='stacked'] [data-floating-toc], .lettercamp-toc[data-toc-variant='floating'][data-floating-toc]) .article-toc a { transition: none; }
 }
 .article-toc a[aria-current='location'] { color: var(--site-foreground); font-weight: 500; }
 @media (min-width: 761px) {
@@ -331,13 +331,13 @@ h1 { font-size: var(--text-title); font-weight: 500; line-height: 1.15; letter-s
 }
 @media (max-width: 900px) {
   /* Keep the floating control clear of the reading column on small screens. */
-  .publication-post[data-post-hero='stacked'] .article-sidebar[data-floating-toc] { left: 0; }
-  .publication-post[data-post-hero='stacked'] .toc-trigger { width: 20px; padding-inline: 2px; }
+  :is(.publication-post[data-post-hero='stacked'] .article-sidebar, .lettercamp-toc[data-toc-variant='floating'])[data-floating-toc] { left: 0; }
+  :is(.publication-post[data-post-hero='stacked'], .lettercamp-toc[data-toc-variant='floating']) .toc-trigger { width: 20px; padding-inline: 2px; }
 }
 @media (max-width: 600px) {
   .publication-post[data-post-hero='stacked'] { margin-top: 32px; }
-  .publication-post[data-post-hero='stacked'] .article-hero { margin-bottom: 32px; }
-  .publication-post[data-post-hero='stacked'] .byline { gap: 8px 16px; margin-top: 20px; }
+  :is(.publication-post[data-post-hero='stacked'] .article-hero, .lettercamp-post-header[data-post-hero='stacked']) { margin-bottom: 32px; }
+  :is(.publication-post[data-post-hero='stacked'], .lettercamp-post-header[data-post-hero='stacked']) .byline { gap: 8px 16px; margin-top: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }

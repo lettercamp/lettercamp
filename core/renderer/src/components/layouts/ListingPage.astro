@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import BlogHome from './PostList.astro';
+import site from '../../site.js';
+import { PostList as CustomPostList } from '../../custom-posts.js';
+import { PostList } from './resolve.jsx';
+import { getPosts, getCategories } from '../../lib/posts.js';
+import { POSTS_PER_PAGE, pageCount } from '../../lib/pagination';
+import { sitePath } from '../../lib/urls.js';
+const { category = '', current = 1 } = Astro.props;
+const allPosts = getPosts(site.language, site.timeZone);
+const matching = category ? allPosts.filter(post => post.category === category) : allPosts;
+const posts = matching.slice((current - 1) * POSTS_PER_PAGE, current * POSTS_PER_PAGE);
+const categories = getCategories();
+const base = category ? categories.find(item => item.name === category).href : sitePath('/');
+const title = category || (site.home.title ?? `${site.name} Blog`);
+const firstPost = posts[0];
+const priorityImage = firstPost && sitePath(firstPost.image ?? firstPost.ogImage ?? site.seo?.ogImage);
+---
+<SiteLayout site={site} page={{ title }} posts={posts} priorityImage={priorityImage} listing={{ page: current, path: base }} themePreview={{ kind: 'list', props: { category, current, total: pageCount(matching.length), count: matching.length, base } }}>
+  {CustomPostList ? <PostList site={site} posts={posts} categories={categories} category={category} current={current} total={pageCount(matching.length)} count={matching.length} base={base} pathname={Astro.url.pathname} client:load /> : <BlogHome site={site} category={category} posts={posts} categories={categories} current={current} total={pageCount(matching.length)} count={matching.length} base={base} />}
+</SiteLayout>

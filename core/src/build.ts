@@ -52,8 +52,8 @@ export async function buildSite(directory: string, options: BuildOptions, optimi
       cacheDir: path.join(workspace, '.cache'),
       publicDir: path.join(workspace, '.lettercamp-no-public'), outDir, output: 'static',
       integrations: [mdx(), react(), imageOptimization(workspace)],
-      vite: reactViteConfig,
-      markdown: { syntaxHighlight: false, processor: unified({ remarkPlugins: [contentComponents, readingTime, searchContent, codeBlocks, componentBlocks, [mediaDimensions, { root }], [publicationLinks, { basePath: origin.pathname }]], rehypePlugins: [[mediaDimensions, { root }]] }) },
+      vite: reactViteConfig(workspace),
+      markdown: { syntaxHighlight: false, processor: unified({ remarkPlugins: [[contentComponents, { settingsPath: path.join(root, 'settings.json') }], readingTime, searchContent, codeBlocks, componentBlocks, [mediaDimensions, { root }], [publicationLinks, { basePath: origin.pathname }]], rehypePlugins: [[mediaDimensions, { root }]] }) },
       // Ship the publication's CSS with the document, avoiding a render-blocking
       // HTML -> stylesheet round trip on every cold landing.
       build: { format: 'directory', inlineStylesheets: 'always', ...(options.assetsPrefix ? { assetsPrefix: options.assetsPrefix } : {}) },

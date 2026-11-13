@@ -5,7 +5,7 @@
 .article-meta-row:not(:has(.article-category)) { display: none; }
 .article-meta-row .article-category { min-width: 0; margin: 0; }
 .article-meta-row > .post-share-button { display: none; }
-.post-share-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; margin-left: auto; padding: 5px 11px; border: 0; border-radius: 999px; background: var(--site-surface-hover); color: var(--site-text-strong); font-size: 13px; line-height: 1.4; }
+.post-share-button { flex-shrink: 0; margin-left: auto; background: var(--site-surface-hover); color: var(--site-text-strong); }
 .post-share-button:hover { background: var(--site-surface-active); color: var(--site-foreground); }
 .post-share-button svg { width: 15px; height: 15px; }
 html:has(.post-share-dialog[open]) { overflow: hidden; }
@@ -60,14 +60,14 @@ html:has(.post-share-dialog[open]) { overflow: hidden; }
   .byline:has(.post-share-button) { column-gap: 10px; }
 }
 /* Split headers keep metadata above authors, with sharing centered beside both rows. */
-.publication-post[data-post-hero='split'] .byline { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 6px 16px; }
-.publication-post[data-post-hero='split'] .byline .post-byline { display: contents; }
-.publication-post[data-post-hero='split'] .byline .post-byline > :is(time, .reading-time) { grid-row: 1; }
-.publication-post[data-post-hero='split'] .byline > .post-share-button { display: inline-flex; grid-column: 3; grid-row: 1 / 3; align-self: center; }
-.publication-post[data-post-hero='split'] .byline .post-authors { grid-column: 1 / 3; grid-row: 2; min-width: 0; order: 0; }
-.publication-post[data-post-hero='split'] .byline .author-names { flex: 1; min-width: 0; white-space: normal; }
-.publication-post[data-post-hero='split'] .article-meta-row > .post-share-button { display: none; }
-.publication-post[data-post-hero='split'] .article-meta-row:not(:has(.article-category)) { display: none; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 6px 16px; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline .post-byline { display: contents; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline .post-byline > :is(time, .reading-time) { grid-row: 1; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline > .post-share-button { display: inline-flex; grid-column: 3; grid-row: 1 / 3; align-self: center; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline .post-authors { grid-column: 1 / 3; grid-row: 2; min-width: 0; order: 0; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .byline .author-names { flex: 1; min-width: 0; white-space: normal; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .article-meta-row > .post-share-button { display: none; }
+:is(.publication-post[data-post-hero='split'], .lettercamp-post-header[data-post-hero='split']) .article-meta-row:not(:has(.article-category)) { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .post-share-dialog[open] { animation: post-share-enter 140ms ease-out; }
   @keyframes post-share-enter { from { opacity: 0; transform: translateY(6px) scale(.98); } to { opacity: 1; transform: none; } }

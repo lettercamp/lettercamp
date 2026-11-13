@@ -1,0 +1,17 @@
+---
+import { LuSearch } from 'react-icons/lu';
+import '../styles/post-search.css';
+import { postSearchScript } from '../lib/post-search';
+import { sitePath } from '../lib/urls.js';
+---
+<dialog id="post-search-dialog" class="post-search-dialog" data-search-index={sitePath('/search-index.json')} aria-label="Search articles">
+  <div class="post-search-header">
+    <LuSearch aria-hidden="true" />
+    <input type="text" role="searchbox" enterkeyhint="search" placeholder="Search articles…" aria-label="Search article titles and content" aria-controls="post-search-results" autocomplete="off" spellcheck="false" autofocus />
+    <button type="button" class="post-search-close" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+  </div>
+  <p class="post-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <ul id="post-search-results" class="post-search-results" aria-label="Matching articles"></ul>
+  <p class="post-search-empty" hidden>No articles found. Try a different word or title.</p>
+</dialog>
+<script is:inline set:html={postSearchScript} />

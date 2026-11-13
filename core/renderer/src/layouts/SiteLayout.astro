@@ -1,5 +1,10 @@
 ---
 import '../styles/site.css';
+import { subscribeStyles } from '../lib/subscribe';
+import '../styles/custom-posts.css';
+import SearchDialog from '../components/SearchDialog.astro';
+import '../styles/public-components.css';
+import ThemePreview from '../components/ThemePreview.astro';
 import '../styles/post-share.css';
 import { basePath, sitePath } from '../lib/urls.js';
 import { codeBlockStyles } from '../lib/code-block';
@@ -14,14 +19,16 @@ import { mobileNavigationScript } from '../lib/mobile-navigation';
 import { blockWidthStyles } from '../lib/block-widths';
 import { tableStyles } from '../lib/table-styles';
 import { keyTakeawaysStyles } from '../lib/key-takeaways';
+import { embedStyles } from '../lib/embeds';
 import { faqStyles } from '../lib/faq';
 import { siteColors, typographyColorStyles } from '../lib/site-colors';
 import { imageWidthStyles } from '../lib/image-widths';
 import { googleAnalyticsScript } from '../lib/analytics';
 import Header from '../components/HeaderSlot.astro';
+import MobileMenuIcons from '../components/MobileMenuIcons.astro';
 import Footer from '../components/FooterSlot.astro';
 
-const { site, page, article = false, posts = [], priorityImage, listing } = Astro.props;
+const { site, page, article = false, posts = [], priorityImage, listing, themePreview } = Astro.props;
 const meta = pageMetadata(site, page, Astro.url, article, basePath, posts, listing);
 const typography = site.design?.typography ?? {};
 const fonts = fontResources(typography, article ? 700 : 500, basePath);
@@ -53,6 +60,8 @@ const analytics = googleAnalyticsScript(site.analytics?.googleAnalyticsId);
     <style is:inline set:html={tableStyles} />
     <style is:inline set:html={keyTakeawaysStyles} />
     <style is:inline set:html={faqStyles} />
+    <style is:inline set:html={subscribeStyles} />
+    <style is:inline set:html={embedStyles} />
     <title>{meta.documentTitle}</title>
     <meta name="description" content={meta.description} />
     {meta.keywords && <meta name="keywords" content={meta.keywords} />}
@@ -85,14 +94,25 @@ const analytics = googleAnalyticsScript(site.analytics?.googleAnalyticsId);
     {analytics && <script is:inline data-lettercamp-analytics set:html={analytics} />}
   </head>
   <body>
+    <template data-mobile-menu-icons><MobileMenuIcons /></template>
     <a class="skip-link" href="#content">Skip to content</a>
     <Header site={site} pathname={Astro.url.pathname} />
     <main id="content"><slot /></main>
+    {themePreview && <ThemePreview site={site} snapshot={themePreview} />}
     <Footer site={site} pathname={Astro.url.pathname} />
+    <SearchDialog />
     <script is:inline data-lettercamp-images set:html={imageRoundingScript} />
     <script is:inline data-lettercamp-toc set:html={postTocScript} />
     <script is:inline data-lettercamp-authors set:html={authorDialogScript} />
     <script is:inline data-lettercamp-share set:html={postShareScript} />
     <script is:inline data-lettercamp-navigation set:html={mobileNavigationScript} />
+    <script>
+      import { listenForEmbedFrames } from '../lib/embed-client';
+      listenForEmbedFrames();
+      import { installSubscribeForms } from '../lib/subscribe-client';
+      import { installSubscribeOverride } from '../custom-subscribe';
+      installSubscribeForms();
+      installSubscribeOverride();
+    </script>
   </body>
 </html>

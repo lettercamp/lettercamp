@@ -29,6 +29,7 @@ export const postShareScript = `
     } catch { return ''; }
   };
   const ensureTrigger = () => {
+    if (document.querySelector('.lettercamp-post-header')) return;
     const byline = document.querySelector('.publication-post .byline');
     if (byline && !byline.querySelector('.post-share-button')) byline.insertAdjacentHTML('beforeend', triggerMarkup);
     const intro = document.querySelector('.publication-post .article-intro');
