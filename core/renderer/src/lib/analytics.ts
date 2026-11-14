@@ -6,6 +6,7 @@ export function googleAnalyticsScript(value: unknown): string {
   const host = url.hostname;
   if (!['http:', 'https:'].includes(url.protocol)
     || host === 'localhost' || host.endsWith('.localhost') || /^127\\./.test(host) || host === '[::1]'
+    || /^preview-[a-f0-9-]{36}\\.lettercamp\\.site$/.test(host)
     || url.searchParams.get('__lettercamp_preview') === '1' || url.pathname.startsWith('/_deployments/')) return;
   if (document.querySelector('script[data-lettercamp-google-tag]')) return;
   window.dataLayer = window.dataLayer || [];

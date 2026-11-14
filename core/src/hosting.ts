@@ -58,10 +58,6 @@ export async function selectHostingSite(token: string, allowCreate: boolean, cre
   }
   if (!allowCreate) throw new Error('This folder has no deployment site. Run lettercamp deploy first to create one.');
   terminal.note(createNew ? 'Creating a new site for this folder. Its previous site will stay unchanged.' : 'First deployment: creating a new site for this folder.');
-  const { workspaces } = await request<{ workspaces: { id: string; name: string }[] }>(token, 'workspaces');
-  if (!workspaces.length) throw new Error('No accessible workspace was found for this account.');
-  const workspace = workspaces[workspaces.length === 1 ? 0 : await choose('Choose a workspace', workspaces.map(workspace => workspace.name))];
-  terminal.detail('Workspace', workspace.name);
   const previous = binding ?? undefined;
   let name = 'My Blog';
   const rejectedSlugs = new Set<string>();
@@ -78,7 +74,7 @@ export async function selectHostingSite(token: string, allowCreate: boolean, cre
       continue;
     }
     const id = randomUUID();
-    binding = { origin: apiOrigin(), siteId: id, fresh: true, creation: { id, workspaceId: workspace.id, name, slug, previous } };
+    binding = { origin: apiOrigin(), siteId: id, fresh: true, creation: { id, name, slug, previous } };
     await saveBinding(binding);
     try { return await finishCreation(token, binding); }
     catch (error) {

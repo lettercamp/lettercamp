@@ -1,4 +1,5 @@
 import { Command, InvalidArgumentError } from 'commander';
+import { registerAuthoringCommands } from './authoring.js';
 import { version, showVersion, update } from './version.js';
 import type { BuildOptions } from './build.js';
 import type { DevOptions } from './dev.js';
@@ -39,6 +40,8 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
     await notifyUpdate(argv.slice(2));
   });
 
+  registerAuthoringCommands(program);
+
   program.command('login')
     .description('Sign in through your browser to publish and manage your site')
     .option('--no-browser', 'Print the approval link without opening a browser')
@@ -55,14 +58,39 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
     .action(async () => { const { logout } = await import('./account.js'); await logout(); });
 
   program.command('upload')
-    .description('Upload images or fonts and print their permanent URLs')
-    .argument('<files...>', 'JPEG, PNG, WebP, AVIF, GIF, TTF, OTF, WOFF, or WOFF2 files, subject to workspace limits (maximum 100 MB each)')
+    .description('Upload assets and print their hosted URLs')
+    .argument('<files...>', 'JPEG, PNG, WebP, AVIF, GIF, TTF, OTF, WOFF, WOFF2, or (in connected workspaces) MP4 and WebM files, subject to site limits (maximum 100 MB each)')
     .option('--site <slug>', 'Destination site (remembered for this local publication)')
     .option('--json', 'Print URL and image dimensions or font settings; multiple files return an array')
-    .addHelpText('after', '\nExamples:\n  lettercamp upload cover.png portrait.jpg --site my-blog --json\n  lettercamp upload brand.woff2 --json\n\nUses your saved login and an existing site. Run lettercamp login if sign-in is required.\nUse --json for agents and scripts, then write the returned URLs into your source.\nImage optimization runs in the background; the original URL is usable immediately.\nUploads do not edit source files or publish the site.\n\nMultiple files print filename<TAB>URL. Failed files are reported and remaining uploads continue.\nThe command exits unsuccessfully if any upload fails. Single-file output is unchanged.')
+    .addHelpText('after', '\nExamples:\n  lettercamp upload cover.png portrait.jpg --site my-blog --json\n  lettercamp upload brand.woff2 --json\n\nA connected workspace uses its paired site. Elsewhere, use lettercamp login and select an existing site.\nUse --json for agents and scripts, then write the returned URLs into your source.\nImage optimization runs in the background; the original URL is usable immediately.\nUploads do not edit source files or publish the site.\n\nMultiple files print filename<TAB>URL. Failed files are reported and remaining uploads continue.\nThe command exits unsuccessfully if any upload fails. Single-file output is unchanged.')
     .action(async (files: string[], options) => { const { upload } = await import('./upload.js'); await upload(files, options); });
 
   creationCommand(program.command('new'));
+
+  program.command('connect')
+    .description('Connect a cloud site and download its source for local editing')
+    .argument('<code>', 'One-use code from Settings → Agent connections')
+    .option('--directory <path>', 'New workspace folder (defaults to the site slug)')
+    .option('--json', 'Print connection details as JSON')
+    .action(async (code: string, options) => { const { connect } = await import('./cloud-workspace.js'); await connect(code, options); });
+
+  program.command('pull')
+    .description('Fetch cloud source, preserving local edits and reporting conflicts')
+    .option('--keep-local <paths...>', 'Keep local versions of the named conflicting files')
+    .option('--take-remote <paths...>', 'Use cloud versions of the named conflicting files')
+    .option('--json', 'Print changes and conflicts as JSON')
+    .action(async options => { const { pull } = await import('./cloud-workspace.js'); await pull(options); });
+
+  program.command('push')
+    .description('Save a source checkpoint and build a cloud preview without publishing')
+    .option('--no-wait', 'Return after queuing the preview; run push again to finish')
+    .option('--json', 'Print the preview result as JSON')
+    .action(async options => { const { push } = await import('./cloud-workspace.js'); await push(options); });
+
+  program.command('status')
+    .description('Show the connected site, source changes, and preview build errors')
+    .option('--json', 'Print status as JSON')
+    .action(async options => { const { workspaceStatus } = await import('./cloud-workspace.js'); await workspaceStatus(options); });
 
   program.command('deploy')
     .description('Create a new site on first deploy, then update this folder’s site')

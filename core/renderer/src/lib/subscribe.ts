@@ -7,11 +7,14 @@ export function subscribeTitle(name?: unknown) {
 }
 
 // Shared by the editor, published HTML, and the public React element.
+// Inside article prose, native text parts take precedence over ordinary
+// typography selectors (including a custom layout wrapper). Reset heading
+// decoration explicitly; authors can still target the component parts.
 export const subscribeStyles = `${compactButtonStyles}
 [data-lettercamp-subscribe] { margin-block: 1.5em; }
 [data-subscribe-card] { box-sizing: border-box; min-width: 0; padding: 32px 20px; border: 0; border-radius: 12px; background: var(--site-surface, #fafafa); color: var(--site-body-color, #111); font-family: inherit; text-align: center; }
-[data-subscribe-card] [data-subscribe-title] { margin: 0; font-family: var(--heading-font, inherit); color: var(--site-heading-color, #111); font-size: 1.1em; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
-[data-subscribe-card] [data-subscribe-description] { margin: 8px 0 0; font-size: .9em; line-height: 1.6; overflow-wrap: anywhere; }
+[data-subscribe-card] [data-subscribe-title], .prose [data-subscribe-card] [data-subscribe-title] { margin: 0; padding: 0; border: 0; letter-spacing: normal; text-transform: none; font-style: normal; font-family: var(--heading-font, inherit); color: var(--site-heading-color, #111); font-size: 1.1em; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+[data-subscribe-card] [data-subscribe-description], .prose [data-subscribe-card] [data-subscribe-description] { margin: 8px 0 0; padding: 0; border: 0; font-size: .9em; line-height: 1.6; overflow-wrap: anywhere; }
 [data-subscribe-card] [data-subscribe-form] { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 360px; gap: 8px; margin: 14px auto 0; }
 [data-subscribe-card] [data-subscribe-label] { display: flex; flex: 1 1 0; min-width: 0; margin: 0; }
 [data-subscribe-card] input[type=email] { box-sizing: border-box; width: 100%; min-width: 0; height: 32px; padding: 0 12px; border: 1px solid var(--site-border, #e5e5e8); border-radius: 8px; background: var(--site-background, #fff); color: var(--site-body-color, #111); font: inherit; font-size: 13px; line-height: normal; }
@@ -21,7 +24,7 @@ export const subscribeStyles = `${compactButtonStyles}
 [data-site-accent] [data-subscribe-card] [data-subscribe-button], [data-site-accent] [data-subscribe-card] [data-subscribe-button]:hover:not(:disabled) { background: var(--site-accent); color: var(--site-accent-text); }
 [data-subscribe-card] input:focus-visible { outline: none; border-color: var(--site-border-strong, #b8b8c0); }
 [data-subscribe-card] button:disabled { cursor: default; opacity: .6; }
-[data-subscribe-card] [data-subscribe-message] { margin: 12px 0 0; font-size: .8em; line-height: 1.5; }
+[data-subscribe-card] [data-subscribe-message], .prose [data-subscribe-card] [data-subscribe-message] { margin: 12px 0 0; padding: 0; border: 0; font-size: .8em; line-height: 1.5; }
 [data-subscribe-card] [data-subscribe-message]:empty { display: none; }
 [data-subscribe-card] [data-subscribe-trap] { display: none !important; }
 `;

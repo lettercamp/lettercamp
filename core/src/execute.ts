@@ -10,7 +10,9 @@ export async function execute(name: 'lettercamp' | 'create-lettercamp') {
     const { run } = await import('./cli.js');
     await run(process.argv, name);
   } catch (error) {
-    terminal.error(error instanceof Error ? error.message : String(error));
+    const message = error instanceof Error ? error.message : String(error);
+    if (['connect', 'pull', 'push', 'status', 'posts', 'assets', 'publish', 'upload'].includes(process.argv[2]) && process.argv.includes('--json')) console.log(JSON.stringify({ ok: false, error: message }));
+    else terminal.error(message);
     process.exitCode = 1;
   }
 }

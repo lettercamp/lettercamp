@@ -6,9 +6,9 @@ import path from 'node:path';
 
 type User = { id: string; name: string; email: string };
 type Credentials = { origin: string; token: string; expiresAt: string; user: User };
-export type ApiSite = { id: string; slug: string; name: string; workspaceId?: string };
+export type ApiSite = { id: string; slug: string; name: string };
 export type SiteBinding = { origin: string; siteId: string; revision?: string; pending?: string; fresh?: boolean;
-  creation?: { id: string; workspaceId: string; name: string; slug: string; previous?: SiteBinding }; provider?: 'vercel' | 'cloudflare' | 'nginx' };
+  creation?: { id: string; name: string; slug: string; previous?: SiteBinding }; provider?: 'vercel' | 'cloudflare' | 'nginx' };
 type SiteBindings = Record<string, SiteBinding>;
 const configRoot = () => process.env.LETTERCAMP_CONFIG_DIR || path.join(
   process.platform === 'win32' ? process.env.APPDATA || path.join(homedir(), 'AppData', 'Roaming') : process.env.XDG_CONFIG_HOME || path.join(homedir(), '.config'), 'lettercamp');
