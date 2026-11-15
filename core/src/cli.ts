@@ -1,4 +1,4 @@
-import { Command, InvalidArgumentError } from 'commander';
+import { Command, InvalidArgumentError, Option } from 'commander';
 import { registerAuthoringCommands } from './authoring.js';
 import { version, showVersion, update } from './version.js';
 import type { BuildOptions } from './build.js';
@@ -86,6 +86,21 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
     .option('--no-wait', 'Return after queuing the preview; run push again to finish')
     .option('--json', 'Print the preview result as JSON')
     .action(async options => { const { push } = await import('./cloud-workspace.js'); await push(options); });
+
+  program.command('insights [topic]')
+    .description('Read search queries as JSON. Add a topic to narrow the results.')
+    .option('--site <slug>', 'Choose a site outside a paired workspace')
+    .option('--view <view>', 'all, long-tail, rising, or no-clicks (default: all)')
+    .addOption(new Option('--query <text>').hideHelp())
+    .addOption(new Option('--limit <number>').hideHelp())
+    .addOption(new Option('--offset <number>').hideHelp())
+    .addOption(new Option('--json').hideHelp())
+    .addHelpText('after', '\nExamples:\n  lettercamp insights\n  lettercamp insights "sourdough starter"\n\nDefaults to 20 queries. For pagination, see https://www.lettercamp.com/docs/cli/insights')
+    .action(async (topic, options) => {
+      if (topic !== undefined && options.query !== undefined) throw new Error('Specify the topic once, as an argument or with --query.');
+      const { insights } = await import('./insights.js');
+      await insights({ ...options, query: topic ?? options.query });
+    });
 
   program.command('status')
     .description('Show the connected site, source changes, and preview build errors')

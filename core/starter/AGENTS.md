@@ -50,6 +50,13 @@ supporting files inside the publication.
 - See [Custom layouts](https://www.lettercamp.com/docs/custom-layout) for props,
   examples, styling hooks, and preview behavior.
 
+## Search queries for drafting
+
+Run `npx lettercamp insights` for recent search queries, or
+`npx lettercamp insights "sourdough"` to focus on a topic. Compare the reported
+landing page with existing posts before choosing an edit or a new draft. For
+site selection and report fields, see [Search insights](https://www.lettercamp.com/docs/cli/insights).
+
 ## Upload images and fonts
 
 - When building or editing this publication, use `npx lettercamp upload` to upload
