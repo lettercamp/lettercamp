@@ -37,7 +37,7 @@ async function postFields(options: PostOptions) {
 function metadata(command: Command) {
   return command.option('--file <path>', 'Markdown or MDX body without frontmatter, or - for stdin')
     .option('--description <text>').option('--category <name>').option('--date <date>')
-    .option('--cover-image <url>').option('--cover-image-alt <text>')
+    .option('--cover-image <url>', 'Cover URL. For local artwork, use the URL from lettercamp upload <file> --json.').option('--cover-image-alt <text>')
     .option('--authors <json>', 'Array of authors with name and optional image')
     .option('--json', 'Print JSON (default)');
 }

@@ -72,6 +72,9 @@ export async function upload(files: string[], options: { site?: string; json?: b
   for (const file of files) {
     let result: UploadedAsset | LibraryAsset;
     try {
+      if (path.extname(file).toLowerCase() === '.svg') {
+        throw new Error('The media library does not accept SVG uploads. For a post image, export a PNG or WebP, upload it, and use the returned URL.');
+      }
       const bytes = await readUploadFile(file);
       result = await destination.send(file, bytes);
     }
