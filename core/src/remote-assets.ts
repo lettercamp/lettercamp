@@ -67,7 +67,7 @@ function metadataAssets(value: unknown, check: ReturnType<typeof checker>, paren
   }
 }
 
-// Include drafts and settings that may not appear in the current rendered pages.
+// Check source references even when they are absent from the rendered output.
 export async function assertRemoteSourceAssets(directory: string) {
   const settings = JSON.parse(await readFile(path.join(directory, 'settings.json'), 'utf8'));
   if (settings.design?.typography?.localFonts === true) {

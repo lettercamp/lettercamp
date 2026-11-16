@@ -27,7 +27,7 @@ export async function prepareWorkspace(directory: string) {
     await writeFile(path.join(workspace, 'src', 'content.js'),
       `export const contentPrefix = ${JSON.stringify(contentPrefix)};\n` +
       `const allPages = import.meta.glob(${JSON.stringify(escapePath(contentPrefix) + '*.{md,mdx}')}, { eager: true });\n` +
-      `export const pages = Object.fromEntries(Object.entries(allPages).filter(([filename, page]) => !/\\/index\\.mdx?$/.test(filename) && page.frontmatter?.draft !== true));\n`);
+      `export const pages = Object.fromEntries(Object.entries(allPages).filter(([filename]) => !/\\/index\\.mdx?$/.test(filename)));\n`);
     await writeFile(path.join(workspace, 'src', 'site.js'),
       `import source from ${JSON.stringify(path.join(contentRoot, 'settings.json').replaceAll('\\', '/'))};\n` +
       `import { withDefaultBranding } from './lib/branding.js';\n` +

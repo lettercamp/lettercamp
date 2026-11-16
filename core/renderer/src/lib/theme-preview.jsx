@@ -51,8 +51,7 @@ export function installThemePreview() {
         // A rename replaces its old card rather than leaving two entries.
         if (update.previousHref) posts.delete(sitePath(update.previousHref));
         const post = { ...previous, ...update, href };
-        if (post.draft) posts.delete(href);
-        else posts.set(href, post);
+        posts.set(href, post);
       }
       const prepare = post => ({ ...post,
         date: postDate(post.date?.iso ?? post.date, site.language, site.timeZone),

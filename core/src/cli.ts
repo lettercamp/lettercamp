@@ -158,7 +158,7 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
     .requiredOption('--site <url>', 'Public site URL for metadata')
     .option('--out-dir <directory>', 'Output directory', 'dist')
     .option('--assets-prefix <url>', 'Base URL for versioned generated assets')
-    .option('--remote-assets-only', 'Check Cloud asset requirements and exclude public files', false)
+    .option('--remote-assets-only', 'Require remote asset URLs and exclude public files', false)
     .action(async (options: BuildOptions) => {
       const { buildSite } = await import('./build.js');
       await buildSite(process.cwd(), options);

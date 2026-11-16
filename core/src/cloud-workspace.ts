@@ -7,10 +7,10 @@ import { version } from './version.js';
 import { readSourceFiles, writeSourceFiles, validateFiles, changedPaths, mergeSource, type SourceFile } from './workspace-files.js';
 
 type Site = { id: string; slug: string; name: string };
-type Source = { site: Site; revision: string; productionRevision: string; productionFiles?: SourceFile[]; files: SourceFile[]; pendingPages: string[] };
+type Source = { site: Site; revision: string; productionRevision: string; productionFromPreview?: boolean; productionFiles?: SourceFile[]; files: SourceFile[] };
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 type Workspace = { origin: string; token: string; site: Site; revision?: string; files: SourceFile[]; productionRevision?: string; productionFiles?: SourceFile[]; pending?: Snapshot };
-type Status = { site: Site; revision: string | null; pendingPages: string[]; pending: string | null; activity: (Activity & { isPreview: boolean; publicUrl?: string }) | null;
+type Status = { site: Site; revision: string | null; pending: string | null; activity: (Activity & { isPreview: boolean; publicUrl?: string }) | null;
   preview: { id: string; url: string; published: boolean } | null };
 const configName = (root: string) => `workspace-${createHash('sha256').update(root).digest('hex')}.json`;
 const report = (value: unknown, json?: boolean, message?: string) => console.log(json ? JSON.stringify(value, null, 2) : message);
@@ -40,7 +40,7 @@ function rememberSource(state: Workspace, source: Source) {
   state.revision = source.revision; state.files = source.files;
   state.productionRevision = source.productionRevision; state.productionFiles = source.productionFiles ?? source.files;
 }
-const instructions = `# Lettercamp development\n\nWork in this publication folder. Run commands with npx --yes lettercamp@${version}.\n\n- Start with status --json; use pull to fetch remote changes while preserving local edits.\n- Edit settings.json, pages/, components/, lib/, styles/, assets/, or public/. Other files are local-only.\n- Custom layouts belong in components/layouts/Header.jsx, Footer.jsx, PostList.jsx, PostCard.jsx, or PostLayout.jsx (or .tsx). Each needs a default export.\n- Cloud supports react, react-dom, lettercamp/components, relative local imports, CSS and Sass. Do not add npm dependencies or bundler aliases.\n- Use dev for local visual iteration and check --json before pushing.\n- After editing source files, run push and wait for the cloud preview to succeed. Inspect status --json for build errors. Fix and push again if necessary.\n- push saves a source checkpoint and builds an unlisted cloud preview; it does not publish. Local edits are not synced automatically.\n- For drafting ideas, run insights, or insights "<topic>" to focus on a subject. Check the landing page and existing posts before proposing a new draft.\n- Write a shared draft with posts create --slug <slug> --title <title> --file <body.md> --json. The file contains Markdown/MDX without frontmatter. Use posts list/get, then posts update with the exact revision.\n- Upload images, fonts, and videos with upload <file> --json. Find reusable assets with assets list --json. Use the returned hosted URL.\n- publish queues all shared saved page edits with the current production settings. Use it only on explicit request with a publishing-enabled connection.\n- The dashboard Publish button publishes staged code, page edits, and settings together. Posts marked Draft stay private. Do not use deploy unless explicitly asked to publish directly.\n- Never overwrite a pull conflict. Inspect both versions and resolve the named paths.\n\nDocs: https://www.lettercamp.com/docs/cli/connect and https://www.lettercamp.com/docs/custom-layout\n`;
+const instructions = `# Lettercamp development\n\nWork in this publication folder. Run commands with npx --yes lettercamp@${version}.\n\n- Start with status --json; use pull to fetch remote changes while preserving local edits.\n- Edit settings.json, pages/, components/, lib/, styles/, assets/, or public/. Other files are local-only.\n- Custom layouts belong in components/layouts/Header.jsx, Footer.jsx, PostList.jsx, PostCard.jsx, or PostLayout.jsx (or .tsx). Each needs a default export.\n- Cloud supports react, react-dom, lettercamp/components, relative local imports, CSS and Sass. Do not add npm dependencies or bundler aliases.\n- Use dev for local visual iteration and check --json before pushing.\n- After editing source files, run push and wait for the cloud preview to succeed. Inspect status --json for build errors. Fix and push again if necessary.\n- push saves a source checkpoint and builds an unlisted cloud preview; it does not publish. Local edits are not synced automatically.\n- For drafting ideas, run insights, or insights "<topic>" to focus on a subject. Check the landing page and existing posts before proposing a new draft.\n- Create a preview page with posts create --slug <slug> --title <title> --file <body.md> --json. The file contains Markdown/MDX without frontmatter. Use posts list/get, then posts update with the exact revision.\n- Upload images, fonts, and videos with upload <file> --json. Find reusable assets with assets list --json. Use the returned hosted URL.\n- publish promotes the latest successful preview. Use it only on explicit request with a publishing-enabled connection.\n- The web editor and agent share the preview branch. Publish makes the reviewed build live. Do not use deploy unless explicitly asked to publish directly.\n- Never overwrite a pull conflict. Inspect both versions and resolve the named paths.\n\nDocs: https://www.lettercamp.com/docs/cli/connect and https://www.lettercamp.com/docs/custom-layout\n`;
 
 export async function connect(code: string, options: { directory?: string; json?: boolean }) {
   // Retain redemption locally before checkout, so a lost source-download response
@@ -80,7 +80,7 @@ export async function connect(code: string, options: { directory?: string; json?
   } }, null, 2) + '\n', { flag: 'wx' }).catch(error => { if (error.code !== 'EEXIST') throw error; });
   await removeConfig(receipt);
   report({ connected: true, directory: root, site: state.site, instructions: path.join(root, 'AGENTS.md') }, options.json,
-    `Connected to ${state.site.name}.\nWorkspace: ${root}\nRead ${path.join(root, 'AGENTS.md')} before editing.\nUse posts to edit shared drafts and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
+    `Connected to ${state.site.name}.\nWorkspace: ${root}\nRead ${path.join(root, 'AGENTS.md')} before editing.\nUse posts to edit preview pages and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
 }
 
 export async function pull(options: { json?: boolean; keepLocal?: string[]; takeRemote?: string[] }) {
@@ -88,9 +88,9 @@ export async function pull(options: { json?: boolean; keepLocal?: string[]; take
   if (state.pending) throw new Error('Run lettercamp push to finish the pending checkpoint before pulling.');
   const remote = await siteRequest<Source>(state, 'source');
   const local = await readSourceFiles(root);
-  // A web publish starts a new preview branch. Reapply previously pushed local
-  // design changes on their original production base instead of discarding them.
-  const base = remote.productionRevision !== state.productionRevision && remote.productionRevision !== state.revision
+  // Reviewed promotions already contain the shared edits. A direct deployment
+  // can replace them, so reconcile that case against the original production copy.
+  const base = !remote.productionFromPreview && remote.productionRevision !== state.productionRevision && remote.productionRevision !== state.revision
     ? state.productionFiles ?? state.files : state.files;
   const merged = mergeSource(base, local, remote.files, options.keepLocal, options.takeRemote);
   if (merged.conflicts.length) {
@@ -102,8 +102,8 @@ export async function pull(options: { json?: boolean; keepLocal?: string[]; take
   }
   await writeSourceFiles(root, local, merged.files);
   rememberSource(state, remote); await save();
-  report({ ok: true, revision: state.revision, updated: changedPaths(local, merged.files), localChanges: changedPaths(state.files, merged.files), pendingPages: remote.pendingPages }, options.json,
-    `Pulled ${changedPaths(local, merged.files).length} changed files. Local edits preserved.${remote.pendingPages.length ? '\nShared page edits in the web editor are not included in this preview.' : ''}`);
+  report({ ok: true, revision: state.revision, updated: changedPaths(local, merged.files), localChanges: changedPaths(state.files, merged.files) }, options.json,
+    `Pulled ${changedPaths(local, merged.files).length} changed files. Local edits preserved.`);
 }
 
 export async function workspaceStatus(options: { json?: boolean }) {
@@ -111,7 +111,7 @@ export async function workspaceStatus(options: { json?: boolean }) {
   const [remote, local] = await Promise.all([siteRequest<Status>(state, 'status'), readSourceFiles(root)]);
   const source = remote.revision !== state.revision ? await siteRequest<Source>(state, 'source') : null;
   const result = { ...remote, directory: root, baseRevision: state.revision, pendingPush: state.pending?.id ?? null,
-    localChanges: changedPaths(state.files, local), remoteChanges: source ? changedPaths(state.files, source.files) : [], pendingPages: source?.pendingPages ?? remote.pendingPages };
+    localChanges: changedPaths(state.files, local), remoteChanges: source ? changedPaths(state.files, source.files) : [] };
   report(result, options.json, `${state.site.name}\nLocal changes: ${result.localChanges.length}\nRemote changes: ${result.remoteChanges.length}\n`
     + `${remote.activity ? `Build: ${remote.activity.status} (${remote.activity.stage})\n${remote.activity.error ?? ''}` : 'No builds.'}`
     + `${remote.preview ? `\nPreview: ${remote.preview.url}` : ''}`);

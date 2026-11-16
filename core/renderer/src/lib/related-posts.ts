@@ -1,4 +1,4 @@
-type RelatedPost = { href: string; title?: unknown; description?: unknown; category?: unknown; draft?: unknown };
+type RelatedPost = { href: string; title?: unknown; description?: unknown; category?: unknown };
 
 // Shared by the static renderer and editor preview. Keep this function self-contained
 // so the preview bridge can embed it without shipping a separate client bundle.
@@ -32,7 +32,7 @@ export function createRelatedPostSelector<T extends RelatedPost>(posts: T[], lan
       return result >>> 0;
     },
   };
-  const candidates = [...new Map(posts.filter(post => post.draft !== true).map(post => [post.href, post])).values()].map(text.prepare);
+  const candidates = [...new Map(posts.map(post => [post.href, post])).values()].map(text.prepare);
   const byHref = new Map(candidates.map(candidate => [candidate.post.href, candidate]));
   return (current: T): T[] => {
     const existing = byHref.get(current.href);

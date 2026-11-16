@@ -44,9 +44,9 @@ supporting files inside the publication.
 - Templates own their markup and SCSS Modules. Use the supplied `site` settings
   where online design controls should apply. URLs in `post.href`, `post.image`,
   author images, categories, and pagination are already resolved.
-- Cloud previews use components from the last successful build and live draft
-  content/settings. Publish code changes to update that bundle. Arbitrary MDX
-  imports still appear as placeholders in the online editor and draft preview.
+- The web editor and agent share one preview branch. Push code and content
+  changes there and open Preview to see the built site. Publish promotes that
+  build. The rich editor uses placeholders for custom MDX components.
 - See [Custom layouts](https://www.lettercamp.com/docs/custom-layout) for props,
   examples, styling hooks, and preview behavior.
 
@@ -92,7 +92,8 @@ site selection and report fields, see [Search insights](https://www.lettercamp.c
   new site. It changes this folder's future deployment destination and leaves the
   previous site unchanged. Do not use it as an automatic retry for a failed deploy.
 - Resume an interrupted deployment or site creation with `npx lettercamp deploy`.
-  If remote source changed, review it in Cloud instead of overwriting it.
+  If production changed, review the published changes in Cloud. Direct deploys
+  publish this folder without merging edits saved on the preview branch.
 - `upload --site` remembers an asset-upload destination separately; it never
   changes this folder's deployment destination.
 

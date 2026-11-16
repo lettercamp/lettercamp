@@ -102,7 +102,7 @@ If you have suggestions or ideas for the roadmap, please [open an issue](https:/
 
 ## Lettercamp Cloud
 
-[Lettercamp Cloud](https://www.lettercamp.com) is the hosted platform for deploying and managing Lettercamp sites. In addition to providing hosting for the built sites, Lettercamp Cloud also offers a web-based editor and dashboard, which allows your content team to edit and manage content without needing to commit code. This product also includes several enterprise ready features, including access control, user management, payments, and more. However, the core publication site remains the same as the open-source offering.
+Run `npx lettercamp deploy` from your publication folder to publish it and create its site in the Lettercamp dashboard. The web editor and your connected agent then save changes to one preview branch. Open **Preview** to review the built site and click **Publish** to make that version live. See [Preview and publish](https://www.lettercamp.com/docs/publishing/preview).
 
 ![Lettercamp Cloud](https://static.lettercamp.com/assets/lettercamp/static/7CxWPr7PK4n2-lettercamp-cloud.avif)
 

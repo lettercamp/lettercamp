@@ -6,7 +6,7 @@ function siteCover(site, posts) {
         const time = value ? new Date(String(value)).valueOf() : NaN;
         return Number.isNaN(time) ? -Infinity : time;
     };
-    const post = posts.filter(post => post.draft !== true && (text(post.image) || text(post.ogImage)))
+    const post = posts.filter(post => text(post.image) || text(post.ogImage))
         .sort((a, b) => timestamp(b.date) - timestamp(a.date) || (a.href ?? "").localeCompare(b.href ?? ""))[0];
     return post
         ? { image: text(post.image) || text(post.ogImage), alt: (text(post.image) ? text(post.imageAlt) : text(post.ogImageAlt)) || text(post.title) }

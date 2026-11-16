@@ -10,7 +10,7 @@ async function call(action: string, input: Record<string, unknown>) {
 
 type PostOptions = {
   file?: string; slug?: string; title?: string; description?: string; category?: string; date?: string;
-  coverImage?: string; coverImageAlt?: string; authors?: string; clear?: string[]; revision?: string; status?: string; json?: boolean;
+  coverImage?: string; coverImageAlt?: string; authors?: string; clear?: string[]; revision?: string; json?: boolean;
 };
 async function postFields(options: PostOptions) {
   const { file, authors, clear, json: _json, ...fields } = options;
@@ -44,15 +44,15 @@ function metadata(command: Command) {
 export function registerAuthoringCommands(program: Command) {
   const posts = program.command('posts').description('Read and edit shared posts in the connected cloud editor');
   posts.command('list').description('Find posts, including pending edits')
-    .option('--query <text>').option('--status <draft|live>').option('--offset <number>', 'First result', Number)
+    .option('--query <text>').option('--offset <number>', 'First result', Number)
     .option('--limit <number>', 'Page size (1–100)', Number).option('--json', 'Print JSON (default)')
     .action(async ({ json: _json, ...filters }) => call('list_posts', filters));
   posts.command('get <id>').description('Read the post body, metadata, revision, and publication status')
     .option('--json', 'Print JSON (default)').action(async id => call('get_post', { id }));
-  metadata(posts.command('create').description('Save a new shared draft').requiredOption('--slug <slug>').requiredOption('--title <title>'))
+  metadata(posts.command('create').description('Create a page on the shared preview branch').requiredOption('--slug <slug>').requiredOption('--title <title>'))
     .action(async options => call('create_post', await postFields(options)));
   metadata(posts.command('update <id>').description('Save changes against the revision returned by posts get')
-    .requiredOption('--revision <revision>').option('--title <title>').option('--status <draft|live>')
+    .requiredOption('--revision <revision>').option('--title <title>')
     .option('--clear <fields...>', 'Clear named optional metadata fields'))
     .action(async (id, options) => call('update_post', { ...await postFields(options), id }));
   program.command('assets').description('Browse the connected site media library')
@@ -61,6 +61,7 @@ export function registerAuthoringCommands(program: Command) {
     .option('--cursor <cursor>').option('--limit <number>', 'Page size (1–100)', Number)
     .option('--upload-id <id>').option('--json', 'Print JSON (default)')
     .action(async ({ json: _json, ...filters }) => call('list_assets', filters));
-  program.command('publish').description('Queue all shared saved page changes and current production settings (requires publish permission)')
-    .option('--json', 'Print the queued deployment as JSON (default)').action(async () => call('publish_site', {}));
+  program.command('publish').description('Publish the latest successful preview (requires publish permission)')
+    .option('--preview <id>', 'Publish this reviewed preview build')
+    .option('--json', 'Print the published deployment as JSON (default)').action(async ({ preview }) => call('publish_site', { previewId: preview }));
 }
