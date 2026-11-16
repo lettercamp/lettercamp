@@ -69,7 +69,7 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('connect')
     .description('Connect a cloud site and download its source for local editing')
-    .argument('<code>', 'One-use code from Settings → Agent connections')
+    .argument('<code>', 'One-use code from Settings → Agents')
     .option('--directory <path>', 'New workspace folder (defaults to the site slug)')
     .option('--json', 'Print connection details as JSON')
     .action(async (code: string, options) => { const { connect } = await import('./cloud-workspace.js'); await connect(code, options); });
