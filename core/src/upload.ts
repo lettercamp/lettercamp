@@ -8,7 +8,7 @@ type PairedClient = NonNullable<Awaited<ReturnType<typeof connectedAuthoringClie
 type LibraryAsset = { id: string; url: string; filename: string; contentType: string; size: number };
 type Ticket = { uploadId: string; uploadUrl: string; headers: Record<string, string> };
 const mediaTypes: Record<string, string> = {
-  '.jpeg': 'image/jpeg', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.avif': 'image/avif', '.gif': 'image/gif',
+  '.jpeg': 'image/jpeg', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.avif': 'image/avif', '.gif': 'image/gif', '.svg': 'image/svg+xml',
   '.ttf': 'font/ttf', '.otf': 'font/otf', '.woff': 'font/woff', '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.webm': 'video/webm',
 };
 type UploadResult = { file: string } & (UploadedAsset | LibraryAsset | { error: string });
@@ -72,9 +72,6 @@ export async function upload(files: string[], options: { site?: string; json?: b
   for (const file of files) {
     let result: UploadedAsset | LibraryAsset;
     try {
-      if (path.extname(file).toLowerCase() === '.svg') {
-        throw new Error('The media library does not accept SVG uploads. For a post image, export a PNG or WebP, upload it, and use the returned URL.');
-      }
       const bytes = await readUploadFile(file);
       result = await destination.send(file, bytes);
     }

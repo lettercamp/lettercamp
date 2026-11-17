@@ -59,7 +59,7 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('upload')
     .description('Upload assets and print their hosted URLs')
-    .argument('<files...>', 'JPEG, PNG, WebP, AVIF, GIF, TTF, OTF, WOFF, WOFF2, or (in connected workspaces) MP4 and WebM files, subject to site limits (maximum 100 MB each)')
+    .argument('<files...>', 'JPEG, PNG, WebP, AVIF, GIF, SVG, TTF, OTF, WOFF, WOFF2, or (in connected workspaces) MP4 and WebM files, subject to site limits (maximum 100 MB each)')
     .option('--site <slug>', 'Destination site (remembered for this local publication)')
     .option('--json', 'Print URL and image dimensions or font settings; multiple files return an array')
     .addHelpText('after', '\nExamples:\n  lettercamp upload cover.png portrait.jpg --site my-blog --json\n  lettercamp upload brand.woff2 --json\n\nA connected workspace uses its paired site. Elsewhere, use lettercamp login and select an existing site.\nUse --json for agents and scripts, then write the returned URLs into your source.\nImage optimization runs in the background; the original URL is usable immediately.\nUploads do not edit source files or publish the site.\n\nMultiple files print filename<TAB>URL. Failed files are reported and remaining uploads continue.\nThe command exits unsuccessfully if any upload fails. Single-file output is unchanged.')
