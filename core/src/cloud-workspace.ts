@@ -10,7 +10,7 @@ type Site = { id: string; slug: string; name: string };
 type Source = { site: Site; revision: string; productionRevision: string; productionFromPreview?: boolean; productionFiles?: SourceFile[]; files: SourceFile[] };
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 type Workspace = { origin: string; token: string; site: Site; revision?: string; files: SourceFile[]; productionRevision?: string; productionFiles?: SourceFile[]; pending?: Snapshot };
-type Status = { site: Site; revision: string | null; pending: string | null; activity: (Activity & { isPreview: boolean; publicUrl?: string }) | null;
+type Status = { editorPreviewUrl?: string; site: Site; revision: string | null; pending: string | null; activity: (Activity & { isPreview: boolean; publicUrl?: string }) | null;
   preview: { id: string; url: string; published: boolean } | null };
 const configName = (root: string) => `workspace-${createHash('sha256').update(root).digest('hex')}.json`;
 const report = (value: unknown, json?: boolean, message?: string) => console.log(json ? JSON.stringify(value, null, 2) : message);
@@ -40,16 +40,16 @@ function rememberSource(state: Workspace, source: Source) {
   state.revision = source.revision; state.files = source.files;
   state.productionRevision = source.productionRevision; state.productionFiles = source.productionFiles ?? source.files;
 }
-const instructions = `# Lettercamp development\n\nWork in this publication folder. Run commands with npx --yes lettercamp@${version}.\n\n- Keep the main article text in Markdown or Lettercamp’s built-in content blocks. Use custom components for individual features. When migrating a blog, open a post in Edit and check that you can change an ordinary paragraph. See the [built-in content components](https://www.lettercamp.com/docs/components/overview).\n- Start with status --json; use pull to fetch remote changes while preserving local edits.\n- Edit settings.json, pages/, components/, lib/, styles/, assets/, or public/. Other files are local-only.\n- Custom layouts belong in components/layouts/Header.jsx, Footer.jsx, PostList.jsx, PostCard.jsx, or PostLayout.jsx (or .tsx). Each needs a default export.\n- Cloud supports react, react-dom, lettercamp/components, relative local imports, CSS and Sass. Do not add npm dependencies or bundler aliases.\n- Use dev for local visual iteration and check --json before pushing.\n- After editing source files, run push and wait for the cloud preview to succeed. Inspect status --json for build errors. Fix and push again if necessary.\n- push saves a source checkpoint and builds an unlisted cloud preview; it does not publish. Local edits are not synced automatically.\n- For drafting ideas, run insights, or insights "<topic>" to focus on a subject. Check the landing page and existing posts before proposing a new draft.\n- Create a preview page with posts create --slug <slug> --title <title> --file <body.md> --json. The file contains Markdown/MDX without frontmatter. Use posts list/get, then posts update with the exact revision.\n- For editable post images, reuse assets list --json URLs or run upload <file> --json before saving the post. Use each successful result’s url for covers, author portraits, Markdown images, and MDX Image blocks. For an SVG illustration in the media library, export a PNG or WebP and upload that copy.\n- Files in public/ ship with the site build. A post save does not upload those files. Check new images in the editor’s Edit view as well as the built preview. Upload fonts and videos with upload <file> --json.\n- publish promotes the latest successful preview. Use it only on explicit request with a publishing-enabled connection.\n- The web editor and agent share the preview branch. Publish makes the reviewed build live. Do not use deploy unless explicitly asked to publish directly.\n- Never overwrite a pull conflict. Inspect both versions and resolve the named paths.\n\nDocs: https://www.lettercamp.com/docs/cli/connect and https://www.lettercamp.com/docs/custom-layout\n`;
+const instructions = `# Lettercamp development\n\nWork in this publication folder. Run commands with npx --yes lettercamp@${version}.\n\n- Keep the main article text in Markdown or Lettercamp’s built-in content blocks. Use custom components for individual features. When migrating a blog, open a post in Edit and check that you can change an ordinary paragraph. See the [built-in content components](https://www.lettercamp.com/docs/components/overview).\n- Start with status --json; use pull to fetch remote changes while preserving local edits.\n- Edit settings.json, pages/, components/, lib/, styles/, assets/, or public/. Other files are local-only.\n- Custom layouts belong in components/layouts/Header.jsx, Footer.jsx, PostList.jsx, PostCard.jsx, or PostLayout.jsx (or .tsx). Each needs a default export.\n- Cloud supports react, react-dom, lettercamp/components, relative local imports, CSS and Sass. Do not add npm dependencies or bundler aliases.\n- Use dev for local visual iteration and check --json before pushing.\n- After editing source files, run push and wait for the cloud preview to succeed. Inspect status --json for build errors. Fix and push again if necessary.\n- push saves a source checkpoint and builds an unlisted cloud preview; it does not publish. Local edits are not synced automatically.\n- When handing work back, share editorPreviewUrl from status --json, push --json, or the post result. It opens the selected site’s Preview tab with the page editor alongside it. For one article, share post.editorUrl. Use preview.url when a standalone build link is requested.\n- For drafting ideas, run insights, or insights "<topic>" to focus on a subject. Check the landing page and existing posts before proposing a new draft.\n- Create a preview page with posts create --slug <slug> --title <title> --file <body.md> --json. The file contains Markdown/MDX without frontmatter. Use posts list/get, then posts update with the exact revision.\n- For editable post images, reuse assets list --json URLs or run upload <file> --json before saving the post. Use each successful result’s url for covers, author portraits, Markdown images, and MDX Image blocks. For an SVG illustration in the media library, export a PNG or WebP and upload that copy.\n- Files in public/ ship with the site build. A post save does not upload those files. Check new images in the editor’s Edit view as well as the built preview. Upload fonts and videos with upload <file> --json.\n- publish promotes the latest successful preview. Use it only on explicit request with a publishing-enabled connection.\n- The web editor and agent share the preview branch. Publish makes the reviewed build live. Do not use deploy unless explicitly asked to publish directly.\n- Never overwrite a pull conflict. Inspect both versions and resolve the named paths.\n\nDocs: https://www.lettercamp.com/docs/cli/connect and https://www.lettercamp.com/docs/custom-layout\n`;
 
 export async function connect(code: string, options: { directory?: string; json?: boolean }) {
   // Retain redemption locally before checkout, so a lost source-download response
   // can resume with the same one-use code without exposing the credential.
   const receipt = `connect-${createHash('sha256').update(code).digest('hex')}.json`;
-  let connection = await readConfig<{ token: string; site: Site; origin: string }>(receipt);
+  let connection = await readConfig<{ token: string; site: Site; origin: string; editorPreviewUrl?: string }>(receipt);
   if (connection && connection.origin !== apiOrigin()) throw new Error('This code was used on another Lettercamp server.');
   if (!connection) {
-    connection = { ...await request<{ token: string; site: Site }>('', 'connect', { code }), origin: apiOrigin() };
+    connection = { ...await request<{ token: string; site: Site; editorPreviewUrl?: string }>('', 'connect', { code }), origin: apiOrigin() };
     await saveConfig(receipt, connection);
   }
   const destination = path.resolve(options.directory ?? connection.site.slug);
@@ -79,8 +79,8 @@ export async function connect(code: string, options: { directory?: string; json?
     dev: `npx --yes lettercamp@${version} dev`, check: `npx --yes lettercamp@${version} check`,
   } }, null, 2) + '\n', { flag: 'wx' }).catch(error => { if (error.code !== 'EEXIST') throw error; });
   await removeConfig(receipt);
-  report({ connected: true, directory: root, site: state.site, instructions: path.join(root, 'AGENTS.md') }, options.json,
-    `Connected to ${state.site.name}.\nWorkspace: ${root}\nRead ${path.join(root, 'AGENTS.md')} before editing.\nUse posts to edit preview pages and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
+  report({ connected: true, directory: root, site: state.site, editorPreviewUrl: connection.editorPreviewUrl, instructions: path.join(root, 'AGENTS.md') }, options.json,
+    `Connected to ${state.site.name}.\nWorkspace: ${root}${connection.editorPreviewUrl ? `\nPreview in Lettercamp: ${connection.editorPreviewUrl}` : ''}\nRead ${path.join(root, 'AGENTS.md')} before editing.\nUse posts to edit preview pages and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
 }
 
 export async function pull(options: { json?: boolean; keepLocal?: string[]; takeRemote?: string[] }) {
@@ -114,7 +114,7 @@ export async function workspaceStatus(options: { json?: boolean }) {
     localChanges: changedPaths(state.files, local), remoteChanges: source ? changedPaths(state.files, source.files) : [] };
   report(result, options.json, `${state.site.name}\nLocal changes: ${result.localChanges.length}\nRemote changes: ${result.remoteChanges.length}\n`
     + `${remote.activity ? `Build: ${remote.activity.status} (${remote.activity.stage})\n${remote.activity.error ?? ''}` : 'No builds.'}`
-    + `${remote.preview ? `\nPreview: ${remote.preview.url}` : ''}`);
+    + (remote.editorPreviewUrl ? `\nPreview in Lettercamp: ${remote.editorPreviewUrl}` : remote.preview ? `\nPreview: ${remote.preview.url}` : ''));
 }
 
 export async function push(options: { json?: boolean; wait?: boolean }) {
@@ -129,8 +129,10 @@ export async function push(options: { json?: boolean; wait?: boolean }) {
     await save();
   }
   const snapshot = state.pending;
+  let editorPreviewUrl: string | undefined;
   try {
-    const queued = await siteRequest<{ productionCommit: string }>(state, 'push', snapshot);
+    const queued = await siteRequest<{ productionCommit: string; editorPreviewUrl?: string }>(state, 'push', snapshot);
+    editorPreviewUrl = queued.editorPreviewUrl;
     if (snapshot.revision.split(':')[1] === queued.productionCommit && state.productionRevision !== snapshot.revision) {
       state.productionRevision = snapshot.revision; state.productionFiles = state.files; await save();
     }
@@ -140,7 +142,7 @@ export async function push(options: { json?: boolean; wait?: boolean }) {
     throw error;
   }
   if (options.wait === false) {
-    report({ id: snapshot.id, status: 'queued' }, options.json, `Preview queued: ${snapshot.id}. Run push to wait for completion, or status --json for progress.`); return;
+    report({ id: snapshot.id, status: 'queued', editorPreviewUrl }, options.json, `Preview queued: ${snapshot.id}. Run push to wait for completion, or status --json for progress.${editorPreviewUrl ? `\nPreview in Lettercamp: ${editorPreviewUrl}` : ''}`); return;
   }
   let lastStage = '';
   const deadline = Date.now() + 45 * 60_000;
@@ -160,8 +162,10 @@ export async function push(options: { json?: boolean; wait?: boolean }) {
         const ok = activity.status === 'succeeded';
         if (!ok) process.exitCode = 1;
         const preview = ok && activity.publicUrl ? { id: snapshot.id, url: `https://preview-${snapshot.id}.lettercamp.site${new URL(activity.publicUrl).pathname}` } : result.preview;
-        report({ ok, id: snapshot.id, revision: state.revision, preview, error: activity.error }, options.json,
-          ok ? `Preview ready: ${preview?.url}\nProduction is unchanged. Publish the reviewed preview in Lettercamp.` : `Preview ${activity.status}: ${activity.error ?? 'Run status --json for details.'}`);
+        editorPreviewUrl = result.editorPreviewUrl ?? editorPreviewUrl;
+        const reviewUrl = editorPreviewUrl ?? preview?.url;
+        report({ ok, id: snapshot.id, revision: state.revision, editorPreviewUrl, preview, error: activity.error }, options.json,
+          ok ? `Preview ready.${reviewUrl ? `\nReview: ${reviewUrl}` : ''}\nProduction is unchanged. Publish the reviewed preview in Lettercamp.` : `Preview ${activity.status}: ${activity.error ?? 'Run status --json for details.'}`);
         return;
       }
     }
