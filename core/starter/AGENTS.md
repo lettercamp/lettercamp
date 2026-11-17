@@ -3,6 +3,10 @@
 This folder contains a Lettercamp publication. Keep custom components and their
 supporting files inside the publication.
 
+## Writing posts
+
+Keep the main article text in Markdown or Lettercamp’s built-in content blocks. Use custom components for individual features. When migrating a blog, open a post in Edit and check that you can change an ordinary paragraph. See the [built-in content components](https://www.lettercamp.com/docs/components/overview).
+
 ## Custom component dependencies
 
 - For Lettercamp-hosted publications, custom components can import `react`, `react-dom`, `lettercamp/components`, and

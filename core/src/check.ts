@@ -3,12 +3,14 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { style, terminal } from './terminal.js';
 import { projectPath } from './account.js';
+import { editorWarnings, type EditorWarning } from './editor-check.js';
 import { BuildError } from './build-errors.js';
 import { checkImports, supportedImportsUrl, type CheckIssue } from './import-check.js';
 import { checkPublicLimits, collectPublicFiles, copyPublicFiles, type PublicFile } from './public-files.js';
 import type { SourceFile } from './deployment-images.js';
 
 export type CheckResult = { ok: boolean; issues: CheckIssue[]; build: 'passed' | 'failed' | 'skipped' };
+type PublicationCheck = CheckResult & { warnings: EditorWarning[] };
 export type CheckOptions = { json?: boolean; build?: boolean };
 
 // Build the files a deployment would upload, in a folder of their own.
@@ -109,44 +111,47 @@ export async function assertSupportedImports(root: string) {
   if (issues.length) throw deploymentError(issues);
 }
 
-async function checkPublication(root: string, options: CheckOptions): Promise<CheckResult> {
+async function checkPublication(root: string, options: CheckOptions): Promise<PublicationCheck> {
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp check inside your publication folder containing settings.json.'); });
   const issues = await checkImports(root);
   let build: CheckResult['build'] = 'skipped';
-  // Preparing images parses the same pages, so a syntax error is reported once, with its line.
-  if (!issues.some(issue => issue.code === 'mdx-syntax')) {
-    try {
-      const { publicationFiles } = await import('./deploy.js');
+  let warnings: EditorWarning[] = [];
+  try {
+    const { publicationFiles } = await import('./deploy.js');
+    const files = await publicationFiles(root);
+    warnings = editorWarnings(files);
+    // Preparing images parses the same pages, so a syntax error is reported once, with its line.
+    if (!issues.some(issue => issue.code === 'mdx-syntax')) {
       const { prepareDeploymentImages } = await import('./deployment-images.js');
       const publicFiles = await collectPublicFiles(root);
       checkPublicLimits(publicFiles);
-      const prepared = await prepareDeploymentImages(root, await publicationFiles(root));
+      const prepared = await prepareDeploymentImages(root, files);
       if (!issues.length && options.build !== false) {
         const failure = await buildIssue(root, prepared.files, publicFiles);
         if (failure) issues.push(failure);
         build = failure ? 'failed' : 'passed';
       }
-    } catch (error) {
-      // Source limits, unreadable files, and unsupported images stop a deployment too.
-      issues.push({ code: 'invalid-publication', message: error instanceof Error ? error.message : String(error) });
     }
+  } catch (error) {
+    issues.push({ code: 'invalid-publication', message: error instanceof Error ? error.message : String(error) });
   }
-  return { ok: !issues.length, issues, build };
+  return { ok: !issues.length, issues, build, warnings };
 }
 
 export async function check(options: CheckOptions = {}) {
   if (!options.json) terminal.step('Checking the publication for Lettercamp Cloud…');
-  let result: CheckResult;
+  let result: PublicationCheck;
   // Components can log while rendering. Keep stdout exclusively for the JSON
   // result, including when a dependency bypasses Astro's quiet logger.
   const stdoutWrite = process.stdout.write;
   if (options.json) process.stdout.write = process.stderr.write.bind(process.stderr);
   try { result = await checkPublication(await projectPath(), options); }
   catch (error) {
-    result = { ok: false, build: 'skipped', issues: [{ code: 'invalid-publication', message: error instanceof Error ? error.message : String(error) }] };
+    result = { ok: false, build: 'skipped', warnings: [], issues: [{ code: 'invalid-publication', message: error instanceof Error ? error.message : String(error) }] };
   } finally { process.stdout.write = stdoutWrite; }
   if (!result.ok) process.exitCode = 1;
   if (options.json) { console.log(JSON.stringify(result, null, 2)); return; }
+  for (const warning of result.warnings) terminal.warning(warning.file + ' — ' + warning.message);
   if (result.ok) {
     console.log(result.build === 'passed'
       ? `\n${style.success('✓ Ready to deploy.')} Imports are supported and the publication builds.`

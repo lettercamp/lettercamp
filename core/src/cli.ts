@@ -115,9 +115,9 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('check')
     .description('Check that this folder will build on Lettercamp Cloud, without deploying')
-    .option('--json', 'Print the result and each problem as JSON')
+    .option('--json', 'Print build issues and editor warnings as JSON')
     .option('--no-build', 'Check imports and source files, skipping the build')
-    .addHelpText('after', '\nRuns the same checks as lettercamp deploy, without signing in or uploading.\nReports imports that Lettercamp Cloud cannot resolve, then builds a copy of the deployment.\nExits unsuccessfully if any problem is found.')
+    .addHelpText('after', '\nRuns the same checks as lettercamp deploy, without signing in or uploading.\nReports imports that Lettercamp Cloud cannot resolve, then builds a copy of the deployment.\nReports posts that may require Source to edit. These warnings do not change the exit code.')
     .action(async options => { const { check } = await import('./check.js'); await check(options); });
 
   program.command('domain')
