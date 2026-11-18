@@ -7,6 +7,11 @@ supporting files inside the publication.
 
 Keep the main article text in Markdown or Lettercamp’s built-in content blocks. Use custom components for individual features. When migrating a blog, open a post in Edit and check that you can change an ordinary paragraph. See the [built-in content components](https://www.lettercamp.com/docs/components/overview).
 
+Use built-in post fields and blocks when they fit. For additional per-post data
+needed by a custom layout, store text or lists of text under `customFields` in
+frontmatter and read them from `post.customFields`. Reuse the publication’s
+field names when available. See [Custom fields](https://www.lettercamp.com/docs/writing/metadata#custom-fields).
+
 ## Custom component dependencies
 
 - For Lettercamp-hosted publications, custom components can import `react`, `react-dom`, `lettercamp/components`, and

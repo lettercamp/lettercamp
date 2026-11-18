@@ -1,8 +1,13 @@
 export function readAuthors(value) {
     if (!Array.isArray(value))
         return [];
-    return value.flatMap(item => item && typeof item.name === "string"
-        ? [{ name: item.name, ...(typeof item.image === "string" && item.image.trim() ? { image: item.image.trim() } : {}) }] : []);
+    return value.flatMap(item => {
+        if (!item || typeof item.name !== "string") return [];
+        const author = { name: item.name };
+        if (typeof item.image === "string" && item.image.trim()) author.image = item.image.trim();
+        if (typeof item.bio === "string" && item.bio.trim()) author.bio = item.bio.trim();
+        return [author];
+    });
 }
 // Keep blank names while editing; only bylines omit unfinished author rows.
 export function resolveAuthors(source) {

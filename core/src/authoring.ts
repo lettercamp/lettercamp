@@ -10,10 +10,10 @@ async function call(action: string, input: Record<string, unknown>) {
 
 type PostOptions = {
   file?: string; slug?: string; title?: string; description?: string; category?: string; date?: string;
-  coverImage?: string; coverImageAlt?: string; authors?: string; clear?: string[]; revision?: string; json?: boolean;
+  coverImage?: string; coverImageAlt?: string; authors?: string; customFields?: string; clear?: string[]; revision?: string; json?: boolean;
 };
 async function postFields(options: PostOptions) {
-  const { file, authors, clear, json: _json, ...fields } = options;
+  const { file, authors, customFields, clear, json: _json, ...fields } = options;
   const input: Record<string, unknown> = { ...fields };
   if (file !== undefined) {
     if (file === '-') {
@@ -24,6 +24,13 @@ async function postFields(options: PostOptions) {
   }
   if (authors !== undefined) {
     try { input.authors = JSON.parse(authors); } catch { throw new Error('--authors expects a JSON array of authors.'); }
+  }
+  if (customFields !== undefined) {
+    const message = '--custom-fields expects a JSON object with text or lists of text. Use null to remove a field.';
+    let patch: unknown;
+    try { patch = JSON.parse(customFields); } catch { throw new Error(message); }
+    if (!patch || typeof patch !== 'object' || Array.isArray(patch)) throw new Error(message);
+    input.customFields = patch;
   }
   const optional = ['description', 'category', 'date', 'coverImage', 'coverImageAlt', 'authors'];
   for (const name of clear ?? []) {
@@ -38,7 +45,8 @@ function metadata(command: Command) {
   return command.option('--file <path>', 'Markdown or MDX body without frontmatter, or - for stdin')
     .option('--description <text>').option('--category <name>').option('--date <date>')
     .option('--cover-image <url>', 'Cover URL. For local artwork, use the URL from lettercamp upload <file> --json.').option('--cover-image-alt <text>')
-    .option('--authors <json>', 'Array of authors with name and optional image')
+    .option('--authors <json>', 'Array of authors with name and optional image and bio (up to 500 characters)')
+    .option('--custom-fields <json>', 'Set custom fields by name with text or lists of text. Use null to remove a field.')
     .option('--json', 'Print JSON (default)');
 }
 export function registerAuthoringCommands(program: Command) {

@@ -41,6 +41,7 @@ export interface SiteSettings {
     showReadingTime?: boolean;
     showRelatedPosts?: boolean;
   };
+  postFields?: string[];
   design?: {
     backgroundColor?: string;
     accentColor?: string;
@@ -72,6 +73,8 @@ export interface PostDate {
 export interface Author {
   name: string;
   image?: string;
+  /** Plain-text bio saved with the post. */
+  bio?: string;
 }
 
 export interface Post {
@@ -93,6 +96,8 @@ export interface Post {
   authors: Author[];
   date: PostDate;
   readingMinutes?: number;
+  /** Optional author-defined metadata from the post's customFields frontmatter. */
+  customFields?: Record<string, string | string[]>;
   [frontmatter: string]: unknown;
 }
 

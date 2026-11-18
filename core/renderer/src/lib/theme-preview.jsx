@@ -10,6 +10,7 @@ import { categoryRoutes } from './category-routes.js';
 import { createRelatedPostSelector } from './related-posts';
 import { POSTS_PER_PAGE, pageCount } from './pagination';
 import { readContentWidthEm } from './post-layout';
+import { sortPosts } from './post-order.js';
 
 class PreviewBoundary extends Component {
   state = { error: null };
@@ -58,8 +59,7 @@ export function installThemePreview() {
         image: resolveAsset(post.image ?? post.ogImage),
         authors: resolveAuthors(post).map(author => ({ ...author, image: resolveAsset(author.image) })),
       });
-      const allPosts = [...posts.values()].map(prepare)
-        .sort((a, b) => b.date.timestamp - a.date.timestamp || a.href.localeCompare(b.href));
+      const allPosts = sortPosts([...posts.values()].map(prepare), site.home?.postOrder);
       const categories = categoryRoutes(allPosts.map(post => post.category ?? '')).map(category => ({ ...category, href: sitePath(category.href) }));
       const isPost = !!data.post || snapshot.kind === 'post';
       const pathname = data.post ? sitePath(data.post.pathname) : location.pathname;

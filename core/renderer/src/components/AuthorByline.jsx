@@ -1,7 +1,7 @@
 import { resolveAuthors } from '../lib/authors.js';
 import { postAsset as sitePath } from '../lib/post-data.js';
 export default function AuthorByline({ post, site, variant = 'article', date = post.date, showAuthors = true, showAvatars = true, showDate = true, showReadingTime = variant === 'article' && site.post?.showReadingTime !== false, className = '', style }) {
-  const authors = (showAuthors ? resolveAuthors(post) : []).filter(author => author.name.trim()).map(author => ({ ...author, image: sitePath(author.image) }));
+  const authors = (showAuthors ? resolveAuthors(post) : []).filter(author => author.name.trim()).map(({ name, image }) => ({ name, image: sitePath(image) }));
   const portraits = showAvatars ? authors.filter(author => author.image) : [];
   const readingTime = showReadingTime && typeof post.readingMinutes === 'number';
   const dated = showDate && date?.label;
