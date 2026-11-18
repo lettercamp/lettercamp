@@ -27,7 +27,7 @@
 
 ## What is Lettercamp?
 
-Lettercamp is an open-source platform that makes it easy to create and manage a modern content publication site. It's basically a blog in a box. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more.
+Lettercamp is an open-source platform that makes it easy to create and manage a modern content publication site. It's basically a blog in a box. The framework ships with all the features you expect from a modern content site, including markdown and MDX support, search, table of contents, related articles, author profiles, and much more. Lettercamp Cloud lets you connect your custom blog to an online editor, so anyone on your team can write and publish content.
 
 ![Lettercamp publication](https://static.lettercamp.com/assets/lettercamp/static/dBD-_GPKP_Rd-lettercamp-site.webp)
 

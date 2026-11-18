@@ -12,7 +12,12 @@ const renderer = fileURLToPath(new URL('../renderer/', import.meta.url));
 export async function prepareWorkspace(directory: string) {
   const contentRoot = await realpath(directory);
   JSON.parse(await readFile(path.join(contentRoot, 'settings.json'), 'utf8'));
-  if (!(await stat(path.join(contentRoot, 'pages'))).isDirectory()) throw new Error('Missing pages directory.');
+  const pagesPath = path.join(contentRoot, 'pages');
+  const pagesInfo = await stat(pagesPath).catch((error: NodeJS.ErrnoException) => {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  });
+  if (pagesInfo && !pagesInfo.isDirectory()) throw new Error('The pages path must be a directory.');
   const workspace = await realpath(await mkdtemp(path.join(tmpdir(), 'lettercamp-')));
   try {
     await cp(renderer, workspace, { recursive: true });
@@ -23,7 +28,7 @@ export async function prepareWorkspace(directory: string) {
     // so Vite sees additions and deletions without a symlink/realpath mismatch.
     const modules = path.dirname(path.dirname(require.resolve('astro/package.json')));
     await symlink(modules, path.join(workspace, 'node_modules'), 'junction');
-    const contentPrefix = path.relative(path.join(workspace, 'src'), path.join(contentRoot, 'pages')).replaceAll('\\', '/') + '/';
+    const contentPrefix = path.relative(path.join(workspace, 'src'), pagesPath).replaceAll('\\', '/') + '/';
     await writeFile(path.join(workspace, 'src', 'content.js'),
       `export const contentPrefix = ${JSON.stringify(contentPrefix)};\n` +
       `const allPages = import.meta.glob(${JSON.stringify(escapePath(contentPrefix) + '*.{md,mdx}')}, { eager: true });\n` +

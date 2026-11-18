@@ -74,7 +74,11 @@ export async function assertRemoteSourceAssets(directory: string) {
     throw new Error('Lettercamp Cloud requires remotely hosted fonts. Remove design.typography.localFonts or set it to false before deploying.');
   }
   metadataAssets(settings, checker('settings.json'));
-  for (const name of await readdir(path.join(directory, 'pages'))) {
+  const pages = await readdir(path.join(directory, 'pages')).catch((error: NodeJS.ErrnoException) => {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  });
+  for (const name of pages) {
     if (!/\.mdx?$/.test(name)) continue;
     const check = checker(`pages/${name}`);
     let source = await readFile(path.join(directory, 'pages', name), 'utf8');

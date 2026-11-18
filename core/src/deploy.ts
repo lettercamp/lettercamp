@@ -42,10 +42,9 @@ export async function publicationFiles(root: string) {
   await visit('settings.json');
   for (const directory of roots) {
     try { await lstat(path.join(root, directory)); }
-    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT' && directory !== 'pages') continue; throw error; }
+    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') continue; throw error; }
     await visit(directory);
   }
-  if (!files.some(file => /^pages\/.+\.mdx?$/.test(file.path))) throw new Error('Include at least one Markdown or MDX file in pages/.');
   JSON.parse(Buffer.from(files.find(file => file.path === 'settings.json')!.content, 'base64').toString('utf8'));
   return files.sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
 }
