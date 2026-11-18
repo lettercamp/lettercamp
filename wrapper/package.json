@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.63",
   "description": "The Lettercamp blog engine and CLI",
   "keywords": [
     "lettercamp",
@@ -28,7 +28,9 @@
     "lettercamp": "bin/lettercamp.js"
   },
   "exports": {
-    "./components": { "types": "./components.d.ts" },
+    "./components": {
+      "types": "./components.d.ts"
+    },
     "./*": "./*"
   },
   "files": [
@@ -40,7 +42,7 @@
     "prepack": "tsx ../scripts/package-readme.ts"
   },
   "dependencies": {
-    "@lettercamp/cli": "0.1.0"
+    "@lettercamp/cli": "0.1.63"
   },
   "license": "MIT"
 }
