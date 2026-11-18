@@ -7,6 +7,7 @@ import { version } from './version.js';
 import { readSourceFiles, writeSourceFiles, validateFiles, changedPaths, mergeSource, type SourceFile } from './workspace-files.js';
 
 type Site = { id: string; slug: string; name: string };
+export type WorkspaceConnection = { token: string; site: Site; origin: string; editorPreviewUrl?: string };
 type Source = { site: Site; revision: string; productionRevision: string; productionFromPreview?: boolean; productionFiles?: SourceFile[]; files: SourceFile[] };
 type Snapshot = { id: string; revision: string; files: SourceFile[] };
 type Workspace = { origin: string; token: string; site: Site; revision?: string; files: SourceFile[]; productionRevision?: string; productionFiles?: SourceFile[]; pending?: Snapshot };
@@ -46,25 +47,41 @@ export async function connect(code: string, options: { directory?: string; json?
   // Retain redemption locally before checkout, so a lost source-download response
   // can resume with the same one-use code without exposing the credential.
   const receipt = `connect-${createHash('sha256').update(code).digest('hex')}.json`;
-  let connection = await readConfig<{ token: string; site: Site; origin: string; editorPreviewUrl?: string }>(receipt);
+  let connection = await readConfig<WorkspaceConnection>(receipt);
   if (connection && connection.origin !== apiOrigin()) throw new Error('This code was used on another Lettercamp server.');
   if (!connection) {
-    connection = { ...await request<{ token: string; site: Site; editorPreviewUrl?: string }>('', 'connect', { code }), origin: apiOrigin() };
+    connection = { ...await request<Omit<WorkspaceConnection, 'origin'>>('', 'connect', { code }), origin: apiOrigin() };
     await saveConfig(receipt, connection);
   }
-  const destination = path.resolve(options.directory ?? connection.site.slug);
+  const root = await checkoutRoot(options.directory ?? connection.site.slug);
+  const result = await checkoutWorkspace(root, connection);
+  await removeConfig(receipt);
+  report(result, options.json,
+    `Connected to ${result.site.name}.\nWorkspace: ${result.directory}${result.editorPreviewUrl ? `\nPreview in Lettercamp: ${result.editorPreviewUrl}` : ''}\nRead ${result.instructions} before editing.\nUse posts to edit preview pages and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
+}
+
+export async function checkoutRoot(directory: string) {
+  const destination = path.resolve(directory);
   await mkdir(destination, { recursive: true });
-  const root = await realpath(destination);
-  let state = await readConfig<Workspace>(configName(root));
+  return realpath(destination);
+}
+
+export async function checkCheckoutDestination(root: string, siteId?: string) {
+  const state = await readConfig<Workspace>(configName(root));
+  if (state) {
+    if (state.site.id !== siteId || state.origin !== apiOrigin()) throw new Error('This folder is already connected to a Lettercamp site. Choose a different directory.');
+  } else if ((await readdir(root)).length) throw new Error(`Directory is not empty: ${root}. Choose --directory with a new folder.`);
+  return state;
+}
+
+export async function checkoutWorkspace(root: string, connection: WorkspaceConnection) {
+  let state = await checkCheckoutDestination(root, connection.site.id);
   if (!state) {
-    if ((await readdir(root)).length) throw new Error(`Directory is not empty: ${root}. Choose --directory with a new folder.`);
     state = { origin: connection.origin, token: connection.token, site: connection.site, files: [] };
-    await saveConfig(configName(root), state);
   } else {
-    if (state.site.id !== connection.site.id || state.origin !== connection.origin) throw new Error('This folder is connected to another site. Choose a different directory.');
     state.token = connection.token;
-    await saveConfig(configName(root), state);
   }
+  await saveConfig(configName(root), state);
   if (!state.revision) {
     const source = await siteRequest<Source>(state, 'source');
     validateFiles(source.files);
@@ -78,9 +95,7 @@ export async function connect(code: string, options: { directory?: string; json?
   await writeFile(path.join(root, 'package.json'), JSON.stringify({ private: true, type: 'module', scripts: {
     dev: `npx --yes lettercamp@${version} dev`, check: `npx --yes lettercamp@${version} check`,
   } }, null, 2) + '\n', { flag: 'wx' }).catch(error => { if (error.code !== 'EEXIST') throw error; });
-  await removeConfig(receipt);
-  report({ connected: true, directory: root, site: state.site, editorPreviewUrl: connection.editorPreviewUrl, instructions: path.join(root, 'AGENTS.md') }, options.json,
-    `Connected to ${state.site.name}.\nWorkspace: ${root}${connection.editorPreviewUrl ? `\nPreview in Lettercamp: ${connection.editorPreviewUrl}` : ''}\nRead ${path.join(root, 'AGENTS.md')} before editing.\nUse posts to edit preview pages and upload for media. For site code, run dev locally, check --json, then push to update the cloud preview.`);
+  return { connected: true, directory: root, site: state.site, editorPreviewUrl: connection.editorPreviewUrl, instructions: path.join(root, 'AGENTS.md') };
 }
 
 export async function pull(options: { json?: boolean; keepLocal?: string[]; takeRemote?: string[] }) {

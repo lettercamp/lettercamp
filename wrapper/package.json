@@ -27,8 +27,13 @@
   "bin": {
     "lettercamp": "bin/lettercamp.js"
   },
+  "exports": {
+    "./components": { "types": "./components.d.ts" },
+    "./*": "./*"
+  },
   "files": [
     "bin",
+    "components.d.ts",
     "build-image/package-lock.json"
   ],
   "scripts": {

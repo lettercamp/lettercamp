@@ -67,6 +67,17 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   creationCommand(program.command('new'));
 
+  program.command('sites').description('Manage Lettercamp Cloud sites')
+    .command('create')
+    .description('Create a cloud site and check out its source for local editing')
+    .requiredOption('--name <name>', 'Site name')
+    .requiredOption('--slug <slug>', 'Address before .lettercamp.site')
+    .option('--directory <path>', 'New or empty workspace folder (defaults to the site slug)')
+    .option('--allow-publish', 'Allow this workspace to publish a reviewed preview')
+    .option('--json', 'Print the site, workspace, and editor preview URL as JSON')
+    .addHelpText('after', '\nSign in with lettercamp login first. The starter goes live on its first successful build.\nRerun the same command to resume an interrupted creation or checkout.')
+    .action(async options => { const { createCloudSite } = await import('./cloud-sites.js'); await createCloudSite(options); });
+
   program.command('connect')
     .description('Connect a cloud site and download its source for local editing')
     .argument('<code>', 'One-use code from Settings → Agents')
@@ -115,9 +126,9 @@ export async function run(argv = process.argv, name: 'lettercamp' | 'create-lett
 
   program.command('check')
     .description('Check that this folder will build on Lettercamp Cloud, without deploying')
-    .option('--json', 'Print build issues and editor warnings as JSON')
+    .option('--json', 'Print build issues and warnings as JSON')
     .option('--no-build', 'Check imports and source files, skipping the build')
-    .addHelpText('after', '\nRuns the same checks as lettercamp deploy, without signing in or uploading.\nReports imports that Lettercamp Cloud cannot resolve, then builds a copy of the deployment.\nReports posts that may require Source to edit. These warnings do not change the exit code.')
+    .addHelpText('after', '\nChecks Cloud imports and builds a copy of the deployment without signing in or uploading.\nChecks that custom post layouts render the article body.\nReports ignored page files and posts that may require Source to edit. Warnings do not change the exit code.')
     .action(async options => { const { check } = await import('./check.js'); await check(options); });
 
   program.command('domain')

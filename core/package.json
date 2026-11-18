@@ -24,7 +24,8 @@
     "bin",
     "dist",
     "renderer",
-    "starter"
+    "starter",
+    "types"
   ],
   "engines": {
     "node": ">=22.23.4"
@@ -45,6 +46,7 @@
     "@babel/parser": "^7.29.13",
     "@codemirror/language-data": "^6.5.2",
     "@lezer/highlight": "^1.2.5",
+    "@types/react": "^19.3.0",
     "astro": "7.3.8",
     "commander": "^15.0.0",
     "hast-util-from-html": "^2.0.3",
@@ -72,6 +74,7 @@
   },
   "exports": {
     "./cli": "./dist/lettercamp.js",
+    "./components": { "types": "./types/components.d.ts" },
     "./create": "./dist/create-lettercamp.js",
     "./starter": "./dist/starter.js"
   },

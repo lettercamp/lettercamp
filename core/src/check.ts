@@ -6,17 +6,19 @@ import { projectPath } from './account.js';
 import { editorWarnings, type EditorWarning } from './editor-check.js';
 import { BuildError } from './build-errors.js';
 import { checkImports, supportedImportsUrl, type CheckIssue } from './import-check.js';
+import { checkPostBodies, ignoredPageWarnings, type RouteWarning } from './page-check.js';
 import { checkPublicLimits, collectPublicFiles, copyPublicFiles, type PublicFile } from './public-files.js';
 import type { SourceFile } from './deployment-images.js';
 
 export type CheckResult = { ok: boolean; issues: CheckIssue[]; build: 'passed' | 'failed' | 'skipped' };
-type PublicationCheck = CheckResult & { warnings: EditorWarning[] };
+type PublicationCheck = CheckResult & { warnings: (EditorWarning | RouteWarning)[] };
 export type CheckOptions = { json?: boolean; build?: boolean };
 
 // Build the files a deployment would upload, in a folder of their own.
-async function buildDeploymentFiles(root: string, files: SourceFile[], publicFiles: PublicFile[]) {
+async function buildDeploymentFiles(root: string, files: SourceFile[], publicFiles: PublicFile[], inspectPages: boolean) {
   const temporary = await mkdtemp(path.join(tmpdir(), 'lettercamp-deploy-check-'));
   const source = path.join(temporary, 'publication');
+  const outDir = path.join(temporary, 'output');
   try {
     for (const file of files) {
       const filename = path.join(source, file.path);
@@ -28,15 +30,16 @@ async function buildDeploymentFiles(root: string, files: SourceFile[], publicFil
     // dependencies, resolved by the renderer workspace and React integration.
     const { buildSite } = await import('./build.js');
     // Lettercamp Cloud generates image variants itself; skip that work in this check.
-    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir: path.join(temporary, 'output'), quiet: true, target: 'cloud' }, false);
+    await buildSite(source, { site: 'https://preview.lettercamp.site', outDir, quiet: true, target: 'cloud' }, false);
+    return inspectPages ? await checkPostBodies(source, outDir, files) : [];
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }
 
-async function buildIssue(root: string, files: SourceFile[], publicFiles: PublicFile[]): Promise<CheckIssue | null> {
-  try { await buildDeploymentFiles(root, files, publicFiles); return null; }
+async function checkBuild(root: string, files: SourceFile[], publicFiles: PublicFile[], inspectPages = false): Promise<Pick<CheckResult, 'build' | 'issues'>> {
+  try { return { build: 'passed', issues: await buildDeploymentFiles(root, files, publicFiles, inspectPages) }; }
   catch (error) {
     const failure = error instanceof BuildError ? error.failure : { message: error instanceof Error ? error.message : String(error) };
-    return { code: 'build-failed', file: failure.file, message: failure.message, fix: failure.fix };
+    return { build: 'failed', issues: [{ code: 'build-failed', file: failure.file, message: failure.message, fix: failure.fix }] };
   }
 }
 
@@ -45,8 +48,8 @@ async function buildIssue(root: string, files: SourceFile[], publicFiles: Public
 export async function checkDeployment(root: string, files: SourceFile[], publicFiles: PublicFile[]): Promise<CheckResult> {
   const issues = await checkImports(root);
   if (issues.length) return { ok: false, issues, build: 'skipped' };
-  const failure = await buildIssue(root, files, publicFiles);
-  return failure ? { ok: false, issues: [failure], build: 'failed' } : { ok: true, issues, build: 'passed' };
+  const result = await checkBuild(root, files, publicFiles);
+  return { ok: result.issues.length === 0, ...result };
 }
 
 // One heading per kind of problem: the rule and its fix once, then each location.
@@ -64,6 +67,8 @@ const rules: Record<CheckIssue['code'], { title: string; why?: string; fix?: str
   'mdx-syntax': { title: 'MDX syntax' },
   'invalid-publication': { title: 'Publication files' },
   'build-failed': { title: 'Build' },
+  'missing-post-output': { title: 'Missing post pages' },
+  'missing-post-body': { title: 'Missing article bodies' },
 };
 
 export function formatIssues(issues: CheckIssue[]) {
@@ -115,11 +120,11 @@ async function checkPublication(root: string, options: CheckOptions): Promise<Pu
   await readFile(path.join(root, 'settings.json'), 'utf8').catch(() => { throw new Error('Run lettercamp check inside your publication folder containing settings.json.'); });
   const issues = await checkImports(root);
   let build: CheckResult['build'] = 'skipped';
-  let warnings: EditorWarning[] = [];
+  const warnings: PublicationCheck['warnings'] = await ignoredPageWarnings(root);
   try {
     const { publicationFiles } = await import('./deploy.js');
     const files = await publicationFiles(root);
-    warnings = editorWarnings(files);
+    warnings.push(...editorWarnings(files));
     // Preparing images parses the same pages, so a syntax error is reported once, with its line.
     if (!issues.some(issue => issue.code === 'mdx-syntax')) {
       const { prepareDeploymentImages } = await import('./deployment-images.js');
@@ -127,9 +132,9 @@ async function checkPublication(root: string, options: CheckOptions): Promise<Pu
       checkPublicLimits(publicFiles);
       const prepared = await prepareDeploymentImages(root, files);
       if (!issues.length && options.build !== false) {
-        const failure = await buildIssue(root, prepared.files, publicFiles);
-        if (failure) issues.push(failure);
-        build = failure ? 'failed' : 'passed';
+        const result = await checkBuild(root, prepared.files, publicFiles, true);
+        issues.push(...result.issues);
+        build = result.build;
       }
     }
   } catch (error) {
@@ -158,7 +163,8 @@ export async function check(options: CheckOptions = {}) {
       : `\n${style.success('✓ Imports are supported.')} The build was skipped; run lettercamp check without --no-build before deploying.`);
     return;
   }
-  console.log(`\n${style.error(`✗ Found ${summary(result.issues)}.`)} Lettercamp Cloud cannot build this publication yet.\n\n${formatIssues(result.issues)}\n`);
+  const detail = result.build === 'passed' ? ' Review the generated pages.' : ' Lettercamp Cloud cannot build this publication yet.';
+  console.log(`\n${style.error(`✗ Found ${summary(result.issues)}.`)}${detail}\n\n${formatIssues(result.issues)}\n`);
   if (result.issues.some(issue => issue.import)) console.log(`Docs: ${supportedImportsUrl}`);
   console.log(`Fix the problems above, then run lettercamp check again.${result.build === 'skipped' && options.build !== false ? ' The build runs once they are fixed.' : ''}`);
 }

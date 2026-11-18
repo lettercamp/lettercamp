@@ -1,4 +1,4 @@
-import { chmod, mkdir, readFile, realpath, rename, rm, writeFile, access } from 'node:fs/promises';
+import { chmod, link, mkdir, readFile, realpath, rename, rm, writeFile, access } from 'node:fs/promises';
 import { homedir, hostname } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
@@ -30,13 +30,16 @@ export async function readConfig<T>(name: string): Promise<T | null> {
   }
 }
 
-export async function saveConfig(name: string, value: unknown) {
+export async function saveConfig(name: string, value: unknown, options: { ifAbsent?: boolean } = {}) {
   await mkdir(configRoot(), { recursive: true, mode: 0o700 });
   if (process.platform !== 'win32') await chmod(configRoot(), 0o700);
   const temporary = path.join(configRoot(), `.${name}-${randomUUID()}`);
+  const destination = path.join(configRoot(), name);
   try {
     await writeFile(temporary, JSON.stringify(value, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-    await rename(temporary, path.join(configRoot(), name));
+    if (options.ifAbsent) {
+      await link(temporary, destination).catch(error => { if (error.code !== 'EEXIST') throw error; });
+    } else await rename(temporary, destination);
   } finally { await rm(temporary, { force: true }); }
 }
 

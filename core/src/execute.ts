@@ -11,7 +11,7 @@ export async function execute(name: 'lettercamp' | 'create-lettercamp') {
     await run(process.argv, name);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    if (process.argv[2] === 'insights' || (['connect', 'pull', 'push', 'status', 'posts', 'assets', 'publish', 'upload'].includes(process.argv[2]) && process.argv.includes('--json'))) console.log(JSON.stringify({ ok: false, error: message }));
+    if (process.argv[2] === 'insights' || (['sites', 'connect', 'pull', 'push', 'status', 'posts', 'assets', 'publish', 'upload'].includes(process.argv[2]) && process.argv.includes('--json'))) console.log(JSON.stringify({ ok: false, error: message }));
     else terminal.error(message);
     process.exitCode = 1;
   }

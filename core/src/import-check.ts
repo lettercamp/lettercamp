@@ -10,7 +10,8 @@ import { findCustomLayouts, findSubscribeOverride } from './custom-layout.js';
 export const supportedImportsUrl = 'https://www.lettercamp.com/docs/react-components#supported-imports';
 export type CheckIssue = {
   code: 'unsupported-package' | 'subpath-import' | 'path-alias' | 'absolute-path' | 'outside-publication' | 'missing-file'
-    | 'case-mismatch' | 'unsupported-stylesheet' | 'missing-default-export' | 'mdx-syntax' | 'invalid-publication' | 'build-failed';
+    | 'case-mismatch' | 'unsupported-stylesheet' | 'missing-default-export' | 'mdx-syntax' | 'invalid-publication' | 'build-failed'
+    | 'missing-post-output' | 'missing-post-body';
   file?: string; line?: number; column?: number; import?: string; message: string; fix?: string;
   // The import path to write instead, when it can be derived.
   replacement?: string;

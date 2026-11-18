@@ -43,6 +43,10 @@ Keep the main article text in Markdown or Lettercamp’s built-in content blocks
 - `PostLayout` receives post metadata, headings, related posts, site settings,
   the resolved `PostCard`, and `children`. Render `children` once: Lettercamp
   supplies the article body with all built-in rich blocks and their styles.
+- Start with [the typed PostLayout example](examples/layouts/PostLayout.jsx).
+  It uses `PostLayoutProps` from `lettercamp/components`, which also exports
+  `PostListProps`, `PostCardLayoutProps`, `HeaderLayoutProps`, and
+  `FooterLayoutProps` for TypeScript and JSX projects.
 - Keep content in `pages/*.md` or `pages/*.mdx`. Do not move article text into
   templates or parse Markdown yourself. This preserves online rich editing.
 - Templates own their markup and SCSS Modules. Use the supplied `site` settings
@@ -51,6 +55,8 @@ Keep the main article text in Markdown or Lettercamp’s built-in content blocks
 - The web editor and agent share one preview branch. Push code and content
   changes there and open Preview to see the built site. Publish promotes that
   build. The rich editor uses placeholders for custom MDX components.
+- To verify article editing before handoff, open a post in Lettercamp's **Edit**
+  view, change a paragraph, and confirm the update in **Preview**.
 - See [Custom layouts](https://www.lettercamp.com/docs/custom-layout) for props,
   examples, styling hooks, and preview behavior.
 
