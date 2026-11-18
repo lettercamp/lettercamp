@@ -193,13 +193,14 @@ h1 { font-size: var(--text-title); font-weight: 500; line-height: 1.15; letter-s
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li { padding-left: .2em; margin: .5em 0; }
 .prose .task-list-item:has(> input[type="checkbox"]:checked, > p > input[type="checkbox"]:checked) { text-decoration: line-through; }
-.prose blockquote { border-left: 2px solid var(--line); padding: 4px 0 4px 26px; margin: 36px 0; color: var(--site-text-strong); font-size: calc(var(--text-base) * 1.15); line-height: 1.55; }
+.prose blockquote { border-left: 2px solid var(--line); padding: 4px 0 4px 26px; margin: 36px 0; color: var(--site-text-strong); line-height: 1.55; }
 .prose blockquote p { margin: .3em 0; }
 .prose hr { border: 0; height: 1px; background: var(--line); margin: 42px 0; }
 .prose pre { padding: 24px; overflow: auto; border-radius: 5px; font-size: var(--text-small); line-height: 1.8; }
 .prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; }
 .prose :not(pre) > code { padding: .18em .35em; background: var(--site-surface-hover); border-radius: 3px; }
 .prose span[style*="background-color"] code { background-color: inherit; }
+.prose span[style*="font-size"] code { font-size: inherit; }
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 32px 0; }
 .card { display: flex; flex-direction: column; align-items: start; padding: 26px; border-radius: 6px; background: var(--site-surface-hover); text-decoration: none; }
 .card:hover { background: var(--site-surface-active); }

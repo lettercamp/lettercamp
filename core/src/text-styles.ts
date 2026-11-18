@@ -7,6 +7,7 @@ export function textStyles(style: unknown): Record<string, string> {
     const [property, ...parts] = declaration.split(":");
     const name = property.trim().toLowerCase(), value = parts.join(":").trim().toLowerCase();
     if (name === "text-align" && /^(left|center|right)$/.test(value)) result[name] = value;
+    if (name === "font-size" && /^(?:\d*\.)?\d+(?:e[+-]?\d+)?(?:px|em|rem|%)$/.test(value) && Number.isFinite(parseFloat(value))) result[name] = value;
     if (["color", "background-color"].includes(name) &&
       (/^#(?:[\da-f]{3}|[\da-f]{4}|[\da-f]{6}|[\da-f]{8})$/.test(value) ||
        /^(?:rgb|hsl)a?\([\d.% ,/+-]+\)$/.test(value) ||
