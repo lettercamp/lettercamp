@@ -1,6 +1,6 @@
 {
   "name": "@lettercamp/cli",
-  "version": "0.1.0",
+  "version": "0.1.64",
   "description": "The Lettercamp blog engine and CLI",
   "keywords": [
     "lettercamp",
@@ -74,7 +74,9 @@
   },
   "exports": {
     "./cli": "./dist/lettercamp.js",
-    "./components": { "types": "./types/components.d.ts" },
+    "./components": {
+      "types": "./types/components.d.ts"
+    },
     "./create": "./dist/create-lettercamp.js",
     "./starter": "./dist/starter.js"
   },
