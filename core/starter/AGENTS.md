@@ -12,6 +12,23 @@ needed by a custom layout, store text or lists of text under `customFields` in
 frontmatter and read them from `post.customFields`. Reuse the publication’s
 field names when available. See [Custom fields](https://www.lettercamp.com/docs/writing/metadata#custom-fields).
 
+## Folders and custom pages
+
+- Use real directories under `pages/`. For example, `pages/tutorials/index.md`
+  publishes at `/tutorials`, and `pages/authors/maya-chen.md` publishes at
+  `/authors/maya-chen`. The web editor shows these directories as expandable
+  folders in the Pages sidebar. The root `pages/index.md` is reserved for the homepage.
+- Set `type: page` in frontmatter for a standalone page. Folder `index.md` or
+  `index.mdx` files are standalone automatically. Standalone pages use the shared
+  site header and footer and stay out of the article feed and category lists.
+- Style a page with an imported local React component and a CSS Module. For example,
+  import `../../components/AuthorProfile.jsx` from `pages/authors/maya-chen.mdx`.
+  Keep editable text in Markdown. Set `showTitle: false` if the custom component
+  provides the page heading.
+- Run `npx lettercamp dev` and open the nested URL to review it locally. After you
+  push to Cloud, select the page in the sidebar and open **Preview** to see the
+  built page with its custom styles. See [Write pages](https://www.lettercamp.com/docs/writing/pages#create-a-folder-or-standalone-page).
+
 ## Custom component dependencies
 
 - For Lettercamp-hosted publications, custom components can import `react`, `react-dom`, `lettercamp/components`, and
@@ -52,7 +69,7 @@ field names when available. See [Custom fields](https://www.lettercamp.com/docs/
   It uses `PostLayoutProps` from `lettercamp/components`, which also exports
   `PostListProps`, `PostCardLayoutProps`, `HeaderLayoutProps`, and
   `FooterLayoutProps` for TypeScript and JSX projects.
-- Keep content in `pages/*.md` or `pages/*.mdx`. Do not move article text into
+- Keep content in Markdown or MDX files under `pages/`. Do not move article text into
   templates or parse Markdown yourself. This preserves online rich editing.
 - Templates own their markup and SCSS Modules. Use the supplied `site` settings
   where online design controls should apply. URLs in `post.href`, `post.image`,

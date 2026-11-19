@@ -87,7 +87,8 @@ export function siteColors(design?: { backgroundColor?: unknown; accentColor?: u
 export const typographyColorStyles = `
 body { color: var(--site-body-color, var(--site-foreground)); }
 .blog-heading h1, .article-header h1, .article-intro h1, .post-card h3,
-.related-posts > h2, .prose :is(h1, h2, h3, h4, h5, h6) {
+.related-posts > h2, .prose:not(:where(.standalone-page)) :is(h1, h2, h3, h4, h5, h6),
+:where(.standalone-page :is(h1, h2, h3, h4, h5, h6)) {
   color: var(--site-heading-color, var(--site-foreground));
 }
 `;

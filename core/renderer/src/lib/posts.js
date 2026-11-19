@@ -4,6 +4,7 @@ import { sitePath } from './urls.js';
 import { pages, contentPrefix } from '../content.js';
 import { categoryRoutes } from './category-routes.js';
 import { sortPosts } from './post-order.js';
+import { isStandalonePage, pageRoute } from './page-routes.js';
 import site from '../site.js';
 
 export function getCategories() {
@@ -11,12 +12,20 @@ export function getCategories() {
 }
 
 export function pageSlug(filename) {
-  return filename.slice(contentPrefix.length).replace(/\.(md|mdx)$/, '');
+  return pageRoute(`pages/${filename.slice(contentPrefix.length)}`).normalize();
 }
 
+export function standalone(filename, frontmatter) {
+  return isStandalonePage(filename.slice(contentPrefix.length), frontmatter);
+}
 
 export function getPosts(language = 'en', timeZone = 'UTC') {
+  return getPages(language, timeZone, false);
+}
+
+export function getPages(language = 'en', timeZone = 'UTC', includeStandalone = true) {
   return sortPosts(Object.entries(pages)
+    .filter(([filename, page]) => includeStandalone || !standalone(filename, page.frontmatter))
     .map(([filename, page]) => {
       const frontmatter = page.frontmatter ?? {};
       const slug = pageSlug(filename);

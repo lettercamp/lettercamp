@@ -5,10 +5,9 @@ import { glob } from 'tinyglobby';
 import { findCustomLayouts } from './custom-layout.js';
 import type { SourceFile } from './deployment-images.js';
 import type { CheckIssue } from './import-check.js';
+import { isPagePath, pageRoute } from '../renderer/src/lib/page-routes.js';
 
 export type RouteWarning = { code: 'ignored-page-route'; file: string; message: string };
-
-const articlePath = /^pages\/(?!index\.mdx?$)([^/]+)\.mdx?$/;
 
 export async function ignoredPageWarnings(root: string): Promise<RouteWarning[]> {
   const files = await glob(['pages/**/*.{md,mdx,astro}', 'src/pages/**/*.{astro,md,mdx,js,jsx,ts,tsx}'], {
@@ -17,12 +16,12 @@ export async function ignoredPageWarnings(root: string): Promise<RouteWarning[]>
     followSymbolicLinks: false,
     ignore: ['**/{node_modules,dist,build,coverage}/**', '**/*.d.ts'],
   });
-  return files.sort().filter(file => !articlePath.test(file)).map(file => ({
+  return files.sort().filter(file => !isPagePath(file)).map(file => ({
     code: 'ignored-page-route',
     file,
     message: /^pages\/index\.mdx?$/i.test(file)
       ? 'Lettercamp generates the homepage. Use settings.json or a PostList layout to customize it.'
-      : 'Lettercamp renders articles from .md or .mdx files directly inside pages/. Use pages/my-post.mdx for the /my-post route.',
+      : 'Lettercamp renders Markdown files in pages/. Use pages/guides/my-post.mdx for /guides/my-post.',
   }));
 }
 
@@ -31,11 +30,10 @@ export async function checkPostBodies(root: string, outDir: string, files: Sourc
   if (!PostLayout) return [];
   const issues: CheckIssue[] = [];
   for (const file of files) {
-    const match = articlePath.exec(file.path);
-    if (!match) continue;
+    if (!isPagePath(file.path)) continue;
     // Astro normalizes dynamic route params and keeps escaped URL delimiters in
     // the output directory. Its status pages use a flat HTML filename.
-    const slug = match[1].normalize().replace(/[?#]/g, encodeURIComponent);
+    const slug = pageRoute(file.path).normalize().replace(/[?#]/g, encodeURIComponent);
     const output = slug === '404' || slug === '500' ? `${slug}.html` : path.join(slug, 'index.html');
     const html = await readFile(path.join(outDir, output), 'utf8').catch((error: NodeJS.ErrnoException) => {
       if (error.code === 'ENOENT' || error.code === 'ENOTDIR') return null;

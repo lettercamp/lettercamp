@@ -8,6 +8,7 @@ import { isMap, parseDocument } from 'yaml';
 import { expandContentComponent, importedComponentNames, isContentElement } from './content-components.js';
 import type { SourceFile } from './deployment-images.js';
 import { textStyles } from './text-styles.js';
+import { isPagePath } from '../renderer/src/lib/page-routes.js';
 
 export type EditorWarning = { code: 'editor-source-only' | 'editor-placeholders-only'; file: string; message: string };
 
@@ -70,7 +71,7 @@ function checkPage(file: string, source: string): EditorWarning | undefined {
 export function editorWarnings(files: SourceFile[]): EditorWarning[] {
   const warnings: EditorWarning[] = [];
   for (const file of files) {
-    if (!/^pages\/(?!index\.mdx?$)[^/]+\.mdx?$/.test(file.path)) continue;
+    if (!isPagePath(file.path)) continue;
     const warning = checkPage(file.path, Buffer.from(file.content, 'base64').toString('utf8'));
     if (warning) warnings.push(warning);
   }

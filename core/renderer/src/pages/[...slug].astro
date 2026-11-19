@@ -4,7 +4,8 @@ import { PostLayout as CustomPostLayout } from '../custom-posts.js';
 import { PostLayout } from '../components/layouts/resolve.jsx';
 import PostBody from '../components/PostBody.astro';
 import DefaultPostLayout from '../components/layouts/PostLayout.astro';
-import { pageSlug, postDate, getCategories, getPosts } from '../lib/posts.js';
+import { pageSlug, postDate, getCategories, getPosts, standalone } from '../lib/posts.js';
+import { reservedPageRoute } from '../lib/page-routes.js';
 import { createRelatedPostSelector } from '../lib/related-posts';
 import { sitePath } from '../lib/urls.js';
 import site from '../site.js';
@@ -14,14 +15,21 @@ export function getStaticPaths() {
   const posts = getPosts(site.language, site.timeZone);
   const selectRelated = createRelatedPostSelector(posts, site.language);
   const byHref = new Map(posts.map(post => [post.href, post]));
+  const routes = new Set();
   return Object.entries(pages).map(([filename, page]) => {
     const slug = pageSlug(filename);
+    if (reservedPageRoute(slug) || (slug === 'category' && /\/index\.mdx?$/.test(filename))) {
+      throw new Error(`The page ${slug} uses a reserved listing URL.`);
+    }
+    if (routes.has(slug)) throw new Error(`Two page files use the URL /${slug}. Rename one of them.`);
+    routes.add(slug);
     const href = sitePath(`/${slug.split('/').map(encodeURIComponent).join('/')}`);
-    return { params: { slug }, props: { page, relatedPosts: selectRelated(byHref.get(href)) } };
+    const isStandalone = standalone(filename, page.frontmatter);
+    return { params: { slug }, props: { page, isStandalone, relatedPosts: isStandalone ? [] : selectRelated(byHref.get(href)) } };
   });
 }
 
-const { page, relatedPosts } = Astro.props;
+const { page, isStandalone, relatedPosts } = Astro.props;
 const { Content, frontmatter = {} } = page;
 const coverImage = sitePath(frontmatter.image ?? frontmatter.ogImage);
 const headings = (page.getHeadings?.() ?? []).filter(({ depth }) => depth === 2 || depth === 3);
@@ -33,6 +41,14 @@ const post = { ...frontmatter, title: frontmatter.title ?? site.name, category, 
 const layoutProps = { site, post, headings, relatedPosts, pathname: Astro.url.pathname };
 ---
 
-<SiteLayout site={site} page={frontmatter} article priorityImage={postLayout.showCover !== false && frontmatter.showCover !== false ? coverImage : undefined} themePreview={{ kind: 'post', props: { post, headings, relatedPosts } }}>
-  {CustomPostLayout ? <PostLayout {...layoutProps} client:load><PostBody site={site}><Content /></PostBody></PostLayout> : <DefaultPostLayout {...layoutProps}><Content /></DefaultPostLayout>}
+<SiteLayout site={site} page={frontmatter} article={!isStandalone} priorityImage={!isStandalone && postLayout.showCover !== false && frontmatter.showCover !== false ? coverImage : undefined} themePreview={isStandalone ? undefined : { kind: 'post', props: { post, headings, relatedPosts } }}>
+  {isStandalone ? <div class="standalone-page prose" data-lettercamp-body>
+    {frontmatter.title && frontmatter.showTitle !== false && <h1>{frontmatter.title}</h1>}
+    <Content />
+  </div> : CustomPostLayout ? <PostLayout {...layoutProps} client:load><PostBody site={site}><Content /></PostBody></PostLayout> : <DefaultPostLayout {...layoutProps}><Content /></DefaultPostLayout>}
 </SiteLayout>
+
+<style>
+  .standalone-page { width: var(--site-width); margin: 0 auto; padding-block: clamp(32px, 6vw, 80px); }
+  .standalone-page > h1 { margin-bottom: 1em; }
+</style>

@@ -1,11 +1,11 @@
 import site from '../site.js';
 import { sitePath } from '../lib/urls.js';
-import { getPosts } from '../lib/posts.js';
+import { getPages } from '../lib/posts.js';
 import { imageAttributes } from '../lib/image-variants';
 import { readImageManifest } from '../lib/image-manifest';
 
 export async function GET() {
-  const posts = getPosts(site.language, site.timeZone).map(post => ({
+  const posts = getPages(site.language, site.timeZone).map(post => ({
     title: String(post.title), href: post.href, image: sitePath(post.image ?? post.ogImage),
     summary: typeof post.description === 'string' ? post.description : '',
     text: typeof post.searchText === 'string' ? post.searchText : '',

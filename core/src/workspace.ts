@@ -30,9 +30,10 @@ export async function prepareWorkspace(directory: string) {
     await symlink(modules, path.join(workspace, 'node_modules'), 'junction');
     const contentPrefix = path.relative(path.join(workspace, 'src'), pagesPath).replaceAll('\\', '/') + '/';
     await writeFile(path.join(workspace, 'src', 'content.js'),
+      `import { isPagePath } from './lib/page-routes.js';\n` +
       `export const contentPrefix = ${JSON.stringify(contentPrefix)};\n` +
-      `const allPages = import.meta.glob(${JSON.stringify(escapePath(contentPrefix) + '*.{md,mdx}')}, { eager: true });\n` +
-      `export const pages = Object.fromEntries(Object.entries(allPages).filter(([filename]) => !/\\/index\\.mdx?$/.test(filename)));\n`);
+      `const allPages = import.meta.glob(${JSON.stringify(escapePath(contentPrefix) + '**/*.{md,mdx}')}, { eager: true });\n` +
+      `export const pages = Object.fromEntries(Object.entries(allPages).filter(([filename]) => isPagePath('pages/' + filename.slice(contentPrefix.length))));\n`);
     await writeFile(path.join(workspace, 'src', 'site.js'),
       `import source from ${JSON.stringify(path.join(contentRoot, 'settings.json').replaceAll('\\', '/'))};\n` +
       `import { withDefaultBranding } from './lib/branding.js';\n` +
